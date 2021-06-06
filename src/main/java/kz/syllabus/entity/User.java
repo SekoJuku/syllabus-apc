@@ -17,5 +17,7 @@ public class User {
     private Long id;
     private String username;
     private String password;
-    private Long roleId;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
 }

@@ -7,5 +7,6 @@ public class UserDtoResponse {
     private Integer id;
     private String username;
     private String password;
-    private Integer roleId;
+    private RoleDtoResponse role;
+
 }
