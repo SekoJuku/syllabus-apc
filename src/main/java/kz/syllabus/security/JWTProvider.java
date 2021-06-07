@@ -3,6 +3,8 @@ package kz.syllabus.security;
 import io.jsonwebtoken.*;
 import kz.syllabus.entity.User;
 import kz.syllabus.entity.UserPrincipal;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -12,6 +14,8 @@ import java.util.Date;
 
 @Log
 @Component
+@AllArgsConstructor
+@NoArgsConstructor
 public class JWTProvider {
     @Value("$(jwt.secret)")
     private String jwtSecret;

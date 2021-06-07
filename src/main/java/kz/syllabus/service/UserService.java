@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -21,9 +22,9 @@ import java.util.Optional;
 public class UserService implements UserDetailsService {
 
     public static final String AUTHORIZATION = "Authorization";
-    private UserRepository userRepository;
-    private RoleRepository roleRepository;
-    private JWTProvider jwtProvider;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final JWTProvider jwtProvider;
 
 
     public User findByUsername(String username){
@@ -42,9 +43,8 @@ public class UserService implements UserDetailsService {
             UserPrincipal userPrincipal = new UserPrincipal(user.get());
             HttpHeaders authorizationHeader = getJwtHeader(userPrincipal);
             return new ResponseEntity<>(user, authorizationHeader, HttpStatus.OK);
-        }else {
-            throw new UsernameNotFoundException("User not found");
         }
+        throw new BadCredentialsException("Username and password incorrect");
     }
 
     private HttpHeaders getJwtHeader(UserPrincipal userPrincipal) {
