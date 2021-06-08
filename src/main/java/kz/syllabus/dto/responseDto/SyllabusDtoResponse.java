@@ -10,6 +10,7 @@ import java.util.List;
 
 @Data
 public class SyllabusDtoResponse {
+    private Integer id;
     private Integer userId;
     private Integer disciplineId;
     private Integer credits;

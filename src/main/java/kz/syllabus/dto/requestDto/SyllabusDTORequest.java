@@ -6,6 +6,7 @@ import java.util.List;
 
 @Data
 public class SyllabusDTORequest {
+    private Integer id;
     private Integer userId;
     private Integer disciplineId;
     private Integer credits;

@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DisciplineInfoProgramRepository extends JpaRepository<DisciplineInfoProgram, Long> {
-
+public interface DisciplineInfoProgramRepository extends JpaRepository<DisciplineInfoProgram, Integer> {
+    DisciplineInfoProgram getByDisciplineInfoId(Integer disciplineInfoId);
 }
