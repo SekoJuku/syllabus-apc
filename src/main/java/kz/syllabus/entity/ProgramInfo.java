@@ -16,9 +16,9 @@ public class ProgramInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private Integer program_id;
     private String lectureTheme;
     private String practiceTheme;
     private String iswTheme;
     private Integer week;
-    private String competencies;
 }
