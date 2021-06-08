@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c92fe44a-636c-43a2-8808-971c9ac4624f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/example.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1b68a51e-6688-4d38-b10c-b4aaec735fd3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1b68a51e-6688-4d38-b10c-b4aaec735fd3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1b68a51e-6688-4d38-b10c-b4aaec735fd3/storage_v2/_src_/database/syllabus.5Q1kaQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1b68a51e-6688-4d38-b10c-b4aaec735fd3/storage_v2/_src_/database/syllabus.5Q1kaQ/schema/public.abK9xQ.meta" afterDir="false" />
+    <list default="true" id="c92fe44a-636c-43a2-8808-971c9ac4624f" name="Default Changelist" comment="syllabus added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/DisciplineRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/DisciplineRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/SyllabusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/SyllabusService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/utils/facade/ProgramDetailFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/utils/facade/ProgramDetailFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/utils/facade/ProgramInfoFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/utils/facade/ProgramInfoFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example.json" beforeDir="false" afterPath="$PROJECT_DIR$/example.json" afterDir="false" />
     </list>
     <list id="e29c290e-cc91-464a-9ba9-c5463819e34c" name="Changes by kuany" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -121,6 +114,14 @@
       <workItem from="1622955086202" duration="4939000" />
       <workItem from="1623025990570" duration="9624000" />
     </task>
+    <task id="LOCAL-00001" summary="syllabus added">
+      <created>1623128343368</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1623128343368</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,6 +138,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="syllabus added" />
+    <option name="LAST_COMMIT_MESSAGE" value="syllabus added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
