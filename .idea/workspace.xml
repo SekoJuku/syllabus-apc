@@ -5,9 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c92fe44a-636c-43a2-8808-971c9ac4624f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/example.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/1b68a51e-6688-4d38-b10c-b4aaec735fd3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1b68a51e-6688-4d38-b10c-b4aaec735fd3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/1b68a51e-6688-4d38-b10c-b4aaec735fd3/storage_v2/_src_/database/syllabus.5Q1kaQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1b68a51e-6688-4d38-b10c-b4aaec735fd3/storage_v2/_src_/database/syllabus.5Q1kaQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/DisciplineRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/DisciplineRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/SyllabusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/SyllabusService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/utils/facade/ProgramDetailFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/utils/facade/ProgramDetailFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/utils/facade/ProgramInfoFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/utils/facade/ProgramInfoFacade.java" afterDir="false" />
     </list>
     <list id="e29c290e-cc91-464a-9ba9-c5463819e34c" name="Changes by kuany" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,6 +40,10 @@
   <component name="PropertiesComponent">
     <property name="DBE.Init.BalloonShown" value="true" />
     <property name="DatabaseDriversLRU" value="postgresql" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -51,7 +61,7 @@
       <recent name="C:\Users\Сагинов Жандос\Desktop\sylabus\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Database Script.program_info.sql">
+  <component name="RunManager" selected="Spring Boot.SyllabusApplication">
     <configuration name="SyllabusApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="kz.syllabus.SyllabusApplication" />
       <module name="syllabus" />
@@ -78,11 +88,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="program_info.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
-      <script-file value="1b68a51e-6688-4d38-b10c-b4aaec735fd3/database/syllabus/schema/public/table/program_info.sql" />
-      <script-mode>FILE</script-mode>
-      <method v="2" />
-    </configuration>
     <configuration name="SyllabusApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="syllabus" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="kz.syllabus.SyllabusApplication" />
@@ -90,9 +95,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.SyllabusApplication" />
+      <item itemvalue="Spring Boot.SyllabusApplication" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Database Script.program_info.sql" />
         <item itemvalue="Application.SyllabusApplication" />
       </list>
     </recent_temporary>

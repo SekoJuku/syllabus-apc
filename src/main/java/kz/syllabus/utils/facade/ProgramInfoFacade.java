@@ -8,6 +8,7 @@ import kz.syllabus.entity.ProgramInfo;
 public class ProgramInfoFacade {
     public static ProgramInfoDtoResponse objectToDto(ProgramInfo programInfo) {
         ProgramInfoDtoResponse programInfoDtoResponse = new ProgramInfoDtoResponse();
+        programInfoDtoResponse.setId(programInfo.getId());
         programInfoDtoResponse.setLectureTheme(programInfo.getLectureTheme());
         programInfoDtoResponse.setPracticeTheme(programInfo.getPracticeTheme());
         programInfoDtoResponse.setIswTheme(programInfo.getIswTheme());

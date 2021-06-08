@@ -840,7 +840,7 @@ true posixrules
 12716||-9223372036854775808|U|G
 12716||10|U|G</Grants>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>874</IntrospectionStateNumber>
+      <IntrospectionStateNumber>883</IntrospectionStateNumber>
       <Current>1</Current>
       <Relations>sequence|table|98333|98335|1
 sequence|table|98343|98345|1
@@ -928,7 +928,7 @@ sequence|table|98454|98456|1
       <Comment>standard public schema</Comment>
       <StateNumber>360</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>875</IntrospectionStateNumber>
+      <IntrospectionStateNumber>884</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="27" parent="10" name="plpgsql">
@@ -1340,10 +1340,10 @@ sequence|table|98454|98456|1
       <StateNumber>826</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="87" parent="54" name="competence">
+    <column id="87" parent="54" name="competencies">
       <Position>5</Position>
       <DataType>text|0s</DataType>
-      <StateNumber>870</StateNumber>
+      <StateNumber>882</StateNumber>
       <TypeId>25</TypeId>
     </column>
     <index id="88" parent="54" name="discipline_info_program_pk">
