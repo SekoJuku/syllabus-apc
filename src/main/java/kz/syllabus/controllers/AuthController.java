@@ -9,9 +9,9 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.net.http.HttpHeaders;
 
 @RestController
 @AllArgsConstructor
@@ -20,12 +20,10 @@ public class AuthController extends ExceptionHandling {
     @Autowired
     private final UserService userService;
 
-
     @PostMapping("/api/auth")
     public ResponseEntity<?> auth(@RequestBody UserDtoRequest userDtoRequest){
         log.info(userDtoRequest.getUsername() + "---" + userDtoRequest.getPassword());
         return userService.auth(userDtoRequest.getUsername(),userDtoRequest.getPassword());
     }
-
 
 }
