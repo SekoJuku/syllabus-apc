@@ -35,6 +35,13 @@ public class SyllabusService {
     public ResponseEntity<?> create(SyllabusDTORequest syllabusDTORequest) {
         SyllabusDtoResponse response = new SyllabusDtoResponse();
 
+        Discipline discipline = disciplineRepository.getById(syllabusDTORequest.getDisciplineId());
+
+        response.setLectureHoursPerWeek(discipline.getLectureHoursPerWeek());
+        response.setPracticeHoursPerWeek(discipline.getPracticeHoursPerWeek());
+        response.setIswHoursPerWeek(discipline.getIswHoursPerWeek());
+
+        log.info(String.valueOf(syllabusDTORequest));
         DisciplineInfo newDisciplineInfo = new DisciplineInfo();
         newDisciplineInfo.setDisciplineId(syllabusDTORequest.getDisciplineId());
         newDisciplineInfo.setCredits(syllabusDTORequest.getCredits());
@@ -53,7 +60,7 @@ public class SyllabusService {
         response.setResults(disciplineInfo.getResults());
         response.setMethodology(disciplineInfo.getMethodology());
 
-        List<Integer> list = new ArrayList<>();
+        List<Integer> l = new ArrayList<>();
 
         for (Integer item:
                 syllabusDTORequest.getPrerequisites()){
@@ -62,10 +69,11 @@ public class SyllabusService {
             prerequisite.setDisciplineInfoId(disciplineInfoId);
             Prerequisite newPrerequisite = prerequisiteRepository.save(prerequisite);
 
-            list.add(newPrerequisite.getDisciplineId());
+            l.add(newPrerequisite.getDisciplineId());
         }
-        response.setPrerequisites(list);
-        list.clear();
+        response.setPrerequisites(l);
+
+        List<Integer> l1 = new ArrayList<>();
 
         for (Integer item :
                 syllabusDTORequest.getPostrequisites()) {
@@ -73,10 +81,9 @@ public class SyllabusService {
             postrequisite.setDisciplineId(item);
             postrequisite.setDisciplineInfoId(disciplineInfoId);
             Postrequisite newPostrequisite = postrequisiteRepository.save(postrequisite);
-            list.add(newPostrequisite.getDisciplineId());
+            l1.add(newPostrequisite.getDisciplineId());
         }
-        response.setPostrequisites(list);
-        list.clear();
+        response.setPostrequisites(l1);
 
         Instructor newInstructor = new Instructor();
         newInstructor.setDisciplineInfoId(disciplineInfoId);
