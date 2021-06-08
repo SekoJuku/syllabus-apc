@@ -3,11 +3,14 @@ package kz.syllabus.service;
 import kz.syllabus.dto.requestDto.ProgramDetailDtoRequest;
 import kz.syllabus.dto.requestDto.ProgramInfoDtoRequest;
 import kz.syllabus.dto.requestDto.SyllabusDTORequest;
+import kz.syllabus.dto.responseDto.DisciplineInfoDtoResponse;
 import kz.syllabus.dto.responseDto.ProgramDetailDtoResponse;
 import kz.syllabus.dto.responseDto.ProgramInfoDtoResponse;
 import kz.syllabus.dto.responseDto.SyllabusDtoResponse;
 import kz.syllabus.entity.*;
 import kz.syllabus.repository.*;
+import kz.syllabus.utils.facade.DisciplineInfoFacade;
+import kz.syllabus.utils.facade.DisciplineInfoProgramFacade;
 import kz.syllabus.utils.facade.ProgramDetailFacade;
 import kz.syllabus.utils.facade.ProgramInfoFacade;
 import lombok.AllArgsConstructor;
@@ -43,6 +46,9 @@ public class SyllabusService {
 
         log.info(String.valueOf(syllabusDTORequest));
         DisciplineInfo newDisciplineInfo = new DisciplineInfo();
+        if(syllabusDTORequest.getId() != null) {
+            newDisciplineInfo.setId(syllabusDTORequest.getId());
+        }
         newDisciplineInfo.setDisciplineId(syllabusDTORequest.getDisciplineId());
         newDisciplineInfo.setCredits(syllabusDTORequest.getCredits());
         newDisciplineInfo.setAim(syllabusDTORequest.getAim());
@@ -149,4 +155,72 @@ public class SyllabusService {
 
         return ResponseEntity.ok(response);
     }
+
+    public ResponseEntity<?> getAll(Integer userId) {
+        List<Integer> list = new ArrayList<>();
+        List<Instructor> instructors = instructorRepository.getByUserId(userId);
+        List<DisciplineInfoDtoResponse> disciplineInfos = new ArrayList<>();
+        for (Instructor item :
+                instructors) {
+            list.add(item.getDisciplineInfoId());
+        }
+        for (Integer item :
+                list) {
+            disciplineInfos.add(DisciplineInfoFacade.objectToDto(disciplineInfoRepository.getById(item)));
+        }
+        return ResponseEntity.ok(disciplineInfos);
+    }
+
+    public ResponseEntity<?> getOne(Integer userId, Integer disciplineInfoId) {
+        if(!instructorRepository.existsByUserIdAndDisciplineInfoId(userId,disciplineInfoId)) {
+            return ResponseEntity.badRequest().body("Don't exist or you don't have permission!");
+        }
+
+        DisciplineInfo disciplineInfo = disciplineInfoRepository.getById(disciplineInfoId);
+        SyllabusDtoResponse response = DisciplineInfoFacade.objectToSyllabusDto(disciplineInfo, new SyllabusDtoResponse());
+
+        Discipline discipline = disciplineRepository.getById(disciplineInfo.getDisciplineId());
+
+        response.setUserId(userId);
+        response.setLectureHoursPerWeek(discipline.getLectureHoursPerWeek());
+        response.setPracticeHoursPerWeek(discipline.getPracticeHoursPerWeek());
+        response.setIswHoursPerWeek(discipline.getIswHoursPerWeek());
+
+        DisciplineInfoProgram disciplineInfoProgram = disciplineInfoProgramRepository.getByDisciplineInfoId(disciplineInfoId);
+        response.equals(DisciplineInfoProgramFacade.objectToSyllabusDto(disciplineInfoProgram,response));
+
+        List<Postrequisite> postrequisiteList = postrequisiteRepository.findAllByDisciplineId(disciplineInfoId);
+        List<Prerequisite> prerequisiteList = prerequisiteRepository.findAllByDisciplineId(disciplineInfoId);
+
+        List<Integer> postrequisites = new ArrayList<>();
+        List<Integer> prerequisites = new ArrayList<>();
+
+        for (Postrequisite item :
+                postrequisiteList) {
+            postrequisites.add(item.getDisciplineId());
+        }
+        for (Prerequisite item :
+                prerequisiteList) {
+            prerequisites.add(item.getDisciplineId());
+        }
+        response.setPrerequisites(prerequisites);
+        response.setPostrequisites(postrequisites);
+
+        List<ProgramInfo> programInfoList = programInfoRepository.getAllByProgram_id(disciplineInfoProgram.getId());
+
+        List<ProgramInfoDtoResponse> programInfoDtoResponses = new ArrayList<>();
+        List<ProgramDetailDtoResponse> programDetailDtoResponses = new ArrayList<>();
+
+        for (ProgramInfo item :
+                programInfoList) {
+                programInfoDtoResponses.add(ProgramInfoFacade.objectToDto(item));
+                programDetailDtoResponses.add(ProgramDetailFacade.objectToDto(programDetailRepository.getByProgramInfoId(item.getId())));
+        }
+
+        response.setProgramInfo(programInfoDtoResponses);
+        response.setProgramDetails(programDetailDtoResponses);
+
+        return ResponseEntity.ok(response);
+    }
+
 }
