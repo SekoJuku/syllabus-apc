@@ -1,0 +1,182 @@
+{
+  "user_id": 1,
+  "discipline_id": 1,
+  "credits": 6,
+  "lecture_hours_per_week": 2,
+  "practice_hours_per_week": 2,
+  "isw_hours_per_week": 1,
+  "aim" : "aim",
+  "tasks": "tasks",
+  "results": "results",
+  "methodology": "methodology",
+  "competencies": "competencies",
+  "evaluation_id": 1,
+  "prerequisites": [1,2],
+  "postrequisites": [3,4],
+  "program_info": [
+    {
+      "lecture_theme": "lecture_theme",
+      "practice_theme": "practice_theme",
+      "isw_theme": "isw_theme",
+      "week": 1
+    } , {
+      "lecture_theme": "lecture_theme",
+      "practice_theme": "practice_theme",
+      "isw_theme": "isw_theme",
+      "week": 2
+    } , {
+      "lecture_theme": "lecture_theme",
+      "practice_theme": "practice_theme",
+      "isw_theme": "isw_theme",
+      "week": 3
+    } , {
+      "lecture_theme": "lecture_theme",
+      "practice_theme": "practice_theme",
+      "isw_theme": "isw_theme",
+      "week": 4
+    } , {
+      "lecture_theme": "lecture_theme",
+      "practice_theme": "practice_theme",
+      "isw_theme": "isw_theme",
+      "week": 5
+    } , {
+      "lecture_theme": "lecture_theme",
+      "practice_theme": "practice_theme",
+      "isw_theme": "isw_theme",
+      "week": 6
+    } , {
+      "lecture_theme": "lecture_theme",
+      "practice_theme": "practice_theme",
+      "isw_theme": "isw_theme",
+      "week": 7
+    } , {
+      "lecture_theme": "lecture_theme",
+      "practice_theme": "practice_theme",
+      "isw_theme": "isw_theme",
+      "week": 8
+    } , {
+      "lecture_theme": "lecture_theme",
+      "practice_theme": "practice_theme",
+      "isw_theme": "isw_theme",
+      "week": 9
+    } , {
+      "lecture_theme": "lecture_theme",
+      "practice_theme": "practice_theme",
+      "isw_theme": "isw_theme",
+      "week": 10
+    }
+  ],
+  "program_details": [
+    {
+      "lecture_fof": "lecture_fof",
+      "practice_fof": "practice_fof",
+      "isw_fof": "isw_fof",
+      "lecture_literature": "lecture_literature",
+      "practice_literature": "practice_literature",
+      "isw_literature": "isw_literature",
+      "lecture_assessment": "lecture_assessment",
+      "practice_assessment": "practice_assessment",
+      "isw_assessment": "isw_assessment",
+      "week": 1
+    } , {
+      "lecture_fof": "lecture_fof",
+      "practice_fof": "practice_fof",
+      "isw_fof": "isw_fof",
+      "lecture_literature": "lecture_literature",
+      "practice_literature": "practice_literature",
+      "isw_literature": "isw_literature",
+      "lecture_assessment": "lecture_assessment",
+      "practice_assessment": "practice_assessment",
+      "isw_assessment": "isw_assessment",
+      "week": 2
+    } , {
+      "lecture_fof": "lecture_fof",
+      "practice_fof": "practice_fof",
+      "isw_fof": "isw_fof",
+      "lecture_literature": "lecture_literature",
+      "practice_literature": "practice_literature",
+      "isw_literature": "isw_literature",
+      "lecture_assessment": "lecture_assessment",
+      "practice_assessment": "practice_assessment",
+      "isw_assessment": "isw_assessment",
+      "week": 3
+    } , {
+      "lecture_fof": "lecture_fof",
+      "practice_fof": "practice_fof",
+      "isw_fof": "isw_fof",
+      "lecture_literature": "lecture_literature",
+      "practice_literature": "practice_literature",
+      "isw_literature": "isw_literature",
+      "lecture_assessment": "lecture_assessment",
+      "practice_assessment": "practice_assessment",
+      "isw_assessment": "isw_assessment",
+      "week": 4
+    } , {
+      "lecture_fof": "lecture_fof",
+      "practice_fof": "practice_fof",
+      "isw_fof": "isw_fof",
+      "lecture_literature": "lecture_literature",
+      "practice_literature": "practice_literature",
+      "isw_literature": "isw_literature",
+      "lecture_assessment": "lecture_assessment",
+      "practice_assessment": "practice_assessment",
+      "isw_assessment": "isw_assessment",
+      "week": 5
+    } , {
+      "lecture_fof": "lecture_fof",
+      "practice_fof": "practice_fof",
+      "isw_fof": "isw_fof",
+      "lecture_literature": "lecture_literature",
+      "practice_literature": "practice_literature",
+      "isw_literature": "isw_literature",
+      "lecture_assessment": "lecture_assessment",
+      "practice_assessment": "practice_assessment",
+      "isw_assessment": "isw_assessment",
+      "week": 6
+    } , {
+      "lecture_fof": "lecture_fof",
+      "practice_fof": "practice_fof",
+      "isw_fof": "isw_fof",
+      "lecture_literature": "lecture_literature",
+      "practice_literature": "practice_literature",
+      "isw_literature": "isw_literature",
+      "lecture_assessment": "lecture_assessment",
+      "practice_assessment": "practice_assessment",
+      "isw_assessment": "isw_assessment",
+      "week": 7
+    } , {
+      "lecture_fof": "lecture_fof",
+      "practice_fof": "practice_fof",
+      "isw_fof": "isw_fof",
+      "lecture_literature": "lecture_literature",
+      "practice_literature": "practice_literature",
+      "isw_literature": "isw_literature",
+      "lecture_assessment": "lecture_assessment",
+      "practice_assessment": "practice_assessment",
+      "isw_assessment": "isw_assessment",
+      "week": 8
+    } , {
+      "lecture_fof": "lecture_fof",
+      "practice_fof": "practice_fof",
+      "isw_fof": "isw_fof",
+      "lecture_literature": "lecture_literature",
+      "practice_literature": "practice_literature",
+      "isw_literature": "isw_literature",
+      "lecture_assessment": "lecture_assessment",
+      "practice_assessment": "practice_assessment",
+      "isw_assessment": "isw_assessment",
+      "week": 9
+    } , {
+      "lecture_fof": "lecture_fof",
+      "practice_fof": "practice_fof",
+      "isw_fof": "isw_fof",
+      "lecture_literature": "lecture_literature",
+      "practice_literature": "practice_literature",
+      "isw_literature": "isw_literature",
+      "lecture_assessment": "lecture_assessment",
+      "practice_assessment": "practice_assessment",
+      "isw_assessment": "isw_assessment",
+      "week": 10
+    }
+  ]
+}
