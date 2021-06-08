@@ -16,12 +16,20 @@ public class TeacherController extends ExceptionHandling {
     private final SyllabusService syllabusService;
 
     @PostMapping("")
-    public ResponseEntity<?> getAll(@RequestParam("user_id") Integer userId) {
+    public ResponseEntity<?> getAll(@RequestParam("userId") Integer userId) {
         return syllabusService.getAll(userId);
     }
 
     @PostMapping("/syllabus/create")
     public ResponseEntity<?> createSyllabus(@RequestBody SyllabusDTORequest syllabusDTORequest) {
         return syllabusService.create(syllabusDTORequest);
+    }
+    @PostMapping("/syllabus")
+    public ResponseEntity<?> getSyllabus(@RequestParam("userId") Integer userId, @RequestParam("disciplineInfoId") Integer disciplineInfoId) {
+        return syllabusService.getOne(userId, disciplineInfoId);
+    }
+    @PostMapping("/data")
+    public ResponseEntity<?> getData(@RequestParam("userId") Integer userId) {
+        return syllabusService.getUserData(userId);
     }
 }

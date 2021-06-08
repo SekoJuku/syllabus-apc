@@ -26,6 +26,7 @@ import java.util.List;
 @Log
 @AllArgsConstructor
 public class SyllabusService {
+    private final UserService userService;
     private final DisciplineRepository disciplineRepository;
     private final DisciplineInfoRepository disciplineInfoRepository;
     private final DisciplineInfoProgramRepository disciplineInfoProgramRepository;
@@ -223,4 +224,7 @@ public class SyllabusService {
         return ResponseEntity.ok(response);
     }
 
+    public ResponseEntity<?> getUserData(Integer userId) {
+        return ResponseEntity.ok(userService.findById(userId));
+    }
 }
