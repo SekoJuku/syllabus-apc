@@ -21,5 +21,5 @@ public class Discipline {
     private Integer credits;
     private Integer lectureHoursPerWeek;
     private Integer practiceHoursPerWeek;
-    private Integer IswHoursPerWeek;
+    private Integer iswHoursPerWeek;
 }
