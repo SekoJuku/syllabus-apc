@@ -16,4 +16,5 @@ public class ProgramDetailDtoRequest {
     private String lectureAssessment;
     private String PracticeAssessment;
     private String IswAssessment;
+    private Integer week;
 }

@@ -16,6 +16,7 @@ import javax.persistence.*;
 public class DisciplineInfo {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+//    private String name;
     private Integer disciplineId;
     private Integer credits;
     private String aim;

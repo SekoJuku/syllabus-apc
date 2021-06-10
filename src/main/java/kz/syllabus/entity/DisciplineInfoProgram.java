@@ -19,4 +19,5 @@ public class DisciplineInfoProgram {
     private Integer instructorId;
     private Integer disciplineInfoId;
     private Integer evaluationId;
+    private String competencies;
 }

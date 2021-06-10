@@ -34,7 +34,10 @@ public class UserService implements UserDetailsService {
     public User findByUsernameAndPassword(String username, String password){
         Optional<User> user = userRepository.findByUsernameAndPassword(username,password);
         return  user.orElseThrow(()-> new UsernameNotFoundException("User with this credentials not found"));
+    }
 
+    public User findById(Integer userId) {
+        return userRepository.getById(userId);
     }
 
     public ResponseEntity<?> auth(String username, String password){

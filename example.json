@@ -1,0 +1,179 @@
+{
+  "userId": 1,
+  "disciplineId": 1,
+  "credits": 6,
+  "aim" : "aim",
+  "tasks": "tasks",
+  "results": "results",
+  "methodology": "methodology",
+  "competencies": "competencies",
+  "evaluationId": 1,
+  "prerequisites": [1],
+  "postrequisites": [2],
+  "programInfo": [
+    {
+      "lectureTheme": "lectureTheme",
+      "practiceTheme": "practiceTheme",
+      "iswTheme": "iswTheme",
+      "week": 1
+    } , {
+      "lectureTheme": "lectureTheme",
+      "practiceTheme": "practiceTheme",
+      "iswTheme": "iswTheme",
+      "week": 2
+    } , {
+      "lectureTheme": "lectureTheme",
+      "practiceTheme": "practiceTheme",
+      "iswTheme": "iswTheme",
+      "week": 3
+    } , {
+      "lectureTheme": "lectureTheme",
+      "practiceTheme": "practiceTheme",
+      "iswTheme": "iswTheme",
+      "week": 4
+    } , {
+      "lectureTheme": "lectureTheme",
+      "practiceTheme": "practiceTheme",
+      "iswTheme": "iswTheme",
+      "week": 5
+    } , {
+      "lectureTheme": "lectureTheme",
+      "practiceTheme": "practiceTheme",
+      "iswTheme": "iswTheme",
+      "week": 6
+    } , {
+      "lectureTheme": "lectureTheme",
+      "practiceTheme": "practiceTheme",
+      "iswTheme": "iswTheme",
+      "week": 7
+    } , {
+      "lectureTheme": "lectureTheme",
+      "practiceTheme": "practiceTheme",
+      "iswTheme": "iswTheme",
+      "week": 8
+    } , {
+      "lectureTheme": "lectureTheme",
+      "practiceTheme": "practiceTheme",
+      "iswTheme": "iswTheme",
+      "week": 9
+    } , {
+      "lectureTheme": "lectureTheme",
+      "practiceTheme": "practiceTheme",
+      "iswTheme": "iswTheme",
+      "week": 10
+    }
+  ],
+  "program_details": [
+    {
+      "lectureFof": "lectureFof",
+      "practiceFof": "practiceFof",
+      "iswFof": "iswFof",
+      "lectureLiterature": "lectureLiterature",
+      "practiceLiterature": "practiceLiterature",
+      "iswLiterature": "iswLiterature",
+      "lectureAssessment": "lectureAssessment",
+      "practiceAssessment": "practiceAssessment",
+      "iswAssessment": "iswAssessment",
+      "week": 1
+    } , {
+      "lectureFof": "lectureFof",
+      "practiceFof": "practiceFof",
+      "iswFof": "iswFof",
+      "lectureLiterature": "lectureLiterature",
+      "practiceLiterature": "practiceLiterature",
+      "iswLiterature": "iswLiterature",
+      "lectureAssessment": "lectureAssessment",
+      "practiceAssessment": "practiceAssessment",
+      "iswAssessment": "iswAssessment",
+      "week": 2
+    } , {
+      "lectureFof": "lectureFof",
+      "practiceFof": "practiceFof",
+      "iswFof": "iswFof",
+      "lectureLiterature": "lectureLiterature",
+      "practiceLiterature": "practiceLiterature",
+      "iswLiterature": "iswLiterature",
+      "lectureAssessment": "lectureAssessment",
+      "practiceAssessment": "practiceAssessment",
+      "iswAssessment": "iswAssessment",
+      "week": 3
+    } , {
+      "lectureFof": "lectureFof",
+      "practiceFof": "practiceFof",
+      "iswFof": "iswFof",
+      "lectureLiterature": "lectureLiterature",
+      "practiceLiterature": "practiceLiterature",
+      "iswLiterature": "iswLiterature",
+      "lectureAssessment": "lectureAssessment",
+      "practiceAssessment": "practiceAssessment",
+      "iswAssessment": "iswAssessment",
+      "week": 4
+    } , {
+      "lectureFof": "lectureFof",
+      "practiceFof": "practiceFof",
+      "iswFof": "iswFof",
+      "lectureLiterature": "lectureLiterature",
+      "practiceLiterature": "practiceLiterature",
+      "iswLiterature": "iswLiterature",
+      "lectureAssessment": "lectureAssessment",
+      "practiceAssessment": "practiceAssessment",
+      "iswAssessment": "iswAssessment",
+      "week": 5
+    } , {
+      "lectureFof": "lectureFof",
+      "practiceFof": "practiceFof",
+      "iswFof": "iswFof",
+      "lectureLiterature": "lectureLiterature",
+      "practiceLiterature": "practiceLiterature",
+      "iswLiterature": "iswLiterature",
+      "lectureAssessment": "lectureAssessment",
+      "practiceAssessment": "practiceAssessment",
+      "iswAssessment": "iswAssessment",
+      "week": 6
+    } , {
+      "lectureFof": "lectureFof",
+      "practiceFof": "practiceFof",
+      "iswFof": "iswFof",
+      "lectureLiterature": "lectureLiterature",
+      "practiceLiterature": "practiceLiterature",
+      "iswLiterature": "iswLiterature",
+      "lectureAssessment": "lectureAssessment",
+      "practiceAssessment": "practiceAssessment",
+      "iswAssessment": "iswAssessment",
+      "week": 7
+    } , {
+      "lectureFof": "lectureFof",
+      "practiceFof": "practiceFof",
+      "iswFof": "iswFof",
+      "lectureLiterature": "lectureLiterature",
+      "practiceLiterature": "practiceLiterature",
+      "iswLiterature": "iswLiterature",
+      "lectureAssessment": "lectureAssessment",
+      "practiceAssessment": "practiceAssessment",
+      "iswAssessment": "iswAssessment",
+      "week": 8
+    } , {
+      "lectureFof": "lectureFof",
+      "practiceFof": "practiceFof",
+      "iswFof": "iswFof",
+      "lectureLiterature": "lectureLiterature",
+      "practiceLiterature": "practiceLiterature",
+      "iswLiterature": "iswLiterature",
+      "lectureAssessment": "lectureAssessment",
+      "practiceAssessment": "practiceAssessment",
+      "iswAssessment": "iswAssessment",
+      "week": 9
+    } , {
+      "lectureFof": "lectureFof",
+      "practiceFof": "practiceFof",
+      "iswFof": "iswFof",
+      "lectureLiterature": "lectureLiterature",
+      "practiceLiterature": "practiceLiterature",
+      "iswLiterature": "iswLiterature",
+      "lectureAssessment": "lectureAssessment",
+      "practiceAssessment": "practiceAssessment",
+      "iswAssessment": "iswAssessment",
+      "week": 10
+    }
+  ]
+}

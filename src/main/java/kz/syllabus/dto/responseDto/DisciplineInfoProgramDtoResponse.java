@@ -9,4 +9,5 @@ public class DisciplineInfoProgramDtoResponse {
     private Integer instructorId;
     private Integer disciplineInfoId;
     private Integer evaluationId;
+    private String competencies;
 }

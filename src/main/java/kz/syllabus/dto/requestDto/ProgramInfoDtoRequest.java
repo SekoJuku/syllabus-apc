@@ -10,5 +10,4 @@ public class ProgramInfoDtoRequest {
     private String practiceTheme;
     private String iswTheme;
     private Integer week;
-    private String competencies;
 }
