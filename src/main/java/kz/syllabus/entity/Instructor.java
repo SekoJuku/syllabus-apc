@@ -17,5 +17,5 @@ public class Instructor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer userId;
-    private Integer DisciplineInfoId;
+    private Integer disciplineInfoId;
 }

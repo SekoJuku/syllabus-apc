@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c92fe44a-636c-43a2-8808-971c9ac4624f" name="Default Changelist" comment="syllabus added">
+    <list default="true" id="c92fe44a-636c-43a2-8808-971c9ac4624f" name="Default Changelist" comment="local commit v3">
+      <change afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/dto/requestDto/GetSyllabusDtoRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/dto/requestDto/GetUserDataDtoRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example.json" beforeDir="false" afterPath="$PROJECT_DIR$/example.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/controllers/teachers/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/controllers/teachers/TeacherController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/entity/Instructor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/entity/Instructor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/entity/ProgramInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/entity/ProgramInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/ProgramInfoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/ProgramInfoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/SyllabusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/SyllabusService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/UserService.java" afterDir="false" />
     </list>
     <list id="e29c290e-cc91-464a-9ba9-c5463819e34c" name="Changes by kuany" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +25,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -68,19 +76,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="SyllabusApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="syllabus" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="kz.syllabus.SyllabusApplication" />
@@ -113,6 +108,7 @@
       <workItem from="1622936050484" duration="12536000" />
       <workItem from="1622955086202" duration="4939000" />
       <workItem from="1623025990570" duration="9624000" />
+      <workItem from="1623752388079" duration="361000" />
     </task>
     <task id="LOCAL-00001" summary="syllabus added">
       <created>1623128343368</created>
@@ -121,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623128343368</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="local commit v3">
+      <created>1623142958814</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1623142958814</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,7 +144,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="syllabus added" />
-    <option name="LAST_COMMIT_MESSAGE" value="syllabus added" />
+    <MESSAGE value="local commit v3" />
+    <option name="LAST_COMMIT_MESSAGE" value="local commit v3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

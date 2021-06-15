@@ -36,7 +36,7 @@ public class UserService implements UserDetailsService {
         return  user.orElseThrow(()-> new UsernameNotFoundException("User with this credentials not found"));
     }
 
-    public User findById(Integer userId) {
+    public User findById(Long userId) {
         return userRepository.getById(userId);
     }
 

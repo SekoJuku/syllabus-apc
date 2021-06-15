@@ -1,7 +1,9 @@
 package kz.syllabus.controllers.teachers;
 
 
+import kz.syllabus.dto.requestDto.GetUserDataDtoRequest;
 import kz.syllabus.dto.requestDto.SyllabusDTORequest;
+import kz.syllabus.dto.requestDto.GetSyllabusDtoRequest;
 import kz.syllabus.exceptions.ExceptionHandling;
 import kz.syllabus.service.SyllabusService;
 import lombok.AllArgsConstructor;
@@ -25,11 +27,11 @@ public class TeacherController extends ExceptionHandling {
         return syllabusService.create(syllabusDTORequest);
     }
     @PostMapping("/syllabus")
-    public ResponseEntity<?> getSyllabus(@RequestParam("userId") Integer userId, @RequestParam("disciplineInfoId") Integer disciplineInfoId) {
-        return syllabusService.getOne(userId, disciplineInfoId);
+    public ResponseEntity<?> getSyllabus(@RequestBody GetSyllabusDtoRequest getSyllabusDtoRequest) {
+        return syllabusService.getOne(getSyllabusDtoRequest.getUserId(), getSyllabusDtoRequest.getDisciplineInfoId());
     }
     @PostMapping("/data")
-    public ResponseEntity<?> getData(@RequestParam("userId") Integer userId) {
-        return syllabusService.getUserData(userId);
+    public ResponseEntity<?> getData(@RequestBody GetUserDataDtoRequest getUserDataDtoRequest) {
+        return syllabusService.getUserData(getUserDataDtoRequest.getUserId());
     }
 }

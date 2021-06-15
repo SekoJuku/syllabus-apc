@@ -119,7 +119,7 @@ public class SyllabusService {
         for (ProgramInfoDtoRequest item :
                 syllabusDTORequest.getProgramInfo()) {
             ProgramInfo newProgramInfo = new ProgramInfo();
-            newProgramInfo.setProgram_id(disciplineInfoProgramId);
+            newProgramInfo.setProgramId(disciplineInfoProgramId);
             newProgramInfo.setLectureTheme(item.getLectureTheme());
             newProgramInfo.setPracticeTheme(item.getPracticeTheme());
             newProgramInfo.setIswTheme(item.getIswTheme());
@@ -173,9 +173,9 @@ public class SyllabusService {
     }
 
     public ResponseEntity<?> getOne(Integer userId, Integer disciplineInfoId) {
-        if(!instructorRepository.existsByUserIdAndDisciplineInfoId(userId,disciplineInfoId)) {
-            return ResponseEntity.badRequest().body("Don't exist or you don't have permission!");
-        }
+//        if(!instructorRepository.existsByUserIdAndDisciplineInfoId(userId,disciplineInfoId)) {
+//            return ResponseEntity.badRequest().body("Don't exist or you don't have permission!");
+//        }
 
         DisciplineInfo disciplineInfo = disciplineInfoRepository.getById(disciplineInfoId);
         SyllabusDtoResponse response = DisciplineInfoFacade.objectToSyllabusDto(disciplineInfo, new SyllabusDtoResponse());
@@ -207,7 +207,7 @@ public class SyllabusService {
         response.setPrerequisites(prerequisites);
         response.setPostrequisites(postrequisites);
 
-        List<ProgramInfo> programInfoList = programInfoRepository.getAllByProgram_id(disciplineInfoProgram.getId());
+        List<ProgramInfo> programInfoList = programInfoRepository.getAllByProgramId(disciplineInfoProgram.getId());
 
         List<ProgramInfoDtoResponse> programInfoDtoResponses = new ArrayList<>();
         List<ProgramDetailDtoResponse> programDetailDtoResponses = new ArrayList<>();
@@ -224,7 +224,7 @@ public class SyllabusService {
         return ResponseEntity.ok(response);
     }
 
-    public ResponseEntity<?> getUserData(Integer userId) {
+    public ResponseEntity<?> getUserData(Long userId) {
         return ResponseEntity.ok(userService.findById(userId));
     }
 }
