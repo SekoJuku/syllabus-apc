@@ -1,0 +1,7 @@
+INSERT INTO public.discipline_info_program (id, instructor_id, discipline_info_id, evaluation_id)
+VALUES (1, 1, 1, 1);
+
+INSERT INTO public.discipline_info_program (id, instructor_id, discipline_info_id, evaluation_id)
+VALUES (2, 1, 2, 2);
+
+
