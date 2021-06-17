@@ -17,8 +17,8 @@ import java.util.List;
 public class InstructorService {
     private final InstructorRepository instructorRepository;
 
-    public ResponseEntity<?> getSyllabusesByInstructor(Integer id) {
-        System.out.println(instructorRepository.getSyllabusesByInstructor(id));
-        return ResponseEntity.ok(instructorRepository.getSyllabusesByInstructor(id));
-    }
+    /*public ResponseEntity<?> getSyllabusesByInstructor(Integer id) {
+        //System.out.println(instructorRepository.getSyllabusesByInstructor(id));
+        //return ResponseEntity.ok(instructorRepository.getSyllabusesByInstructor(id));
+    }*/
 }

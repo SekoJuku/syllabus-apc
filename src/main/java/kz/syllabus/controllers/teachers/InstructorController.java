@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class InstructorController {
     private final InstructorService instructorService;
 
-    @GetMapping("/api/instructor/{id}")
+    /*@GetMapping("/api/instructor/{id}")
     public ResponseEntity<?> getSyllabusesByInstructor(@PathVariable Integer id){
         return ResponseEntity.ok(instructorService.getSyllabusesByInstructor(id));
-    }
+    }*/
 
 }
