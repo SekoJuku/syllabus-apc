@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class SyllabusDTORequest {
+public class FullSyllabusDTORequest {
     private Integer id;
     private Integer userId;
     private Integer disciplineId;

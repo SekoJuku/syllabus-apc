@@ -1,34 +1,34 @@
 package kz.syllabus.utils.facade;
 
-import kz.syllabus.dto.responseDto.DisciplineInfoDtoResponse;
 import kz.syllabus.dto.responseDto.SyllabusDtoResponse;
-import kz.syllabus.entity.DisciplineInfo;
+import kz.syllabus.dto.responseDto.FullSyllabusDtoResponse;
+import kz.syllabus.entity.Syllabus;
 
 public class DisciplineInfoFacade {
-    public static DisciplineInfoDtoResponse objectToDto(DisciplineInfo disciplineInfo) {
-        DisciplineInfoDtoResponse response = new DisciplineInfoDtoResponse();
-        if(disciplineInfo.getId() != null) {
-            response.setId(disciplineInfo.getId());
+    public static SyllabusDtoResponse objectToDto(Syllabus syllabus) {
+        SyllabusDtoResponse response = new SyllabusDtoResponse();
+        if(syllabus.getId() != null) {
+            response.setId(syllabus.getId());
         }
-        response.setDisciplineId(disciplineInfo.getDisciplineId());
-        response.setCredits(disciplineInfo.getCredits());
-        response.setAim(disciplineInfo.getAim());
-        response.setTasks(disciplineInfo.getTasks());
-        response.setResults(disciplineInfo.getResults());
-        response.setMethodology(disciplineInfo.getMethodology());
+//        response.setDisciplineId(syllabus.getDisciplineId());
+        response.setCredits(syllabus.getCredits());
+        response.setAim(syllabus.getAim());
+        response.setTasks(syllabus.getTasks());
+        response.setResults(syllabus.getResults());
+        response.setMethodology(syllabus.getMethodology());
         return response;
     }
 
-    public static SyllabusDtoResponse objectToSyllabusDto(DisciplineInfo disciplineInfo, SyllabusDtoResponse response) {
-        if(disciplineInfo.getId() != null) {
-            response.setId(disciplineInfo.getId());
+    public static FullSyllabusDtoResponse objectToSyllabusDto(Syllabus syllabus, FullSyllabusDtoResponse response) {
+        if(syllabus.getId() != null) {
+            response.setId(syllabus.getId());
         }
-        response.setDisciplineId(disciplineInfo.getDisciplineId());
-        response.setCredits(disciplineInfo.getCredits());
-        response.setAim(disciplineInfo.getAim());
-        response.setTasks(disciplineInfo.getTasks());
-        response.setResults(disciplineInfo.getResults());
-        response.setMethodology(disciplineInfo.getMethodology());
+//        response.setDisciplineId(syllabus.getDisciplineId());
+        response.setCredits(syllabus.getCredits());
+        response.setAim(syllabus.getAim());
+        response.setTasks(syllabus.getTasks());
+        response.setResults(syllabus.getResults());
+        response.setMethodology(syllabus.getMethodology());
         return response;
     }
 }

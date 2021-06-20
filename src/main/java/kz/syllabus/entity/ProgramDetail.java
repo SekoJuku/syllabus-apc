@@ -16,7 +16,7 @@ public class ProgramDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer programInfoId;
+    private Integer syllabusProgramId;
     private String lectureFof;
     private String practiceFof;
     private String iswFof;
@@ -24,6 +24,6 @@ public class ProgramDetail {
     private String practiceLiterature;
     private String iswLiterature;
     private String lectureAssessment;
-    private String PracticeAssessment;
-    private String IswAssessment;
+    private String practiceAssessment;
+    private String iswAssessment;
 }

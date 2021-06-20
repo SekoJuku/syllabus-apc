@@ -7,7 +7,7 @@ public class ProgramDetailFacade {
     public static ProgramDetailDtoResponse objectToDto(ProgramDetail programDetail) {
         ProgramDetailDtoResponse response = new ProgramDetailDtoResponse();
         response.setId(programDetail.getId());
-        response.setProgramInfoId(programDetail.getProgramInfoId());
+//        response.setProgramInfoId(programDetail.getProgramInfoId());
         response.setLectureFof(programDetail.getLectureFof());
         response.setPracticeFof(programDetail.getPracticeFof());
         response.setIswFof(programDetail.getIswFof());

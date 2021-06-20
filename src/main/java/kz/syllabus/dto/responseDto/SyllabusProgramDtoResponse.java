@@ -1,10 +1,10 @@
-package kz.syllabus.dto.requestDto;
+package kz.syllabus.dto.responseDto;
 
 
 import lombok.Data;
 
 @Data
-public class DisciplineInfoProgramDtoRequest {
+public class SyllabusProgramDtoResponse {
     private Integer id;
     private Integer instructorId;
     private Integer disciplineInfoId;
