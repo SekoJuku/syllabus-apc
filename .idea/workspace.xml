@@ -5,8 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c92fe44a-636c-43a2-8808-971c9ac4624f" name="Default Changelist" comment="right version">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1b68a51e-6688-4d38-b10c-b4aaec735fd3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1b68a51e-6688-4d38-b10c-b4aaec735fd3/storage_v2/_src_/database/syllabus.5Q1kaQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1b68a51e-6688-4d38-b10c-b4aaec735fd3/storage_v2/_src_/database/syllabus.5Q1kaQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1b68a51e-6688-4d38-b10c-b4aaec735fd3/storage_v2/_src_/database/syllabus.5Q1kaQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1b68a51e-6688-4d38-b10c-b4aaec735fd3/storage_v2/_src_/database/syllabus.5Q1kaQ/schema/public.abK9xQ.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/controllers/teachers/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/controllers/teachers/TeacherController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/entity/Discipline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/entity/Discipline.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/entity/EvaluationSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/entity/EvaluationSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/entity/ProgramDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/entity/ProgramDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/entity/Syllabus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/entity/Syllabus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/entity/SyllabusParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/entity/SyllabusParam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/entity/SyllabusProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/entity/SyllabusProgram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/DisciplineRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/DisciplineRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/InstructorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/InstructorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/PostrequisiteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/PostrequisiteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/PrerequisiteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/PrerequisiteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/ProgramDetailRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/ProgramDetailRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/ProgramInfoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/ProgramInfoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/RoleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/SyllabusProgramRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/SyllabusProgramRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/SyllabusRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/SyllabusRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/SyllabusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/SyllabusService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/utils/facade/DisciplineInfoFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/utils/facade/DisciplineInfoFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/utils/facade/DisciplineInfoProgramFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/utils/facade/DisciplineInfoProgramFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/utils/facade/ProgramDetailFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/utils/facade/ProgramDetailFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/syllabuss.sql" beforeDir="false" />
     </list>
     <list id="e29c290e-cc91-464a-9ba9-c5463819e34c" name="Changes by kuany" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +47,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -29,6 +59,14 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
@@ -56,17 +94,23 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Сагинов Жандос\Desktop\sylabus\src\main\resources" />
     </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean install" />
+    </option>
   </component>
   <component name="RunManager" selected="Spring Boot.SyllabusApplication">
     <configuration name="SyllabusApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -130,6 +174,15 @@
       <workItem from="1623752388079" duration="361000" />
       <workItem from="1623785331673" duration="764000" />
       <workItem from="1623899846583" duration="1531000" />
+      <workItem from="1623911105575" duration="9249000" />
+      <workItem from="1623955577630" duration="2602000" />
+      <workItem from="1624097650975" duration="2622000" />
+      <workItem from="1624136063375" duration="1461000" />
+      <workItem from="1624175952652" duration="52000" />
+      <workItem from="1624178226870" duration="49000" />
+      <workItem from="1624178280631" duration="1570000" />
+      <workItem from="1624179913930" duration="651000" />
+      <workItem from="1624183558648" duration="4232000" />
     </task>
     <task id="LOCAL-00001" summary="syllabus added">
       <created>1623128343368</created>
@@ -152,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623910228060</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="right version">
+      <created>1623911153790</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1623911153790</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

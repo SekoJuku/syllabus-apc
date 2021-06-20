@@ -4,7 +4,7 @@ package kz.syllabus.dto.requestDto;
 import lombok.Data;
 
 @Data
-public class DisciplineInfoDtoRequest {
+public class SyllabusDtoRequest {
     private Integer id;
     private Integer disciplineId;
     private Integer credits;

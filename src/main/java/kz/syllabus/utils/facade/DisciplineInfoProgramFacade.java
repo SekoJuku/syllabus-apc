@@ -1,12 +1,12 @@
 package kz.syllabus.utils.facade;
 
-import kz.syllabus.dto.responseDto.SyllabusDtoResponse;
-import kz.syllabus.entity.DisciplineInfoProgram;
+import kz.syllabus.dto.responseDto.FullSyllabusDtoResponse;
+import kz.syllabus.entity.SyllabusProgram;
 
 public class DisciplineInfoProgramFacade {
-    public static SyllabusDtoResponse objectToSyllabusDto(DisciplineInfoProgram disciplineInfoProgram, SyllabusDtoResponse response) {
-        response.setEvaluationId(disciplineInfoProgram.getEvaluationId());
-        response.setCompetencies(disciplineInfoProgram.getCompetencies());
+    public static FullSyllabusDtoResponse objectToSyllabusDto(SyllabusProgram syllabusProgram, FullSyllabusDtoResponse response) {
+//        response.setEvaluationId(syllabusProgram.getEvaluationId());
+//        response.setCompetencies(syllabusProgram.getCompetencies());
         return response;
     }
 }

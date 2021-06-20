@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ProgramInfoRepository extends JpaRepository<ProgramInfo, Integer> {
-    List<ProgramInfo> getAllByProgramId(Integer programId);
+//    List<ProgramInfo> getAllByProgramId(Integer programId);
 }

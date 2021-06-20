@@ -22,4 +22,7 @@ public class Discipline {
     private Integer lectureHoursPerWeek;
     private Integer practiceHoursPerWeek;
     private Integer iswHoursPerWeek;
+    @OneToOne(targetEntity = Syllabus.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "disciplineId", referencedColumnName = "id")
+    private Syllabus syllabus;
 }

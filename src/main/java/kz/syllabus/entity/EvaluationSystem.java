@@ -18,4 +18,7 @@ public class EvaluationSystem {
     private Integer id;
     private String name;
     private String description;
+    @OneToOne(targetEntity = Syllabus.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", referencedColumnName = "evaluationId")
+    private Syllabus syllabus;
 }
