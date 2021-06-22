@@ -14,9 +14,13 @@ import org.springframework.web.bind.annotation.*;
 public class CoordinatorController {
     private final SyllabusService syllabusService;
 
-    @GetMapping("")
+    @PostMapping("")
     public ResponseEntity<?> getAll(@RequestBody GetUserDataDtoRequest request) {
         return syllabusService.getSyllabusIsSentToCoordinator(request.getUserId());
+    }
+    @GetMapping("/hi")
+    public ResponseEntity<?> get() {
+        return syllabusService.get();
     }
     @GetMapping("/{id}/approved")
     public ResponseEntity<?> approvedSyllabusById(@PathVariable Integer id) {

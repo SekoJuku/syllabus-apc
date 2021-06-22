@@ -18,8 +18,8 @@ public class DeanController {
     private final SyllabusService syllabusService;
 
 
-    @GetMapping("")
-    public ResponseEntity<?> getAll(@RequestBody GetUserDataDtoRequest request) {
-        return syllabusService.getSyllabusIsSentToDean(request.getUserId());
-    }
+//    @GetMapping("")
+//    public ResponseEntity<?> getAll(@RequestBody GetUserDataDtoRequest request) {
+//        return syllabusService.getSyllabusIsSentToDean(request.getUserId());
+//    }
 }

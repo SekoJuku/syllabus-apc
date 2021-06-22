@@ -200,7 +200,8 @@ public class SyllabusService {
                 newSyllabusParam.setIsSentToDean(false);
                 newSyllabusParam.setIsSendable(false);
                 newSyllabusParam.setIsActive(false);
-                syllabusParamRepository.save(newSyllabusParam);
+                syllabus.setSyllabusParam(newSyllabusParam);
+                syllabusRepository.save(syllabus);
             }
         }
         return ResponseEntity.ok(response);
@@ -450,8 +451,8 @@ public class SyllabusService {
 
     public List<CoordinatorMainPageDtoResponse> getSyllabusIsSent(Integer userId) {
         List<CoordinatorMainPageDtoResponse> responses = new ArrayList<>();
-        List<Syllabus> syllabuses = checkForParam(checkForInstructors(syllabusRepository.findAll()));
-        syllabuses.removeIf(item -> !item.getSyllabusParam().getIsSentToCoordinator());
+        List<Syllabus> list = checkForInstructors(syllabusRepository.findAll());
+        List<Syllabus> syllabuses = checkForParam(list);
         for (Syllabus item :
                 syllabuses) {
                 CoordinatorMainPageDtoResponse response = new CoordinatorMainPageDtoResponse();
@@ -486,10 +487,10 @@ public class SyllabusService {
         return ResponseEntity.ok(newParam);
     }
 
-    public ResponseEntity<?> getSyllabusIsSentToDean(Integer userId) {
-        List<Syllabus> syllabuses = checkForParam(checkForInstructors(syllabusRepository.findAll()));
-        
-    }
+//    public ResponseEntity<?> getSyllabusIsSentToDean(Integer userId) {
+//        List<Syllabus> syllabuses = checkForParam(checkForInstructors(syllabusRepository.findAll()));
+//
+//    }
 
     public ResponseEntity<?> approvedByDeanById(Integer id) {
         Syllabus syllabus = syllabusRepository.getById(id);
@@ -503,5 +504,22 @@ public class SyllabusService {
     public ResponseEntity<?> getSyllabusIsSentToCoordinator(Integer userId) {
         return ResponseEntity.ok(getSyllabusIsSent(userId));
 
+    }
+
+    public ResponseEntity<?> get() {
+        Syllabus syllabus = syllabusRepository.getById(11);
+        SyllabusParam newSyllabusParam = new SyllabusParam();
+        newSyllabusParam.setSyllabusId(syllabus.getId());
+        newSyllabusParam.setIsFinal(false);
+        newSyllabusParam.setIsSendable(false);
+        newSyllabusParam.setIsApprovedByCoordinator(false);
+        newSyllabusParam.setIsSentToCoordinator(false);
+        newSyllabusParam.setIsApprovedByDean(false);
+        newSyllabusParam.setIsSentToDean(false);
+        newSyllabusParam.setIsSendable(false);
+        newSyllabusParam.setIsActive(false);
+        syllabus.setSyllabusParam(newSyllabusParam);
+        syllabusRepository.save(syllabus);
+        return ResponseEntity.ok(syllabus);
     }
 }
