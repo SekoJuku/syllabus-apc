@@ -35,4 +35,7 @@ public class Syllabus {
     @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "syllabusId")
     private SyllabusParam syllabusParam;
+    @OneToOne(fetch = FetchType.EAGER,targetEntity = Instructor.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", referencedColumnName = "syllabusId")
+    private Instructor instructor;
 }

@@ -237,62 +237,63 @@ public class SyllabusService {
 
 
 
-    @Transactional
-    public ResponseEntity<?> getAll(Integer userId) {
-//        List<Integer> list = new ArrayList<>();
-//        List<Instructor> instructors = instructorRepository.getByUserId(userId);
-//        List<SyllabusDtoResponse> disciplineInfos = new ArrayList<>();
+//    @Transactional
+//    public ResponseEntity<?> getAll(Integer userId) {
+////        List<Integer> list = new ArrayList<>();
+////        List<Instructor> instructors = instructorRepository.getByUserId(userId);
+////        List<SyllabusDtoResponse> disciplineInfos = new ArrayList<>();
+////        for (Instructor item :
+////                instructors) {
+////            list.add(item.getSyllabusId());
+////        }
+////        for (Integer item :
+////                list) {
+////            disciplineInfos.add(SyllabusFacade.objectToDto(syllabusRepository.getById(item)));
+////        }
+////        return ResponseEntity.ok(disciplineInfos);
+//        log.info("Before function");
+//        List<MainPageDtoResponse> syllabuses = new ArrayList<>();
+//        List<Instructor> asInstructor = instructorRepository.getByUserId(userId);
+//        List<Integer> listOfsyllabuses = new ArrayList<>();
 //        for (Instructor item :
-//                instructors) {
-//            list.add(item.getSyllabusId());
+//                asInstructor) {
+//            listOfsyllabuses.add(item.getSyllabusId());
 //        }
 //        for (Integer item :
-//                list) {
-//            disciplineInfos.add(SyllabusFacade.objectToDto(syllabusRepository.getById(item)));
+//                listOfsyllabuses) {
+//            MainPageDtoResponse response = new MainPageDtoResponse();
+//            Syllabus syllabus = syllabusRepository.getById(item);
+//            response.setId(syllabus.getId());
+//            response.setName(syllabus.getName());
+//            response.setYear(syllabus.getYear());
+//            log.info("Before Discipline " + syllabus.getDisciplineId());
+//            Optional<Discipline> optionalDiscipline = disciplineRepository.findById(syllabus.getDisciplineId());
+//            Discipline discipline = optionalDiscipline.get();
+//            log.info("After Discipline");
+//            response.setDiscipline(discipline.getName());
+//            Optional<SyllabusParam> optionalSyllabusParam = syllabusParamRepository.findBySyllabusId(syllabus.getId());
+//            if(optionalSyllabusParam.isPresent())
+//                response.setActive(optionalSyllabusParam.get().getIsActive());
+//            else
+//                response.setActive(false);
+//            List<Instructor> allInstructors = instructorRepository.getBySyllabusId(syllabus.getId());
+//            List<MainpageDtoComponent> components = new ArrayList<>();
+//            for (Instructor item1 :
+//                    allInstructors) {
+//                MainpageDtoComponent component = new MainpageDtoComponent();
+//                PersonalInfo personalInfo = personalInfoRepository.getPersonalInfoByUserId(item1.getUserId());
+//// !!!!!               component.setId(personalInfo.getUserId());
+//
+//                component.setName(personalInfo.getName());
+//                component.setLastname(personalInfo.getSname());
+//                components.add(component);
+//            }
+//            response.setInstructors(components);
+//            syllabuses.add(response);
 //        }
-//        return ResponseEntity.ok(disciplineInfos);
-        log.info("Before function");
-        List<MainPageDtoResponse> syllabuses = new ArrayList<>();
-        List<Instructor> asInstructor = instructorRepository.getByUserId(userId);
-        List<Integer> listOfsyllabuses = new ArrayList<>();
-        for (Instructor item :
-                asInstructor) {
-            listOfsyllabuses.add(item.getSyllabusId());
-        }
-        for (Integer item :
-                listOfsyllabuses) {
-            MainPageDtoResponse response = new MainPageDtoResponse();
-            Syllabus syllabus = syllabusRepository.getById(item);
-            response.setId(syllabus.getId());
-            response.setName(syllabus.getName());
-            response.setYear(syllabus.getYear());
-            log.info("Before Discipline " + syllabus.getDisciplineId());
-            Optional<Discipline> optionalDiscipline = disciplineRepository.findById(syllabus.getDisciplineId());
-            Discipline discipline = optionalDiscipline.get();
-            log.info("After Discipline");
-            response.setDiscipline(discipline.getName());
-            Optional<SyllabusParam> optionalSyllabusParam = syllabusParamRepository.findBySyllabusId(syllabus.getId());
-            if(optionalSyllabusParam.isPresent())
-                response.setActive(optionalSyllabusParam.get().getIsActive());
-            else
-                response.setActive(false);
-            List<Instructor> allInstructors = instructorRepository.getBySyllabusId(syllabus.getId());
-            List<MainpageDtoComponent> components = new ArrayList<>();
-            for (Instructor item1 :
-                    allInstructors) {
-                MainpageDtoComponent component = new MainpageDtoComponent();
-                PersonalInfo personalInfo = personalInfoRepository.getPersonalInfoByUserId(item1.getUserId());
-                component.setId(personalInfo.getUserId());
-                component.setName(personalInfo.getName());
-                component.setLastname(personalInfo.getSname());
-                components.add(component);
-            }
-            response.setInstructors(components);
-            syllabuses.add(response);
-        }
-        return ResponseEntity.ok(syllabuses);
-
-    }
+//        return ResponseEntity.ok(syllabuses);
+//
+//    }
 
     @Transactional
     public FullSyllabusDtoResponse getOne(Integer userId, Integer SyllabusId) {
@@ -408,37 +409,36 @@ public class SyllabusService {
         return ResponseEntity.ok(primarySyllabus);
     }
 
-    @Transactional
-    public ResponseEntity<?> getSyllabusById(Integer id) {
-        return ResponseEntity.ok(disciplineRepository.getSyllabusById(id));
+    public Syllabus getSyllabusById(Integer id) {
+        return syllabusRepository.getSyllabusById(id);
     }
 
     public ResponseEntity<?> getDisciplines(Integer userId) {
         return ResponseEntity.ok(disciplineRepository.findAll());
     }
 
-    public ResponseEntity<?> getSyllabusesByDiscipleAndYear(Integer userId, Integer disciplineId, String year) {
-        List<FullSyllabusDtoResponse> responses = new ArrayList<>();
-        List<Syllabus> syllabuses = checkForInstructors(syllabusRepository.getAllByDisciplineIdAndYear(disciplineId,year));
-        for (Syllabus item :
-                syllabuses) {
-            List<Instructor> instructors = instructorRepository.getBySyllabusId(item.getId());
-            FullSyllabusDtoResponse response = getOne(userId, item.getId());
-            List<MainpageDtoComponent> components = new ArrayList<>();
-            for (Instructor item1:
-                 instructors) {
-                PersonalInfo info = personalInfoRepository.getPersonalInfoByUserId(item1.getUserId());
-                MainpageDtoComponent component = new MainpageDtoComponent();
-                component.setId(info.getUserId());
-                component.setName(info.getName());
-                component.setLastname(info.getSname());
-                components.add(component);
-            }
-            response.setInstructors(components);
-            responses.add(response);
-        }
-        return ResponseEntity.ok(responses);
-    }
+//    public ResponseEntity<?> getSyllabusesByDiscipleAndYear(Integer userId, Integer disciplineId, String year) {
+//        List<FullSyllabusDtoResponse> responses = new ArrayList<>();
+//        List<Syllabus> syllabuses = checkForInstructors(syllabusRepository.getAllByDisciplineIdAndYear(disciplineId,year));
+//        for (Syllabus item :
+//                syllabuses) {
+//            List<Instructor> instructors = instructorRepository.getBySyllabusId(item.getId());
+//            FullSyllabusDtoResponse response = getOne(userId, item.getId());
+//            List<MainpageDtoComponent> components = new ArrayList<>();
+//            for (Instructor item1:
+//                 instructors) {
+//                PersonalInfo info = personalInfoRepository.getPersonalInfoByUserId(item1.getUserId());
+//                MainpageDtoComponent component = new MainpageDtoComponent();
+//                component.setId(info.getUserId());
+//                component.setName(info.getName());
+//                component.setLastname(info.getSname());
+//                components.add(component);
+//            }
+//            response.setInstructors(components);
+//            responses.add(response);
+//        }
+//        return ResponseEntity.ok(responses);
+//    }
 
     public ResponseEntity<?> getSyllabus(Integer userId, Integer syllabusId) {
         return ResponseEntity.ok(getOne(userId,syllabusId));
@@ -521,5 +521,29 @@ public class SyllabusService {
         syllabus.setSyllabusParam(newSyllabusParam);
         syllabusRepository.save(syllabus);
         return ResponseEntity.ok(syllabus);
+    }
+
+    public List<Discipline> findAll() {
+        return disciplineRepository.findAll();
+    }
+
+    public Prerequisite findPrerequisiteById(Integer syllabusId) {
+        return prerequisiteRepository.findPrerequisiteById(syllabusId);
+    }
+
+    public Postrequisite findPostrequisiteById(Integer syllabusId) {
+        return postrequisiteRepository.findPostrequisiteById(syllabusId);
+    }
+
+    public Discipline getDisciplineById(Integer syllabusIdPrereq) {
+        return disciplineRepository.getDisciplineById(syllabusIdPrereq);
+    }
+
+    public SyllabusProgram getSyllabusProgramById(Integer syllabusId) {
+        return syllabusProgramRepository.getSyllabusProgramById(syllabusId);
+    }
+
+    public ProgramDetail getProgramDetailById(Integer syllabusProgramId) {
+        return programDetailRepository.getProgramDetailById(syllabusProgramId);
     }
 }

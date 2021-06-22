@@ -1,6 +1,7 @@
 package kz.syllabus.service;
 
 
+import kz.syllabus.entity.PersonalInfo;
 import kz.syllabus.entity.User;
 import kz.syllabus.entity.UserPrincipal;
 import kz.syllabus.repository.RoleRepository;
@@ -11,15 +12,15 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class UserService implements UserDetailsService {
+public class UserService {
 
     public static final String AUTHORIZATION = "Authorization";
     private final UserRepository userRepository;
@@ -36,7 +37,7 @@ public class UserService implements UserDetailsService {
         return  user.orElseThrow(()-> new UsernameNotFoundException("User with this credentials not found"));
     }
 
-    public User findById(Long userId) {
+    public User findById(Integer userId) {
         return userRepository.getById(userId);
     }
 
@@ -57,9 +58,20 @@ public class UserService implements UserDetailsService {
     }
 
 
-    @Override
     public UserPrincipal loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findByUsername(username);
         return new UserPrincipal(user.orElseThrow(() -> new UsernameNotFoundException("User now found")));
+    }
+
+
+    public void registerNewTeacher(PersonalInfo personalInfo) {
+        String username = personalInfo.getUser().getUsername();
+        String password = personalInfo.getUser().getPassword();
+        Integer roleId = 3;
+        userRepository.registerNewTeacher(username, password, roleId);
+    }
+
+    public ResponseEntity<?> getUserById(Integer id) {
+        return ResponseEntity.ok(userRepository.findById(id));
     }
 }
