@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface SyllabusParamRepository extends JpaRepository<SyllabusParam, Integer> {
     Optional<SyllabusParam> findBySyllabusId(Integer syllabusId);
+    SyllabusParam getSyllabusParamBySyllabusId(Integer syllabusId);
+    boolean existsBySyllabusId(Integer syllabusId);
 }

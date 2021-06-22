@@ -15,6 +15,6 @@ public interface DisciplineRepository extends JpaRepository<Discipline, Integer>
             "on disciplines.id = syllabus.discipline_id\n" +
             "full join evaluation_system\n" +
             "on syllabus.evaluation_id = evaluation_system.id\n" +
-            "where disciplines.id = ?;", nativeQuery = true)
+            "where syllabus.id = ?;", nativeQuery = true)
     Discipline getSyllabusById(Integer id);
 }

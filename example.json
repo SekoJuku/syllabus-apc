@@ -1,16 +1,19 @@
 {
-  "userId": 1,
-  "disciplineId": 1,
+  "userId": 3,
+  "disciplineId": 6,
   "credits": 6,
+  "name": "DBMS syllabus",
   "aim" : "aim",
   "tasks": "tasks",
   "results": "results",
   "methodology": "methodology",
   "competencies": "competencies",
   "evaluationId": 1,
+  "rubricId": 1,
+  "year": "2021",
   "prerequisites": [1],
   "postrequisites": [2],
-  "programInfo": [
+  "syllabusProgram": [
     {
       "lectureTheme": "lectureTheme",
       "practiceTheme": "practiceTheme",

@@ -12,6 +12,7 @@ import java.util.List;
 public class FullSyllabusDtoResponse {
     private Integer id;
     private Integer userId;
+    private String name;
     private Integer disciplineId;
     private Integer credits;
     private Integer lectureHoursPerWeek;

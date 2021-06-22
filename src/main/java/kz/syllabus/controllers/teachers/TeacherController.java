@@ -35,6 +35,10 @@ public class TeacherController extends ExceptionHandling {
     public ResponseEntity<?> getSyllabusById(@PathVariable Integer id){
         return ResponseEntity.ok(syllabusService.getSyllabusById(id));
     }
+    @GetMapping("/checkFinal/{id}")
+    public ResponseEntity<?> checkFinal(@PathVariable Integer id) {
+        return syllabusService.checkForFinal(id);
+    }
 
 //    @PostMapping("/data")
 //    public ResponseEntity<?> getData(@RequestBody GetUserDataDtoRequest getUserDataDtoRequest) {
