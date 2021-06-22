@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface PostrequisiteRepository extends JpaRepository<Postrequisite, Integer> {
     List<Postrequisite> findAllByDisciplineId(Integer disciplineId);
+    boolean existsByDisciplineIdAndSyllabusId(Integer disciplineId, Integer syllabusId);
 }

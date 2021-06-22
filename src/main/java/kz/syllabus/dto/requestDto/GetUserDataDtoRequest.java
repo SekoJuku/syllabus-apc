@@ -5,5 +5,6 @@ import lombok.Data;
 
 @Data
 public class GetUserDataDtoRequest {
-    private Long userId;
+    private Integer userId;
+
 }

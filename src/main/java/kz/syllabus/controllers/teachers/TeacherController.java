@@ -1,6 +1,7 @@
 package kz.syllabus.controllers.teachers;
 
 
+import kz.syllabus.dto.requestDto.GetSyllabusesByDiscipleAndYearDtoRequest;
 import kz.syllabus.dto.requestDto.GetUserDataDtoRequest;
 import kz.syllabus.dto.requestDto.FullSyllabusDTORequest;
 import kz.syllabus.dto.requestDto.GetSyllabusDtoRequest;
@@ -9,6 +10,8 @@ import kz.syllabus.service.SyllabusService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.transaction.Transactional;
 
 
 @RestController
@@ -28,20 +31,33 @@ public class TeacherController extends ExceptionHandling {
     }
     @PostMapping("/syllabus")
     public ResponseEntity<?> getSyllabus(@RequestBody GetSyllabusDtoRequest getSyllabusDtoRequest) {
-        return syllabusService.getOne(getSyllabusDtoRequest.getUserId(), getSyllabusDtoRequest.getSyllabusId());
+        return syllabusService.getSyllabus(getSyllabusDtoRequest.getUserId(), getSyllabusDtoRequest.getSyllabusId());
     }
 
     @GetMapping("/syllabus/{id}")
     public ResponseEntity<?> getSyllabusById(@PathVariable Integer id){
         return ResponseEntity.ok(syllabusService.getSyllabusById(id));
     }
+
+    @GetMapping("/syllabus/delete/{id}")
+    public ResponseEntity<?> deleteSyllabusById(@PathVariable Integer id) {
+        return syllabusService.deleteSyllabusById(id);
+    }
     @GetMapping("/checkFinal/{id}")
     public ResponseEntity<?> checkFinal(@PathVariable Integer id) {
         return syllabusService.checkForFinal(id);
     }
 
-//    @PostMapping("/data")
-//    public ResponseEntity<?> getData(@RequestBody GetUserDataDtoRequest getUserDataDtoRequest) {
-//        return syllabusService.getUserData(getUserDataDtoRequest.getUserId());
-//    }
+    @PostMapping("/data")
+    public ResponseEntity<?> getData(@RequestBody GetUserDataDtoRequest getUserDataDtoRequest) {
+        return syllabusService.getUserData(getUserDataDtoRequest.getUserId());
+    }
+    @PostMapping("/disciplines")
+    public ResponseEntity<?> getDisciplines(@RequestBody GetUserDataDtoRequest request) {
+        return syllabusService.getDisciplines(request.getUserId());
+    }
+    @PostMapping("/")
+    public ResponseEntity<?> getSyllabusesByDiscipleAndYear(@RequestBody GetSyllabusesByDiscipleAndYearDtoRequest request) {
+        return syllabusService.getSyllabusesByDiscipleAndYear(request.getUserId(),request.getDisciplineId(), request.getYear());
+    }
 }

@@ -21,7 +21,7 @@ public class SyllabusProgram {
     private String practiceTheme;
     private String iswTheme;
     private Integer week;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "syllabusProgramId")
     private ProgramDetail programDetail;
 }

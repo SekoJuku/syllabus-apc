@@ -4,6 +4,7 @@ import kz.syllabus.dto.requestDto.PostrequisiteDtoRequest;
 import kz.syllabus.dto.requestDto.PrerequisiteDtoRequest;
 import kz.syllabus.dto.requestDto.ProgramDetailDtoRequest;
 import kz.syllabus.dto.requestDto.ProgramInfoDtoRequest;
+import kz.syllabus.entity.Instructor;
 import lombok.Data;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class FullSyllabusDtoResponse {
     private String name;
     private Integer disciplineId;
     private Integer credits;
+    private List<MainpageDtoComponent> instructors;
     private Integer lectureHoursPerWeek;
     private Integer practiceHoursPerWeek;
     private Integer iswHoursPerWeek;

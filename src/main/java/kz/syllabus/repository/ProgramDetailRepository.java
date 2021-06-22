@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProgramDetailRepository extends JpaRepository<ProgramDetail, Integer> {
     ProgramDetail getBySyllabusProgramId(Integer syllabusProgramId);
+    ProgramDetail getProgramDetailBySyllabusProgramId(Integer id);
 }

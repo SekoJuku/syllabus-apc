@@ -11,10 +11,10 @@ import java.util.List;
 public interface SyllabusRepository extends JpaRepository<Syllabus, Integer> {
     boolean existsByDisciplineId(Integer disciplineId);
     List<Syllabus> getAllByDisciplineIdAndYear(Integer disciplineId, String year);
-    @Query(value = "select * from syllabus\n" +
-            "full join syllabus_program\n" +
-            "on syllabus.id = syllabus_program.syllabus_id\n" +
-            "where syllabus.id = ?;", nativeQuery = true)
-    Syllabus getSyllabus(Integer syllabusId);
+//    @Query(value = "select * from syllabus\n" +
+//            "full join syllabus_program\n" +
+//            "on syllabus.id = syllabus_program.syllabus_id\n" +
+//            "where syllabus.id = ?;", nativeQuery = true)
+//    Syllabus getSyllabus(Integer syllabusId);
 //    boolean existsByDisciplineId(Integer disciplineId);
 }

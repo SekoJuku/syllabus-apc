@@ -23,6 +23,7 @@ public class Discipline {
     private Integer lectureHoursPerWeek;
     private Integer practiceHoursPerWeek;
     private Integer iswHoursPerWeek;
+    private Integer coordinatorId;
     @OneToMany(targetEntity = Syllabus.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "disciplineId", referencedColumnName = "id")
     private List<Syllabus> syllabuses;

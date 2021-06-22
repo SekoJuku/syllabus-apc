@@ -29,10 +29,10 @@ public class Syllabus {
     private Integer evaluationId;
     private String competences;
     private Integer rubricId;
-    @OneToMany(targetEntity = SyllabusProgram.class, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,targetEntity = SyllabusProgram.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "syllabusId", referencedColumnName = "id")
     private List<SyllabusProgram> syllabusProgram;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "syllabusId")
     private SyllabusParam syllabusParam;
 }
