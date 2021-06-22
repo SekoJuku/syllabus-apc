@@ -10,5 +10,6 @@ public class MainPageDtoResponse {
     private String name;
     private String discipline;
     private String year;
+    private boolean isActive;
     private List<MainpageDtoComponent> instructors;
 }

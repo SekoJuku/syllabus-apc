@@ -208,6 +208,11 @@ public class SyllabusService {
             Discipline discipline = optionalDiscipline.get();
             log.info("After Discipline");
             response.setDiscipline(discipline.getName());
+            Optional<SyllabusParam> optionalSyllabusParam = syllabusParamRepository.findBySyllabusId(syllabus.getId());
+            if(optionalSyllabusParam.isPresent())
+                response.setActive(optionalSyllabusParam.get().getIsActive());
+            else
+                response.setActive(false);
             List<Instructor> allInstructors = instructorRepository.getBySyllabusId(syllabus.getId());
             List<MainpageDtoComponent> components = new ArrayList<>();
             for (Instructor item1 :
