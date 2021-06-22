@@ -1,5 +1,6 @@
 package kz.syllabus.dto.requestDto;
 
+import kz.syllabus.entity.SyllabusProgram;
 import lombok.Data;
 
 import java.util.List;
@@ -17,10 +18,12 @@ public class FullSyllabusDTORequest {
     private String tasks;
     private String results;
     private String methodology;
+    private String year;
     private String competencies;
     private Integer evaluationId;
+    private Integer rubricId;
     private List<Integer> prerequisites;
     private List<Integer> postrequisites;
-    private List<ProgramInfoDtoRequest> programInfo;
+    private List<SyllabusProgramDtoRequest> syllabusProgram;
     private List<ProgramDetailDtoRequest> programDetails;
 }

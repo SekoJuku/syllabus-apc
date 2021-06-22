@@ -1,6 +1,7 @@
 package kz.syllabus.dto.responseDto;
 
 
+import kz.syllabus.entity.ProgramDetail;
 import lombok.Data;
 
 @Data
@@ -10,4 +11,5 @@ public class ProgramInfoDtoResponse {
     private String practiceTheme;
     private String iswTheme;
     private Integer week;
+    private ProgramDetail programDetail;
 }

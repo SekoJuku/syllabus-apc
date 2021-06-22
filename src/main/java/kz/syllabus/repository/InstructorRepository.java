@@ -8,6 +8,8 @@ import java.util.List;
 
 @Repository
 public interface InstructorRepository extends JpaRepository<Instructor, Integer> {
-//    List<Instructor> getByUserId(Integer userId);
-//    boolean existsByUserIdAndDisciplineInfoId(Integer userId, Integer disciplineId);
+    boolean existsByUserIdAndSyllabusId(Integer userId, Integer syllabusId);
+    List<Instructor> getByUserId(Integer userId);
+    List<Instructor> getBySyllabusId(Integer syllabusId);
+//    boolean existsByUserIdAndSyllabusId(Integer userId, Integer syllabusId);
 }

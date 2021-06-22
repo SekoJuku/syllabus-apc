@@ -13,23 +13,23 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
-//@RequestMapping("/api/teacher")
+@RequestMapping("/api/teacher")
 public class TeacherController extends ExceptionHandling {
     private final SyllabusService syllabusService;
-//
-//    @PostMapping("")
-//    public ResponseEntity<?> getAll(@RequestParam("userId") Integer userId) {
-//        return syllabusService.getAll(userId);
-//    }
-//
-////    @PostMapping("/syllabus/create")
-////    public ResponseEntity<?> createSyllabus(@RequestBody FullSyllabusDTORequest fullSyllabusDTORequest) {
-////        return syllabusService.create(fullSyllabusDTORequest);
-////    }
-//    @PostMapping("/syllabus")
-//    public ResponseEntity<?> getSyllabus(@RequestBody GetSyllabusDtoRequest getSyllabusDtoRequest) {
-//        return syllabusService.getOne(getSyllabusDtoRequest.getUserId(), getSyllabusDtoRequest.getDisciplineInfoId());
-//    }
+
+    @PostMapping("")
+    public ResponseEntity<?> getAll(@RequestBody GetSyllabusDtoRequest request) {
+        return syllabusService.getAll(request.getUserId());
+    }
+
+    @PostMapping("/syllabus/create")
+    public ResponseEntity<?> createSyllabus(@RequestBody FullSyllabusDTORequest fullSyllabusDTORequest) {
+        return syllabusService.create(fullSyllabusDTORequest);
+    }
+    @PostMapping("/syllabus")
+    public ResponseEntity<?> getSyllabus(@RequestBody GetSyllabusDtoRequest getSyllabusDtoRequest) {
+        return syllabusService.getOne(getSyllabusDtoRequest.getUserId(), getSyllabusDtoRequest.getSyllabusId());
+    }
 
     @GetMapping("/syllabus/{id}")
     public ResponseEntity<?> getSyllabusById(@PathVariable Integer id){

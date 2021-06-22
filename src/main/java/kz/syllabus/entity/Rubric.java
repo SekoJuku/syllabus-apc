@@ -6,16 +6,14 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "prerequisites")
-public class Prerequisite {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Table(name = "rubrics")
+public class Rubric {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer disciplineId;
-    private Integer syllabusId;
+    private String name;
+    private String text;
 }

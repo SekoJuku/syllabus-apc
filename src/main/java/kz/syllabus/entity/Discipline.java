@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -22,7 +23,7 @@ public class Discipline {
     private Integer lectureHoursPerWeek;
     private Integer practiceHoursPerWeek;
     private Integer iswHoursPerWeek;
-    @OneToOne(targetEntity = Syllabus.class, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Syllabus.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "disciplineId", referencedColumnName = "id")
-    private Syllabus syllabus;
+    private List<Syllabus> syllabuses;
 }

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProgramDetailRepository extends JpaRepository<ProgramDetail, Integer> {
-//    ProgramDetail getByProgramInfoId(Integer programInfoId);
+    ProgramDetail getBySyllabusProgramId(Integer syllabusProgramId);
 }

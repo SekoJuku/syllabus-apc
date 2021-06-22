@@ -18,7 +18,7 @@ public class Syllabus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String disciplineId;
+    private Integer disciplineId;
     private String name;
     private Integer credits;
     private String aim;

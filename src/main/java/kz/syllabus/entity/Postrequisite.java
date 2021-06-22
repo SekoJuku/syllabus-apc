@@ -18,5 +18,5 @@ public class Postrequisite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer disciplineId;
-    private Integer disciplineInfoId;
+    private Integer syllabusId;
 }

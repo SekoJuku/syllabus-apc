@@ -6,8 +6,9 @@ import lombok.Data;
 @Data
 public class SyllabusProgramDtoRequest {
     private Integer id;
-    private Integer instructorId;
-    private Integer disciplineInfoId;
-    private Integer evaluationId;
-    private String competencies;
+    private Integer syllabusId;
+    private String lectureTheme;
+    private String practiceTheme;
+    private String iswTheme;
+    private Integer week;
 }

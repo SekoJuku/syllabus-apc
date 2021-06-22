@@ -4,7 +4,7 @@ import kz.syllabus.dto.responseDto.SyllabusDtoResponse;
 import kz.syllabus.dto.responseDto.FullSyllabusDtoResponse;
 import kz.syllabus.entity.Syllabus;
 
-public class DisciplineInfoFacade {
+public class SyllabusFacade {
     public static SyllabusDtoResponse objectToDto(Syllabus syllabus) {
         SyllabusDtoResponse response = new SyllabusDtoResponse();
         if(syllabus.getId() != null) {
