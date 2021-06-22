@@ -284,6 +284,21 @@ public class SyllabusService {
         return ResponseEntity.ok(userService.findById(userId));
     }
 
+    public ResponseEntity<?> getAllFull() {
+        List<Syllabus> syllabusList = syllabusRepository.findAll();
+        List<Discipline> allActive = new ArrayList<>();
+        for (Syllabus item :
+                syllabusList) {
+            Optional<SyllabusParam> optionalSyllabusParam = syllabusParamRepository.findBySyllabusId(item.getId());
+            if(optionalSyllabusParam.isPresent()) {
+                if(optionalSyllabusParam.get().getIsActive()) {
+                    allActive.add(disciplineRepository.getSyllabusById(item.getId()));
+                }
+            }
+        }
+        return ResponseEntity.ok(allActive);
+    }
+
     public ResponseEntity<?> getSyllabusById(Integer id) {
         return ResponseEntity.ok(disciplineRepository.getSyllabusById(id));
     }

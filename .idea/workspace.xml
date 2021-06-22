@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c92fe44a-636c-43a2-8808-971c9ac4624f" name="Default Changelist" comment="getAll works">
+      <change afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/controllers/students/StudentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/dto/responseDto/MainPageDtoResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/dto/responseDto/MainPageDtoResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/SyllabusParamRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/SyllabusParamRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/controllers/DisciplineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/controllers/DisciplineController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/SyllabusRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/repository/SyllabusRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/SyllabusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/SyllabusService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <list id="e29c290e-cc91-464a-9ba9-c5463819e34c" name="Changes by kuany" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -96,10 +96,23 @@
       <module name="syllabus" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="kz.syllabus.controllers.*" />
+          <option name="PATTERN" value="kz.syllabus.controllers.students.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -153,7 +166,7 @@
       <workItem from="1624190093442" duration="653000" />
       <workItem from="1624280066930" duration="633000" />
       <workItem from="1624309957856" duration="12226000" />
-      <workItem from="1624322852828" duration="309000" />
+      <workItem from="1624322852828" duration="1809000" />
     </task>
     <task id="LOCAL-00001" summary="syllabus added">
       <created>1623128343368</created>
