@@ -11,4 +11,5 @@ public interface SyllabusParamRepository extends JpaRepository<SyllabusParam, In
     Optional<SyllabusParam> findBySyllabusId(Integer syllabusId);
     SyllabusParam getSyllabusParamBySyllabusId(Integer syllabusId);
     boolean existsBySyllabusId(Integer syllabusId);
+    boolean existsBySyllabusIdAndIsActive(Integer id, boolean isActive);
 }

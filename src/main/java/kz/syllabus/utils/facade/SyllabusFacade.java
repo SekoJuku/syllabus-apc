@@ -7,6 +7,9 @@ import kz.syllabus.entity.Syllabus;
 import kz.syllabus.entity.SyllabusProgram;
 import lombok.extern.java.Log;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Log
 public class SyllabusFacade {
     public static SyllabusDtoResponse objectToDto(Syllabus syllabus) {
@@ -37,6 +40,7 @@ public class SyllabusFacade {
     }
 
     public static boolean checkSimilarity(Syllabus syllabus1, Syllabus syllabus2) {
+        boolean u = false;
         if(syllabus1.getName().equals(syllabus2.getName())) {
             if (syllabus1.getAim().equals(syllabus2.getAim())) {
                 if (syllabus1.getTasks().equals(syllabus2.getTasks())) {
@@ -46,9 +50,11 @@ public class SyllabusFacade {
                                 if (syllabus1.getEvaluationId().equals(syllabus2.getEvaluationId())) {
                                     if (syllabus1.getCompetences().equals(syllabus2.getCompetences())) {
                                         if (syllabus1.getRubricId().equals(syllabus2.getRubricId())) {
-                                            boolean u = false;
                                             for (SyllabusProgram i :
                                                     syllabus1.getSyllabusProgram()) {
+                                                if(i.getWeek() == 9 || i.getWeek() == 10) {
+                                                    continue;
+                                                }
                                                 if(u) {
                                                     break;
                                                 }
@@ -58,54 +64,71 @@ public class SyllabusFacade {
                                                         if (!i.getLectureTheme().equals(j.getLectureTheme())) {
                                                             u = true;
                                                             log.info("lectheme");
+                                                            break;
+
                                                         }
                                                         if (!i.getPracticeTheme().equals(j.getPracticeTheme())) {
                                                             u = true;
                                                             log.info("pratheme");
+                                                            break;
                                                         }
                                                         if (!i.getIswTheme().equals(j.getIswTheme())) {
                                                             u = true;
                                                             log.info("iswtheme");
+                                                            break;
                                                         }
                                                         ProgramDetail programDetail1 = i.getProgramDetail();
                                                         ProgramDetail programDetail2 = j.getProgramDetail();
                                                         if (!programDetail1.getLectureFof().equals(programDetail2.getLectureFof())) {
                                                             u = true;
                                                             log.info("lecfof");
+                                                            break;
                                                         }
                                                         if (!programDetail1.getPracticeFof().equals(programDetail2.getPracticeFof())) {
                                                             u = true;
                                                             log.info("prafof");
+                                                            break;
+
                                                         }
                                                         if (!programDetail1.getIswFof().equals(programDetail2.getIswFof())) {
                                                             u = true;
                                                             log.info("iswfof");
+                                                            break;
+
                                                         }
                                                         if(!programDetail1.getLectureLiterature().equals(programDetail2.getLectureLiterature())) {
                                                             u = true;
                                                             log.info("leclit");
+                                                            break;
+
                                                         }
                                                         if(!programDetail1.getPracticeLiterature().equals(programDetail2.getPracticeLiterature())) {
                                                             u = true;
                                                             log.info("pralit");
+                                                            break;
+
                                                         }
                                                         if(!programDetail1.getIswLiterature().equals(programDetail2.getIswLiterature())) {
                                                             u = true;
                                                             log.info("iswlit");
+                                                            break;
+
                                                         }
                                                         if(!programDetail1.getLectureAssessment().equals(programDetail2.getLectureAssessment())) {
                                                             u = true;
                                                             log.info("lecass");
+                                                            break;
+
                                                         }
                                                         if(!programDetail1.getPracticeAssessment().equals(programDetail2.getPracticeAssessment())) {
                                                             u = true;
                                                             log.info("praass");
+                                                            break;
+
                                                         }
                                                         if(!programDetail1.getIswAssessment().equals(programDetail2.getIswAssessment())) {
                                                             u = true;
                                                             log.info("iwsass");
-                                                        }
-                                                        if(u) {
                                                             break;
                                                         }
                                                     }
@@ -182,6 +205,8 @@ public class SyllabusFacade {
 //        syllabus1.setSyllabusParam(null);
 //        syllabus2.setSyllabusParam(null);
 //        return syllabus1.equals(syllabus2);
-    return true;
+    if(!u)
+        return true;
+    return false;
     }
 }

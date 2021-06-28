@@ -53,16 +53,16 @@ CREATE TABLE "users" (
 
 CREATE TABLE "personal_info" (
                                  "id" serial NOT NULL,
-                                 "user_id" integer NOT NULL,
-                                 "sname" varchar(128) NOT NULL,
-                                 "name" varchar(128) NOT NULL,
-                                 "mname" varchar(128) NOT NULL,
-                                 "academic_degree" varchar(255) NOT NULL,
-                                 "academic_rank" varchar(255) NOT NULL,
-                                 "position_id" integer NOT NULL,
-                                 "email" varchar(128) NOT NULL,
-                                 "phone" varchar(15) NOT NULL,
-                                 "description" TEXT NOT NULL,
+                                 "user_id" integer,
+                                 "sname" varchar(128),
+                                 "name" varchar(128),
+                                 "mname" varchar(128),
+                                 "academic_degree" varchar(255),
+                                 "academic_rank" varchar(255),
+                                 "position_id" integer,
+                                 "email" varchar(128),
+                                 "phone" varchar(15),
+                                 "description" TEXT,
                                  CONSTRAINT "personal_info_pk" PRIMARY KEY ("id")
 );
 
@@ -114,14 +114,14 @@ CREATE TABLE "positions" (
 
 CREATE TABLE "syllabus_params" (
                                    "id" serial NOT NULL,
-                                   "syllabus_id" integer NOT NULL,
-                                   "is_final" BOOLEAN NOT NULL,
-                                   "is_sendable" BOOLEAN NOT NULL,
-                                   "is_sent_to_coordinator" BOOLEAN NOT NULL,
-                                   "is_approved_by_coordinator" BOOLEAN NOT NULL,
-                                   "is_sent_to_dean" BOOLEAN NOT NULL,
-                                   "is_approved_by_dean" BOOLEAN NOT NULL,
-                                   "is_active" BOOLEAN NOT NULL,
+                                   "syllabus_id" integer,
+                                   "is_final" BOOLEAN,
+                                   "is_sendable" BOOLEAN,
+                                   "is_sent_to_coordinator" BOOLEAN,
+                                   "is_approved_by_coordinator" BOOLEAN,
+                                   "is_sent_to_dean" BOOLEAN,
+                                   "is_approved_by_dean" BOOLEAN,
+                                   "is_active" BOOLEAN,
                                    CONSTRAINT "syllabus_params_pk" PRIMARY KEY ("id")
 );
 

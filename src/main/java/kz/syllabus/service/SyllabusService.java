@@ -13,6 +13,7 @@ import kz.syllabus.utils.facade.SyllabusProgramFacade;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -37,9 +38,11 @@ public class SyllabusService {
     private final InstructorRepository instructorRepository;
     private final PrerequisiteRepository prerequisiteRepository;
     private final PostrequisiteRepository postrequisiteRepository;
+    private final TestUserRepository testUserRepository;
+    private final TestInstructorRepository testInstructorRepository;
 
     @Transactional
-    public ResponseEntity<?> create(FullSyllabusDTORequest fullSyllabusDTORequest) {
+    public ResponseEntity<?> create(FullSyllabusDTORequest fullSyllabusDTORequest, boolean isTest) {
         FullSyllabusDtoResponse response = new FullSyllabusDtoResponse();
 
         Discipline discipline = disciplineRepository.getById(fullSyllabusDTORequest.getDisciplineId());
@@ -83,6 +86,21 @@ public class SyllabusService {
         response.setRubricId(syllabus.getRubricId());
 
 
+        if(isTest) {
+            TestUser testuser = testUserRepository.getById(fullSyllabusDTORequest.getUserId());
+            testuser.setIin(fullSyllabusDTORequest.getIin());
+            testuser.setName(fullSyllabusDTORequest.getName());
+            testuser.setSname(fullSyllabusDTORequest.getSname());
+            testuser.setMname(fullSyllabusDTORequest.getMname());
+            testuser.setAcademicDegree(fullSyllabusDTORequest.getAcademicDegree());
+            testuser.setAcademicRank(fullSyllabusDTORequest.getAcademicRank());
+            testuser.setEmail(fullSyllabusDTORequest.getEmail());
+            testuser.setPhone(fullSyllabusDTORequest.getPhone());
+            testuser.setDescription(fullSyllabusDTORequest.getDescription());
+            testUserRepository.save(testuser);
+        }
+
+
         List<Integer> l = new ArrayList<>();
 
         for (Integer item:
@@ -110,19 +128,35 @@ public class SyllabusService {
             l1.add(item);
         }
         response.setPostrequisites(l1);
-        Instructor instructor = new Instructor();
-        if(!instructorRepository.existsByUserIdAndSyllabusId(fullSyllabusDTORequest.getUserId(), syllabusId)) {
-            Instructor newInstructor = new Instructor();
-            newInstructor.setSyllabusId(syllabusId);
-            newInstructor.setUserId(fullSyllabusDTORequest.getUserId());
-            instructor = instructorRepository.save(newInstructor);
-            Integer instructorId = instructor.getId();
-            log.info(String.valueOf(instructorId));
-        } else {
-            instructor = instructorRepository.getInstructorByUserIdAndSyllabusId(fullSyllabusDTORequest.getUserId(), syllabusId);
-        }
+        if(!isTest) {
+            Instructor instructor = new Instructor();
+            if(!instructorRepository.existsByUserIdAndSyllabusId(fullSyllabusDTORequest.getUserId(), syllabusId)) {
+                Instructor newInstructor = new Instructor();
+                newInstructor.setSyllabusId(syllabusId);
+                newInstructor.setUserId(fullSyllabusDTORequest.getUserId());
+                instructor = instructorRepository.save(newInstructor);
+                Integer instructorId = instructor.getId();
+                log.info(String.valueOf(instructorId));
+            } else {
+                instructor = instructorRepository.getInstructorByUserIdAndSyllabusId(fullSyllabusDTORequest.getUserId(), syllabusId);
+            }
 
-        response.setUserId(instructor.getUserId());
+            response.setUserId(instructor.getUserId());
+        }
+        else {
+            TestInstructor instructor = new TestInstructor();
+            if(!testInstructorRepository.existsBySyllabusIdAndUserId(fullSyllabusDTORequest.getUserId(), syllabusId)) {
+                TestInstructor newInstructor = new TestInstructor();
+                newInstructor.setSyllabusId(syllabusId);
+                newInstructor.setUserId(fullSyllabusDTORequest.getUserId());
+                instructor = testInstructorRepository.save(newInstructor);
+                log.info(String.valueOf(instructor.getId()));
+            } else {
+                instructor = testInstructorRepository.getBySyllabusIdAndUserId(fullSyllabusDTORequest.getUserId(), syllabusId);
+            }
+
+            response.setUserId(instructor.getUserId());
+        }
 
 //        SyllabusProgram newSyllabusProgram = new SyllabusProgram();
 //        SyllabusProgram syllabusProgram = syllabusProgramRepository.save(newSyllabusProgram);
@@ -151,25 +185,29 @@ public class SyllabusService {
             list1.add(SyllabusProgramFacade.objectToDto(SyllabusProgram));
             for (ProgramDetailDtoRequest item1 :
                     fullSyllabusDTORequest.getProgramDetails()) {
-                if(item1.getWeek().equals(SyllabusProgram.getWeek())) {
+                if(item1.getWeek().equals(item.getWeek())) {
                     ProgramDetail newProgramDetail = new ProgramDetail();
                     if(item1.getId() != null) {
                         newProgramDetail.setId(item1.getId());
                     }
-                    newProgramDetail.setSyllabusProgramId(id);
-                    newProgramDetail.setLectureFof(item1.getLectureFof());
-                    newProgramDetail.setPracticeFof(item1.getPracticeFof());
-                    newProgramDetail.setIswFof(item1.getIswFof());
-                    newProgramDetail.setLectureLiterature(item1.getLectureLiterature());
-                    newProgramDetail.setPracticeLiterature(item1.getPracticeLiterature());
-                    newProgramDetail.setIswLiterature(item1.getIswLiterature());
-                    newProgramDetail.setLectureAssessment(item1.getLectureAssessment());
-                    newProgramDetail.setPracticeAssessment(item1.getPracticeAssessment());
-                    newProgramDetail.setIswAssessment(item1.getIswAssessment());
-                    ProgramDetail programDetail = programDetailRepository.save(newProgramDetail);
-                    Integer id1 = programDetail.getId();
-                    log.info(String.valueOf(id1));
-                    list2.add(ProgramDetailFacade.objectToDto(programDetail));
+                    try {
+                        newProgramDetail.setSyllabusProgramId(id);
+                        newProgramDetail.setLectureFof(item1.getLectureFof());
+                        newProgramDetail.setPracticeFof(item1.getPracticeFof());
+                        newProgramDetail.setIswFof(item1.getIswFof());
+                        newProgramDetail.setLectureLiterature(item1.getLectureLiterature());
+                        newProgramDetail.setPracticeLiterature(item1.getPracticeLiterature());
+                        newProgramDetail.setIswLiterature(item1.getIswLiterature());
+                        newProgramDetail.setLectureAssessment(item1.getLectureAssessment());
+                        newProgramDetail.setPracticeAssessment(item1.getPracticeAssessment());
+                        newProgramDetail.setIswAssessment(item1.getIswAssessment());
+                        ProgramDetail programDetail = programDetailRepository.save(newProgramDetail);
+                        Integer id1 = programDetail.getId();
+                        log.info(String.valueOf(id1));
+                        list2.add(ProgramDetailFacade.objectToDto(programDetail));
+                    } catch (Exception e) {
+                        log.info("Program detail is not working!" + item.getWeek());
+                    }
                 }
             }
         }
@@ -177,7 +215,9 @@ public class SyllabusService {
 
 
         response.setProgramDetails(list2);
-
+        if(isTest) {
+            return ResponseEntity.ok(response);
+        }
         List<Syllabus> syllabusList = syllabusRepository.getAllByDisciplineIdAndYear(syllabus.getDisciplineId(), syllabus.getYear());
         if(syllabusList.size() != 0) {
             boolean u = false;
@@ -216,7 +256,12 @@ public class SyllabusService {
                 instructors) {
             instructorRepository.deleteById(item.getId());
         }
-//        for (SyllabusProgram item :
+        Discipline discipline = disciplineRepository.getById(syllabus.getDisciplineId());
+        List<Syllabus> syllabusList = discipline.getSyllabuses();
+        syllabusList.remove(syllabus);
+        discipline.setSyllabuses(syllabusList);
+        disciplineRepository.save(discipline);
+        //        for (SyllabusProgram item :
 //                syllabus.getSyllabusProgram()) {
 //            log.info(String.valueOf(i));
 //            log.info(item.toString());
@@ -302,12 +347,18 @@ public class SyllabusService {
         Discipline discipline = disciplineRepository.getById(syllabus.getDisciplineId());
 
         response.setUserId(userId);
+        response.setName(syllabus.getName());
+        response.setYear(syllabus.getYear());
+        response.setCompetencies(syllabus.getCompetences());
+        response.setDisciplineId(syllabus.getDisciplineId());
+        response.setRubricId(syllabus.getRubricId());
+        response.setEvaluationId(syllabus.getEvaluationId());
         response.setLectureHoursPerWeek(discipline.getLectureHoursPerWeek());
         response.setPracticeHoursPerWeek(discipline.getPracticeHoursPerWeek());
         response.setIswHoursPerWeek(discipline.getIswHoursPerWeek());
 
-        List<Postrequisite> postrequisiteList = postrequisiteRepository.findAllByDisciplineId(SyllabusId);
-        List<Prerequisite> prerequisiteList = prerequisiteRepository.findAllByDisciplineId(SyllabusId);
+        List<Postrequisite> postrequisiteList = postrequisiteRepository.getAllBySyllabusId(SyllabusId);
+        List<Prerequisite> prerequisiteList = prerequisiteRepository.getAllBySyllabusId(SyllabusId);
 
         List<Integer> postrequisites = new ArrayList<>();
         List<Integer> prerequisites = new ArrayList<>();
@@ -348,17 +399,15 @@ public class SyllabusService {
     @Transactional
     public ResponseEntity<?> getAllFull() {
         log.info("Before func");
-        List<Syllabus> syllabusList = checkForInstructors(syllabusRepository.findAll());
+        List<Syllabus> list = checkForInstructors(syllabusRepository.findAll());
+        List<Syllabus> syllabusList = checkForParam(list);
         log.info("After syllabus repo");
-        List<Discipline> allActive = new ArrayList<>();
-        for (Syllabus item :
-                syllabusList) {
-            log.info("Before syllabus param repo");
-            Optional<SyllabusParam> optionalSyllabusParam = syllabusParamRepository.findBySyllabusId(item.getId());
-            log.info("After syllabus param repo");
-            if(optionalSyllabusParam.isPresent()) {
-                if(optionalSyllabusParam.get().getIsActive()) {
-                    allActive.add(disciplineRepository.getSyllabusById(item.getId()));
+        List<Syllabus> allActive = new ArrayList<>();
+        if(!syllabusList.isEmpty()) {
+            for (Syllabus item :
+                    syllabusList) {
+                if(syllabusParamRepository.existsBySyllabusIdAndIsActive(item.getId(), true)) {
+                    allActive.add(syllabusRepository.getbyIdSyllabus(item.getId()));
                 }
             }
         }
@@ -377,6 +426,8 @@ public class SyllabusService {
         Syllabus syllabus = syllabusRepository.getById(syllabusId);
         List<Syllabus> syllabuses = checkForInstructors(syllabusRepository.getAllByDisciplineIdAndYear(syllabus.getDisciplineId(), syllabus.getYear()));
         Syllabus primarySyllabus = new Syllabus();
+        SyllabusParam primaryParam = new SyllabusParam();
+        log.info("After param");
 
         if(syllabuses.size() == 1) {
             SyllabusParam syllabusParam = syllabusParamRepository.getSyllabusParamBySyllabusId(syllabusId);
@@ -392,6 +443,7 @@ public class SyllabusService {
                 log.info(item.toString());
                 if(syllabusParamRepository.existsBySyllabusId(item.getId())) {
                     primarySyllabus = item;
+                    primaryParam = syllabusParamRepository.getSyllabusParamBySyllabusId(item.getId());
                 }
                 if(compareSyllabus == item) {
                     continue;
@@ -400,8 +452,9 @@ public class SyllabusService {
                     return ResponseEntity.ok("Not similar");
                 } else {
                     SyllabusParam param = primarySyllabus.getSyllabusParam();
-                    param.setIsFinal(true);
-                    param.setIsSendable(true);
+                    primaryParam.setIsFinal(true);
+                    primaryParam.setIsSendable(true);
+                    syllabusParamRepository.save(primaryParam);
                 }
             }
         }
@@ -410,7 +463,7 @@ public class SyllabusService {
 
     @Transactional
     public ResponseEntity<?> getSyllabusById(Integer id) {
-        return ResponseEntity.ok(disciplineRepository.getSyllabusById(id));
+        return ResponseEntity.ok(syllabusRepository.getbyIdSyllabus(id));
     }
 
     public ResponseEntity<?> getDisciplines(Integer userId) {
@@ -445,7 +498,7 @@ public class SyllabusService {
     }
 
     public List<Syllabus> checkForParam(List<Syllabus> list ) {
-        list.removeIf(item -> item.getSyllabusParam() == null);
+        list.removeIf(item -> !syllabusParamRepository.existsBySyllabusId(item.getId()));
         return list;
     }
 
@@ -455,14 +508,18 @@ public class SyllabusService {
         List<Syllabus> syllabuses = checkForParam(list);
         for (Syllabus item :
                 syllabuses) {
-                CoordinatorMainPageDtoResponse response = new CoordinatorMainPageDtoResponse();
-                response.setId(item.getId());
-                response.setName(item.getName());
-                response.setYear(item.getYear());
-                Discipline discipline = disciplineRepository.getById(item.getDisciplineId());
-                response.setDisciplineName(discipline.getName());
-                List<Instructor> instructors = instructorRepository.getBySyllabusId(item.getId());
-                List<MainpageDtoComponent> components = new ArrayList<>();
+            SyllabusParam param = syllabusParamRepository.getSyllabusParamBySyllabusId(item.getId());
+            if(!param.getIsSentToCoordinator())
+                continue;
+
+            CoordinatorMainPageDtoResponse response = new CoordinatorMainPageDtoResponse();
+            response.setId(item.getId());
+            response.setName(item.getName());
+            response.setYear(item.getYear());
+            Discipline discipline = disciplineRepository.getById(item.getDisciplineId());
+            response.setDisciplineName(discipline.getName());
+            List<Instructor> instructors = instructorRepository.getBySyllabusId(item.getId());
+            List<MainpageDtoComponent> components = new ArrayList<>();
             for (Instructor item1 :
                     instructors) {
                 MainpageDtoComponent component = new MainpageDtoComponent();
@@ -479,8 +536,7 @@ public class SyllabusService {
     }
 
     public ResponseEntity<?> approvedSyllabusById(Integer id) {
-        Syllabus syllabus = syllabusRepository.getById(id);
-        SyllabusParam param = syllabus.getSyllabusParam();
+        SyllabusParam param = syllabusParamRepository.getSyllabusParamBySyllabusId(id);
         param.setIsApprovedByCoordinator(true);
         param.setIsSentToDean(true);
         SyllabusParam newParam = syllabusParamRepository.save(param);
@@ -493,8 +549,7 @@ public class SyllabusService {
 //    }
 
     public ResponseEntity<?> approvedByDeanById(Integer id) {
-        Syllabus syllabus = syllabusRepository.getById(id);
-        SyllabusParam param = syllabus.getSyllabusParam();
+        SyllabusParam param = syllabusParamRepository.getSyllabusParamBySyllabusId(id);
         param.setIsApprovedByDean(true);
         param.setIsActive(true);
         SyllabusParam newParam = syllabusParamRepository.save(param);
@@ -503,7 +558,6 @@ public class SyllabusService {
 
     public ResponseEntity<?> getSyllabusIsSentToCoordinator(Integer userId) {
         return ResponseEntity.ok(getSyllabusIsSent(userId));
-
     }
 
     public ResponseEntity<?> get() {
@@ -521,5 +575,147 @@ public class SyllabusService {
         syllabus.setSyllabusParam(newSyllabusParam);
         syllabusRepository.save(syllabus);
         return ResponseEntity.ok(syllabus);
+    }
+
+    public ResponseEntity<?> testCreateSyllabus(FullSyllabusDTORequest request) {
+        Discipline discipline = disciplineRepository.getById(request.getDisciplineId());
+        List<Syllabus> syllabuses = new ArrayList<>();
+        if(discipline.getSyllabuses() != null) {
+            syllabuses = discipline.getSyllabuses();
+        }
+        Syllabus syllabus = new Syllabus();
+        syllabus.setName(discipline.getName()+"," + request.getYear());
+        syllabus.setCredits(discipline.getCredits());
+        syllabus.setAim(request.getAim());
+        syllabus.setTasks(request.getTasks());
+        syllabus.setResults(request.getResults());
+        syllabus.setMethodology(request.getMethodology());
+        syllabus.setEvaluationId(request.getEvaluationId());
+        syllabus.setYear(request.getYear());
+        syllabus.setCompetences(request.getCompetencies());
+        syllabus.setRubricId(request.getRubricId());
+        if(syllabuses.size() == 0) {
+            SyllabusParam param = new SyllabusParam();
+            param.setIsFinal(false);
+            param.setIsSendable(false);
+            param.setIsSentToCoordinator(false);
+            param.setIsApprovedByCoordinator(false);
+            param.setIsSentToDean(false);
+            param.setIsApprovedByDean(false);
+            param.setIsActive(false);
+            syllabus.setSyllabusParam(param);
+        }
+        List<SyllabusProgram> syllabusPrograms = new ArrayList<>();
+        if(syllabus.getSyllabusProgram() != null) {
+            syllabusPrograms = syllabus.getSyllabusProgram();
+        }
+        for (SyllabusProgramDtoRequest item :
+                request.getSyllabusProgram()) {
+            SyllabusProgram syllabusProgram = new SyllabusProgram();
+            syllabusProgram.setLectureTheme(item.getLectureTheme());
+            syllabusProgram.setPracticeTheme(item.getPracticeTheme());
+            syllabusProgram.setIswTheme(item.getIswTheme());
+            syllabusProgram.setWeek(item.getWeek());
+            for (ProgramDetailDtoRequest item1 :
+                request.getProgramDetails()) {
+                if(item1.getWeek().equals(item.getWeek())) {
+                    ProgramDetail detail = new ProgramDetail();
+                    detail.setLectureFof(item1.getLectureFof());
+                    detail.setPracticeFof(item1.getPracticeFof());
+                    detail.setIswFof(item1.getIswFof());
+                    detail.setLectureLiterature(item1.getLectureLiterature());
+                    detail.setPracticeLiterature(item1.getPracticeLiterature());
+                    detail.setIswLiterature(item1.getIswLiterature());
+                    detail.setLectureAssessment(item1.getLectureAssessment());
+                    detail.setPracticeAssessment(item1.getPracticeAssessment());
+                    detail.setIswAssessment(item1.getIswAssessment());
+                    syllabusProgram.setProgramDetail(detail);
+                }
+            }
+            syllabusPrograms.add(syllabusProgram);
+        }
+        syllabus.setSyllabusProgram(syllabusPrograms);
+        syllabuses.add(syllabus);
+        discipline.setSyllabuses(syllabuses);
+        Discipline newDiscipline = disciplineRepository.save(discipline);
+        return ResponseEntity.ok(newDiscipline);
+    }
+
+    public ResponseEntity<?> getFullSyllabus(Integer id) {
+        Optional<Syllabus> optionalSyllabus = syllabusRepository.findById(id);
+
+        if(optionalSyllabus.isPresent()){
+            Syllabus syllabus = optionalSyllabus.get();
+            return ResponseEntity.ok(syllabus);
+        }
+        return ResponseEntity.badRequest().body("Object by this id not found!");
+    }
+
+    public ResponseEntity<?> getSyllabusIsSentToDean(Integer userId) {
+        List<CoordinatorMainPageDtoResponse> responses = new ArrayList<>();
+        List<Syllabus> syllabusList = checkForParam(checkForInstructors(syllabusRepository.findAll()));
+        for (Syllabus item :
+                syllabusList) {
+            SyllabusParam param = syllabusParamRepository.getSyllabusParamBySyllabusId(item.getId());
+            if(!param.getIsSentToDean()) {
+                continue;
+            }
+            CoordinatorMainPageDtoResponse response = new CoordinatorMainPageDtoResponse();
+            response.setId(item.getId());
+            response.setName(item.getName());
+            response.setYear(item.getYear());
+            Discipline discipline = disciplineRepository.getById(item.getDisciplineId());
+            response.setDisciplineName(discipline.getName());
+            List<Instructor> instructors = instructorRepository.getBySyllabusId(item.getId());
+            List<MainpageDtoComponent> components = new ArrayList<>();
+            for (Instructor item1 :
+                    instructors) {
+                MainpageDtoComponent component = new MainpageDtoComponent();
+                component.setId(item1.getUserId());
+                PersonalInfo info = personalInfoRepository.getPersonalInfoByUserId(item1.getUserId());
+                component.setName(info.getName());
+                component.setLastname(info.getSname());
+                components.add(component);
+            }
+            response.setInstructors(components);
+            responses.add(response);
+        }
+        return ResponseEntity.ok(responses);
+    }
+
+    public ResponseEntity<?> sendToCoordinator(Integer syllabusId) {
+        SyllabusParam param = syllabusParamRepository.getSyllabusParamBySyllabusId(syllabusId);
+        param.setIsSentToCoordinator(true);
+        SyllabusParam newParam = syllabusParamRepository.save(param);
+        return ResponseEntity.ok(newParam);
+    }
+
+    public List<Syllabus> checkForTest(List<Syllabus> list) {
+        list.removeIf(item -> !testInstructorRepository.existsBySyllabusId(item.getId()));
+        return list;
+    }
+
+    public ResponseEntity<?> getAllTest(Integer userId) {
+        List<CoordinatorMainPageDtoResponse> responses = new ArrayList<>();
+        List<Syllabus> syllabuses = checkForTest(syllabusRepository.findAll());
+        for (Syllabus item :
+                syllabuses) {
+            CoordinatorMainPageDtoResponse response = new CoordinatorMainPageDtoResponse();
+            response.setId(item.getId());
+            response.setName(item.getName());
+            response.setYear(item.getYear());
+            Discipline discipline = disciplineRepository.getById(item.getDisciplineId());
+            response.setDisciplineName(discipline.getName());
+            List<MainpageDtoComponent> components = new ArrayList<>();
+            MainpageDtoComponent component = new MainpageDtoComponent();
+            TestUser user = testUserRepository.getById(userId);
+            component.setId(userId);
+            component.setName(user.getName());
+            component.setLastname(user.getSname());
+            components.add(component);
+            response.setInstructors(components);
+            responses.add(response);
+        }
+        return ResponseEntity.ok(responses);
     }
 }

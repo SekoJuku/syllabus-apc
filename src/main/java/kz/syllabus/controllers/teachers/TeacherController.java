@@ -27,7 +27,7 @@ public class TeacherController extends ExceptionHandling {
 
     @PostMapping("/syllabus/create")
     public ResponseEntity<?> createSyllabus(@RequestBody FullSyllabusDTORequest fullSyllabusDTORequest) {
-        return syllabusService.create(fullSyllabusDTORequest);
+        return syllabusService.create(fullSyllabusDTORequest, true);
     }
     @PostMapping("/syllabus")
     public ResponseEntity<?> getSyllabus(@RequestBody GetSyllabusDtoRequest getSyllabusDtoRequest) {
@@ -56,8 +56,20 @@ public class TeacherController extends ExceptionHandling {
     public ResponseEntity<?> getDisciplines(@RequestBody GetUserDataDtoRequest request) {
         return syllabusService.getDisciplines(request.getUserId());
     }
-    @PostMapping("/")
+    @PostMapping("/syllabus/discipline/year")
     public ResponseEntity<?> getSyllabusesByDiscipleAndYear(@RequestBody GetSyllabusesByDiscipleAndYearDtoRequest request) {
         return syllabusService.getSyllabusesByDiscipleAndYear(request.getUserId(),request.getDisciplineId(), request.getYear());
+    }
+    @PostMapping("/sendToCoordinator")
+    public ResponseEntity<?> sendToCoordinator(@RequestBody GetSyllabusDtoRequest request) {
+        return syllabusService.sendToCoordinator(request.getSyllabusId());
+    }
+    @PostMapping("/test/syllabus/create")
+    public ResponseEntity<?> testCreateSyllabus(@RequestBody FullSyllabusDTORequest request) {
+        return syllabusService.testCreateSyllabus(request);
+    }
+    @GetMapping("/test/syllabus/{id}")
+    public ResponseEntity<?> getFullSyllabus(@PathVariable Integer id) {
+        return syllabusService.getFullSyllabus(id);
     }
 }
