@@ -25,4 +25,12 @@ public interface SyllabusRepository extends JpaRepository<Syllabus, Integer> {
 //            "where syllabus.id = ?;", nativeQuery = true)
 //    Syllabus getSyllabus(Integer syllabusId);
 //    boolean existsByDisciplineId(Integer disciplineId);
+
+    @Query(value = "select * from syllabus\n" +
+            "full join disciplines\n" +
+            "on disciplines.id = syllabus.discipline_id\n" +
+            "full join evaluation_system\n" +
+            "on syllabus.evaluation_id = evaluation_system.id\n" +
+            "where syllabus.id = ?;", nativeQuery = true)
+    Syllabus getSyllabusById(Integer id);
 }
