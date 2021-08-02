@@ -27,10 +27,4 @@ public class Discipline {
     @OneToMany(targetEntity = Syllabus.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "disciplineId", referencedColumnName = "id")
     private List<Syllabus> syllabuses;
-    @OneToMany(targetEntity = Prerequisite.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "disciplineId", referencedColumnName = "id")
-    private List<Prerequisite> prerequisites;
-    @OneToMany(targetEntity = Postrequisite.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "disciplineId", referencedColumnName = "id")
-    private List<Postrequisite> postrequisites;
 }

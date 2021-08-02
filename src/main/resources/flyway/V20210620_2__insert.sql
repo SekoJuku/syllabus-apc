@@ -108,19 +108,19 @@ INSERT INTO public.syllabus_program ( syllabus_id, lecture_theme, practice_theme
 VALUES ( 1, 'Dispatcher servlete', 'Hibernaet', 'Connection library in Java', 1);
 
 INSERT INTO public.syllabus_program ( syllabus_id, lecture_theme, practice_theme, isw_theme, week)
-VALUES ( 2, 'OOP excepton handlers', 'Solid principles', 'Dependecy injection', 2);
+VALUES ( 1, 'OOP excepton handlers', 'Solid principles', 'Dependecy injection', 2);
 
 INSERT INTO public.syllabus_program ( syllabus_id, lecture_theme, practice_theme, isw_theme, week)
-VALUES ( 3, 'Loops in C++', 'Classes ', 'Answer to question', 3);
+VALUES ( 2, 'Loops in C++', 'Classes ', 'Answer to question', 3);
 
 INSERT INTO public.syllabus_program ( syllabus_id, lecture_theme, practice_theme, isw_theme, week)
-VALUES ( 4, 'Arrays ', 'Objects', 'Prepare for quiz ', 4);
+VALUES ( 2, 'Arrays ', 'Objects', 'Prepare for quiz ', 4);
 
 INSERT INTO public.syllabus_program ( syllabus_id, lecture_theme, practice_theme, isw_theme, week)
-VALUES ( 5, 'Double arrays', 'Lists in use ', 'List vs Vector', 5);
+VALUES ( 2, 'Double arrays', 'Lists in use ', 'List vs Vector', 5);
 
 INSERT INTO public.syllabus_program ( syllabus_id, lecture_theme, practice_theme, isw_theme, week)
-VALUES ( 6, 'Саки и гуны', 'Абылай хан ', 'Прочитать мудрости Абая', 2);
+VALUES ( 3, 'Саки и гуны', 'Абылай хан ', 'Прочитать мудрости Абая', 2);
 
 
 
@@ -341,36 +341,44 @@ INSERT INTO public.comments ( comment, syllabus_id, coordinator_id) VALUES ( 'Lo
 
 
 INSERT INTO public.postrequisites ( discipline_id, syllabus_id)
-VALUES (5, 2);
+VALUES (1, 1);
 
 INSERT INTO public.postrequisites ( discipline_id, syllabus_id)
-VALUES (4, 5);
+VALUES (2, 2);
 
 INSERT INTO public.postrequisites ( discipline_id, syllabus_id)
-VALUES (2, 1);
+VALUES (3, 3);
 
 INSERT INTO public.postrequisites ( discipline_id, syllabus_id)
-VALUES (1, 3);
+VALUES (4, 1);
 
 INSERT INTO public.postrequisites ( discipline_id, syllabus_id)
-VALUES (3, 4);
+VALUES (2, 3);
+
+INSERT INTO public.postrequisites ( discipline_id, syllabus_id)
+VALUES (5, 4);
 
 
 
 
 
 INSERT INTO public.prerequisites ( discipline_id, syllabus_id)
-VALUES ( 3, 5);
+VALUES ( 1, 1);
 
 INSERT INTO public.prerequisites ( discipline_id, syllabus_id)
-VALUES ( 1, 3);
+VALUES ( 2, 2);
 
 INSERT INTO public.prerequisites ( discipline_id, syllabus_id)
-VALUES ( 5, 2);
+VALUES ( 3, 4);
 
 INSERT INTO public.prerequisites ( discipline_id, syllabus_id)
-VALUES ( 2, 1);
+VALUES ( 4, 5);
+
+INSERT INTO public.prerequisites ( discipline_id, syllabus_id)
+VALUES ( 5, 3);
+
+INSERT INTO public.prerequisites ( discipline_id, syllabus_id)
+VALUES ( 5, 5);
 
 INSERT INTO public.prerequisites ( discipline_id, syllabus_id)
 VALUES ( 4, 4);
-

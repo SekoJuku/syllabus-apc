@@ -9,4 +9,5 @@ public interface TestInstructorRepository extends JpaRepository<TestInstructor, 
     TestInstructor getBySyllabusIdAndUserId(Integer syllabusId, Integer userId);
     boolean existsBySyllabusIdAndUserId(Integer syllabusId, Integer userId);
     boolean existsBySyllabusId(Integer id);
+    TestInstructor getBySyllabusId(Integer id);
 }

@@ -1,6 +1,7 @@
 package kz.syllabus.controllers.testUser;
 
 import kz.syllabus.dto.requestDto.FullSyllabusDTORequest;
+import kz.syllabus.dto.requestDto.TestUserDtoRequest;
 import kz.syllabus.service.SyllabusService;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
@@ -19,7 +20,10 @@ public class TestUserController {
 
     @PostMapping("/syllabus/create")
     public ResponseEntity<?> createSyllabus(@RequestBody FullSyllabusDTORequest fullSyllabusDTORequest) {
-        return syllabusService.create(fullSyllabusDTORequest, true);
+        return ResponseEntity.ok(syllabusService.create(fullSyllabusDTORequest, true));
     }
-
+    @PostMapping("/syllabus")
+    public ResponseEntity<?> seeAll(@RequestBody TestUserDtoRequest request) {
+        return ResponseEntity.ok(syllabusService.getAllTestSyllabusesByIIN(request.getIin()));
+    }
 }

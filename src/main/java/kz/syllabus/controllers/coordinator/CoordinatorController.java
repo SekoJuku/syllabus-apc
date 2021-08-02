@@ -16,14 +16,14 @@ public class CoordinatorController {
 
     @PostMapping("")
     public ResponseEntity<?> getAll(@RequestBody GetUserDataDtoRequest request) {
-        return syllabusService.getSyllabusIsSentToCoordinator(request.getUserId());
+        return ResponseEntity.ok(syllabusService.getSyllabusIsSentToCoordinator(request.getUserId()));
     }
     @GetMapping("/{id}/approved")
     public ResponseEntity<?> approvedSyllabusById(@PathVariable Integer id) {
-        return syllabusService.approvedSyllabusById(id);
+        return ResponseEntity.ok(syllabusService.approvedSyllabusById(id));
     }
     @PostMapping("/getAllTest")
     public ResponseEntity<?> getAllTest(@RequestBody GetUserDataDtoRequest request) {
-        return syllabusService.getAllTest(request.getUserId());
+        return ResponseEntity.ok(syllabusService.getAllTest(request.getUserId()));
     }
 }

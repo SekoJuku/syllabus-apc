@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TestUserRepository extends JpaRepository<TestUser, Integer> {
+    TestUser getByIin(String iin);
 }

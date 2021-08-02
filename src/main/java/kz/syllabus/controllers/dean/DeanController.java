@@ -1,5 +1,6 @@
 package kz.syllabus.controllers.dean;
 
+import kz.syllabus.dto.requestDto.CommentDtoRequest;
 import kz.syllabus.dto.requestDto.GetUserDataDtoRequest;
 import kz.syllabus.service.SyllabusService;
 import lombok.AllArgsConstructor;
@@ -17,11 +18,12 @@ public class DeanController {
 
     @PostMapping("")
     public ResponseEntity<?> getAll(@RequestBody GetUserDataDtoRequest request) {
-        return syllabusService.getSyllabusIsSentToDean(request.getUserId());
+        return ResponseEntity.ok(syllabusService.getSyllabusIsSentToDean(request.getUserId()));
     }
 
     @GetMapping("/{id}/approved")
     public ResponseEntity<?> approve(@PathVariable Integer id) {
-        return syllabusService.approvedByDeanById(id);
+        return ResponseEntity.ok(syllabusService.approvedByDeanById(id));
     }
+
 }

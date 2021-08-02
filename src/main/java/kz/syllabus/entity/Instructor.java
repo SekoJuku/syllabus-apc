@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Data
@@ -19,7 +18,4 @@ public class Instructor {
     private Integer id;
     private Integer userId;
     private Integer syllabusId;
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = User.class)
-    @JoinColumn(name = "id", referencedColumnName = "userId")
-    private User user;
 }
