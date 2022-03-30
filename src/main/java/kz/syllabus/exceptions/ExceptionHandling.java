@@ -19,11 +19,7 @@ public class ExceptionHandling {
         return createHttpExceptionResponse(HttpStatus.BAD_REQUEST, "Username and password credentials incorrect. Please try again");
     }
 
-
-
-
-    public ResponseEntity<HttpResponseException> createHttpExceptionResponse(HttpStatus httpStatus,
-                                                                             String httpMessage)
+    public ResponseEntity<HttpResponseException> createHttpExceptionResponse(HttpStatus httpStatus, String httpMessage)
     {
         return new ResponseEntity<>(new HttpResponseException(
                 httpStatus.value(),

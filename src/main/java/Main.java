@@ -10,7 +10,7 @@ public class Main {
         for( int i = 0; i < nums.length; i++) {
             int k = target - nums[i];
             if(map.containsKey(k)) {
-                return new int[]{map.get(k), i};
+                return new int[]{(int) map.get(k), i};
             }
             map.put(nums[i],i);
         }

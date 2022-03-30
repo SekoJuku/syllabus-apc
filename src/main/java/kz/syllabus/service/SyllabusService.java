@@ -22,10 +22,9 @@ import java.util.Optional;
 
 @Service
 @Log
-
-@Transactional@AllArgsConstructor
+@Transactional
+@AllArgsConstructor
 public class SyllabusService {
-    private final UserService userService;
     private final DisciplineRepository disciplineRepository;
     private final SyllabusRepository syllabusRepository;
     private final PersonalInfoRepository personalInfoRepository;
@@ -395,10 +394,10 @@ public class SyllabusService {
 
     @Transactional
     public ResponseEntity<?> getAllFull() {
-        log.info("Before func");
+        //log.info("Before func");
         List<Syllabus> list = checkForInstructors(syllabusRepository.findAll());
         List<Syllabus> syllabusList = checkForParam(list);
-        log.info("After syllabus repo");
+        //log.info("After syllabus repo");
         List<Syllabus> allActive = new ArrayList<>();
         if(!syllabusList.isEmpty()) {
             for (Syllabus item :
