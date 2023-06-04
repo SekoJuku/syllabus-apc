@@ -1,11 +1,13 @@
 package kz.syllabus.entity;
 
+import jakarta.persistence.*;
+
+import kz.syllabus.entity.syllabus.Syllabus;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -13,18 +15,21 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "disciplines")
-public class Discipline {
+public class Discipline extends Base {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
+
     private String name;
     private String language;
-    private Integer credits;
-    private Integer lectureHoursPerWeek;
-    private Integer practiceHoursPerWeek;
-    private Integer iswHoursPerWeek;
-    private Integer coordinatorId;
+    private Long credits;
+    private Long lectureHoursPerWeek;
+    private Long practiceHoursPerWeek;
+    private Long iswHoursPerWeek;
+    private Long coordinatorId;
+
     @OneToMany(targetEntity = Syllabus.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "disciplineId", referencedColumnName = "id")
+    @JoinColumn(name = "discipline_id", referencedColumnName = "id")
     private List<Syllabus> syllabuses;
+    
 }

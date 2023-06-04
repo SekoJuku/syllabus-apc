@@ -1,14 +1,13 @@
 package kz.syllabus.repository;
 
 import kz.syllabus.entity.Discipline;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface DisciplineRepository extends JpaRepository<Discipline, Integer> {
+public interface DisciplineRepository extends JpaRepository<Discipline, Long> {
 
     @Query(value = "select * from disciplines\n" +
             "full join syllabus\n" +
@@ -16,5 +15,5 @@ public interface DisciplineRepository extends JpaRepository<Discipline, Integer>
             "full join evaluation_system\n" +
             "on syllabus.evaluation_id = evaluation_system.id\n" +
             "where syllabus.id = ?;", nativeQuery = true)
-    Discipline getSyllabusById(Integer id);
+    Discipline getSyllabusById(Long id);
 }

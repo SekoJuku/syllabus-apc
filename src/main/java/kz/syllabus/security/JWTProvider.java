@@ -1,13 +1,16 @@
 package kz.syllabus.security;
 
 import io.jsonwebtoken.*;
-import kz.syllabus.entity.User;
-import kz.syllabus.entity.UserPrincipal;
+
+import kz.syllabus.config.properties.JwtProperties;
+import kz.syllabus.entity.user.User;
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.stereotype.Component;
+
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -17,20 +20,25 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class JWTProvider {
-    @Value("$(jwt.secret)")
-    private String jwtSecret;
-    public String generateToken(UserPrincipal user) {
-        Date date = Date.from(LocalDate.now().plusDays(1).atStartOfDay(ZoneId.systemDefault()).toInstant());
+    private JwtProperties jwtProperties;
+
+    public String generateToken(User user) {
+        Date date =
+                Date.from(
+                        LocalDate.now()
+                                .plusDays(1)
+                                .atStartOfDay(ZoneId.systemDefault())
+                                .toInstant());
         return Jwts.builder()
                 .setSubject(user.getUsername())
                 .setExpiration(date)
-                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                .signWith(SignatureAlgorithm.HS512, jwtProperties.getSecret())
                 .compact();
     }
 
     public boolean validateToken(String token) {
         try {
-            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
+            Jwts.parser().setSigningKey(jwtProperties.getSecret()).parseClaimsJws(token);
             return true;
         } catch (ExpiredJwtException expEx) {
             log.severe("Token expired");
@@ -47,7 +55,11 @@ public class JWTProvider {
     }
 
     public String getLoginFromToken(String token) {
-        Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
+        Claims claims =
+                Jwts.parser()
+                        .setSigningKey(jwtProperties.getSecret())
+                        .parseClaimsJws(token)
+                        .getBody();
         return claims.getSubject();
     }
 }

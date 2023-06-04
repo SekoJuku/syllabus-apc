@@ -1,19 +1,19 @@
 package kz.syllabus.repository;
 
-import kz.syllabus.entity.Instructor;
-import org.springframework.data.domain.Example;
+import kz.syllabus.entity.user.Instructor;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-public interface InstructorRepository extends JpaRepository<Instructor, Integer> {
-    boolean existsByUserIdAndSyllabusId(Integer userId, Integer syllabusId);
-    List<Instructor> getByUserId(Integer userId);
-    List<Instructor> getBySyllabusId(Integer syllabusId);
-    boolean existsBySyllabusId(Integer id);
-    Instructor getInstructorByUserIdAndSyllabusId(Integer userId,Integer syllabusId);
-    void deleteAllBySyllabusId(Integer syllabusId);
-//    boolean existsByUserIdAndSyllabusId(Integer userId, Integer syllabusId);
+public interface InstructorRepository extends JpaRepository<Instructor, Long> {
+    boolean existsByUserIdAndSyllabusId(Long userId, Long syllabusId);
+    List<Instructor> findByUserId(Long userId);
+    Optional<List<Instructor>> findBySyllabusId(Long syllabusId);
+    boolean existsBySyllabusId(Long id);
+    Optional<Instructor> findInstructorByUserIdAndSyllabusId(Long userId,Long syllabusId);
+    void deleteAllBySyllabusId(Long syllabusId);
 }

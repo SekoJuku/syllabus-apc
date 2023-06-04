@@ -1,13 +1,17 @@
 package kz.syllabus.repository;
 
-import kz.syllabus.entity.TestInstructor;
+import kz.syllabus.entity.user.TestInstructor;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TestInstructorRepository extends JpaRepository<TestInstructor, Integer> {
-    TestInstructor getBySyllabusIdAndUserId(Integer syllabusId, Integer userId);
-    boolean existsBySyllabusIdAndUserId(Integer syllabusId, Integer userId);
-    boolean existsBySyllabusId(Integer id);
-    TestInstructor getBySyllabusId(Integer id);
+public interface TestInstructorRepository extends JpaRepository<TestInstructor, Long> {
+    TestInstructor getBySyllabusIdAndUserId(Long syllabusId, Long userId);
+
+    boolean existsBySyllabusIdAndUserId(Long syllabusId, Long userId);
+
+    boolean existsBySyllabusId(Long id);
+
+    TestInstructor getBySyllabusId(Long id);
 }
