@@ -40,6 +40,8 @@ public class SecurityConfig {
                                         .hasRole(Roles.COORDINATOR)
                                         .requestMatchers("/teacher/**")
                                         .hasRole(Roles.TEACHER)
+                                        .requestMatchers("/student/**")
+                                        .hasRole(Roles.STUDENT)
                                         .requestMatchers("/instructor/**")
                                         .permitAll()
                                         .requestMatchers("/auth/**")

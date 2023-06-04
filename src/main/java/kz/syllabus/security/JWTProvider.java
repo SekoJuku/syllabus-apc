@@ -32,13 +32,13 @@ public class JWTProvider {
         return Jwts.builder()
                 .setSubject(user.getUsername())
                 .setExpiration(date)
-                .signWith(SignatureAlgorithm.HS512, jwtProperties.getSecret())
+                .signWith(SignatureAlgorithm.HS512, jwtProperties.secret())
                 .compact();
     }
 
     public boolean validateToken(String token) {
         try {
-            Jwts.parser().setSigningKey(jwtProperties.getSecret()).parseClaimsJws(token);
+            Jwts.parser().setSigningKey(jwtProperties.secret()).parseClaimsJws(token);
             return true;
         } catch (ExpiredJwtException expEx) {
             log.severe("Token expired");
@@ -56,10 +56,7 @@ public class JWTProvider {
 
     public String getLoginFromToken(String token) {
         Claims claims =
-                Jwts.parser()
-                        .setSigningKey(jwtProperties.getSecret())
-                        .parseClaimsJws(token)
-                        .getBody();
+                Jwts.parser().setSigningKey(jwtProperties.secret()).parseClaimsJws(token).getBody();
         return claims.getSubject();
     }
 }
