@@ -14,7 +14,6 @@ import kz.syllabus.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -28,8 +27,8 @@ import java.io.IOException;
 public class JWTFilter extends GenericFilterBean {
     public static final String AUTHORIZATION = "Authorization";
 
-    @Autowired private JWTProvider jwtProvider;
-    @Autowired private UserService userService;
+    private JWTProvider jwtProvider;
+    private UserService userService;
 
     @Override
     public void doFilter(

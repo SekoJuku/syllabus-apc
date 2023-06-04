@@ -6,7 +6,6 @@ import kz.syllabus.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
-    @Autowired private final AuthService authService;
+    private final AuthService authService;
 
     @PostMapping("/login")
     public ResponseEntity<?> auth(@RequestBody LoginDtoRequest loginDtoRequest) {
