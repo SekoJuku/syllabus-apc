@@ -1,87 +1,69 @@
 package kz.syllabus.controller.teacher;
 
 import kz.syllabus.dto.request.syllabus.FullSyllabusDTORequest;
-import kz.syllabus.dto.request.syllabus.GetSyllabusDtoRequest;
-import kz.syllabus.dto.request.syllabus.GetSyllabusesByDiscipleAndYearDtoRequest;
-import kz.syllabus.dto.request.user.GetUserDataDtoRequest;
+import kz.syllabus.dto.response.syllabus.FullSyllabusDtoResponse;
+import kz.syllabus.dto.response.syllabus.MainPageDtoResponse;
+import kz.syllabus.entity.Discipline;
+import kz.syllabus.entity.syllabus.SyllabusParam;
 import kz.syllabus.exception.domain.NotFoundException;
+import kz.syllabus.service.syllabus.SyllabusParamService;
 import kz.syllabus.service.syllabus.SyllabusService;
-
+import kz.syllabus.util.UserUtils;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
-
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
+import java.util.List;
 
 @RestController
 @RequestMapping("/syllabus")
 @AllArgsConstructor
 public class SyllabusController {
-    private final SyllabusService syllabusService;
+    private final SyllabusService      syllabusService;
+    private final SyllabusParamService syllabusParamService;
+    private final UserUtils            userUtils;
 
-    @GetMapping("")
-    public ResponseEntity<?> getAll(@RequestParam Long userId) {
-        return ResponseEntity.ok(syllabusService.getAll(userId));
+    @GetMapping
+    public List<MainPageDtoResponse> getAll(Principal principal, @RequestParam Long disciplineId, @RequestParam String year) {
+        return syllabusService.getSyllabusesByDisciplineAndYear(
+                userUtils.loadUser(principal).getId(), disciplineId, year);
     }
 
-    @SneakyThrows
-    @PostMapping("")
-    public ResponseEntity<?> createSyllabus(
-            @RequestBody FullSyllabusDTORequest fullSyllabusDTORequest) {
-        return ResponseEntity.ok(syllabusService.create(fullSyllabusDTORequest, false));
+    @PostMapping
+    public FullSyllabusDtoResponse createSyllabus(@RequestBody FullSyllabusDTORequest fullSyllabusDTORequest) {
+        return syllabusService.create(fullSyllabusDTORequest, false);
     }
 
-    @SneakyThrows
-    @PostMapping("/syllabus")
-    public ResponseEntity<?> getSyllabus(@RequestBody GetSyllabusDtoRequest getSyllabusDtoRequest) {
-        return ResponseEntity.ok(
-                syllabusService.getSyllabus(
-                        getSyllabusDtoRequest.getUserId(), getSyllabusDtoRequest.getSyllabusId()));
+    @GetMapping("/{id}")
+    public FullSyllabusDtoResponse getSyllabus(@PathVariable Long id, Principal principal) {
+
+        return syllabusService.getSyllabus(userUtils.loadUser(principal).getId(), id);
     }
 
-    @GetMapping("/syllabus/{id}")
-    public ResponseEntity<?> getSyllabusById(@PathVariable Long id) throws NotFoundException {
-        return ResponseEntity.ok(syllabusService.getById(id));
-    }
-
-    @DeleteMapping("/syllabus/{id}")
-    public ResponseEntity<?> deleteSyllabusById(@PathVariable Long id) throws NotFoundException {
+    @DeleteMapping("/{id}")
+    public void deleteSyllabusById(@PathVariable Long id) throws NotFoundException {
         syllabusService.deleteById(id);
-        return ResponseEntity.accepted().body("Syllabus with id " + id + " is deleted!");
     }
 
     @GetMapping("/checkFinal/{id}")
-    public ResponseEntity<?> checkFinal(@PathVariable Long id) {
-        return ResponseEntity.ok(syllabusService.checkForFinal(id));
-    }
-
-    @PostMapping("/data")
-    public ResponseEntity<?> getData(@RequestBody GetUserDataDtoRequest getUserDataDtoRequest) {
-        return ResponseEntity.ok(syllabusService.getUserData(getUserDataDtoRequest.getUserId()));
+    public Boolean checkFinal(@PathVariable Long id) {
+        return syllabusService.checkForFinal(id);
     }
 
     @PostMapping("/disciplines")
-    public ResponseEntity<?> getDisciplines(@RequestBody GetUserDataDtoRequest request) {
-        return ResponseEntity.ok(syllabusService.getDisciplines(request.getUserId()));
+    public List<Discipline> getDisciplines(Principal principal) {
+        return syllabusService.getDisciplines(userUtils.loadUser(principal).getId());
     }
 
-    @PostMapping("/syllabus/discipline/year")
-    public ResponseEntity<?> getSyllabusesByDiscipleAndYear(
-            @RequestBody GetSyllabusesByDiscipleAndYearDtoRequest request)
-            throws NotFoundException {
-        return ResponseEntity.ok(
-                syllabusService.getSyllabusesByDisciplineAndYear(
-                        request.getUserId(), request.getDisciplineId(), request.getYear()));
-    }
-
-    @PostMapping("/sendToCoordinator")
-    public ResponseEntity<?> sendToCoordinator(@RequestBody GetSyllabusDtoRequest request) {
-        return ResponseEntity.ok(syllabusService.sendToCoordinator(request.getSyllabusId()));
+    @PostMapping("/approve/{id}")
+    public SyllabusParam sendToCoordinator(@PathVariable Long id) {
+        return syllabusParamService.setSentToCoordinator(id);
     }
 
     @SneakyThrows
     @PostMapping("/test/syllabus/create")
-    public ResponseEntity<?> testCreateSyllabus(@RequestBody FullSyllabusDTORequest request) {
-        return ResponseEntity.ok(syllabusService.testCreateSyllabus(request));
+    public Discipline testCreateSyllabus(@RequestBody FullSyllabusDTORequest request) {
+        return syllabusService.testCreateSyllabus(request);
     }
 }

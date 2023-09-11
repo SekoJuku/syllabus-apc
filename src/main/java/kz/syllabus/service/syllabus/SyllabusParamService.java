@@ -4,12 +4,10 @@ import kz.syllabus.entity.syllabus.Syllabus;
 import kz.syllabus.entity.syllabus.SyllabusParam;
 import kz.syllabus.entity.user.Instructor;
 import kz.syllabus.exception.domain.NotFoundException;
-import kz.syllabus.repository.SyllabusParamRepository;
-import kz.syllabus.service.InstructorService;
-
+import kz.syllabus.repository.syllabus.SyllabusParamRepository;
+import kz.syllabus.service.user.InstructorService;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
-
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class SyllabusParamService {
     private SyllabusParamRepository repository;
-    private InstructorService instructorService;
+    private InstructorService       instructorService;
 
     @SneakyThrows
     public SyllabusParam getBySyllabusId(Long syllabusId) {
@@ -31,16 +29,16 @@ public class SyllabusParamService {
     public SyllabusParam getOrCreateSyllabusParam(Syllabus syllabus) {
         if (!instructorService.existsBySyllabusId(syllabus.getId()))
             return SyllabusParam.builder()
-                .syllabus(syllabus)
-                .isFinal(false)
-                .isSendable(false)
-                .isApprovedByCoordinator(false)
-                .isSentToCoordinator(false)
-                .isApprovedByDean(false)
-                .isSentToDean(false)
-                .isSendable(false)
-                .isActive(false)
-                .build();
+                    .syllabus(syllabus)
+                    .isFinal(false)
+                    .isSendable(false)
+                    .isApprovedByCoordinator(false)
+                    .isSentToCoordinator(false)
+                    .isApprovedByDean(false)
+                    .isSentToDean(false)
+                    .isSendable(false)
+                    .isActive(false)
+                    .build();
         List<Instructor> instructors = instructorService.getBySyllabusId(syllabus.getId());
         Instructor instructor = instructors.stream().findFirst()
                 .orElseThrow(() -> new Exception("Instructor not found"));

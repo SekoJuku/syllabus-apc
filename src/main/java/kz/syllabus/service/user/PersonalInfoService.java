@@ -1,7 +1,7 @@
 package kz.syllabus.service.user;
 
 import kz.syllabus.entity.PersonalInfo;
-import kz.syllabus.repository.PersonalInfoRepository;
+import kz.syllabus.repository.user.PersonalInfoRepository;
 
 import lombok.AllArgsConstructor;
 

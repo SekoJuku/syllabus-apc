@@ -1,66 +1,65 @@
 package kz.syllabus.service.syllabus;
 
 import jakarta.transaction.Transactional;
-
 import kz.syllabus.dto.request.syllabus.FullSyllabusDTORequest;
 import kz.syllabus.dto.request.syllabus.SyllabusProgramDtoRequest;
-import kz.syllabus.dto.response.syllabus.CoordinatorMainPageDtoResponse;
 import kz.syllabus.dto.response.syllabus.FullSyllabusDtoResponse;
 import kz.syllabus.dto.response.syllabus.MainPageDtoResponse;
-import kz.syllabus.dto.response.syllabus.MainpageDtoComponent;
-import kz.syllabus.entity.*;
+import kz.syllabus.entity.Discipline;
+import kz.syllabus.entity.Postrequisite;
+import kz.syllabus.entity.Prerequisite;
+import kz.syllabus.entity.ProgramDetail;
 import kz.syllabus.entity.syllabus.Syllabus;
 import kz.syllabus.entity.syllabus.SyllabusParam;
 import kz.syllabus.entity.syllabus.SyllabusProgram;
-import kz.syllabus.entity.user.Instructor;
 import kz.syllabus.entity.user.TestUser;
 import kz.syllabus.exception.domain.NotFoundException;
-import kz.syllabus.repository.*;
-import kz.syllabus.service.*;
-import kz.syllabus.service.user.PersonalInfoService;
-
+import kz.syllabus.repository.syllabus.SyllabusRepository;
+import kz.syllabus.repository.user.TestInstructorRepository;
+import kz.syllabus.repository.user.TestUserRepository;
+import kz.syllabus.service.user.InstructorService;
+import kz.syllabus.util.SyllabusUtil;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.java.Log;
-
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Log
 @Service
 @AllArgsConstructor
 public class SyllabusService {
-    private final DisciplineService disciplineService;
-    private final SyllabusRepository repository;
-    private final PersonalInfoService personalInfoService;
-    private final SyllabusParamService syllabusParamService;
-    private final SyllabusProgramService syllabusProgramService;
-    private final ProgramDetailService programDetailService;
-    private final InstructorService instructorService;
-    private final PrerequisiteService prerequisiteService;
-    private final PostrequisiteService postrequisiteService;
-    private final TestUserRepository testUserRepository;
+    private final DisciplineService        disciplineService;
+    private final SyllabusRepository       repository;
+    private final SyllabusParamService     syllabusParamService;
+    private final SyllabusProgramService   syllabusProgramService;
+    private final ProgramDetailService     programDetailService;
+    private final InstructorService        instructorService;
+    private final PrerequisiteService      prerequisiteService;
+    private final PostrequisiteService     postrequisiteService;
+    private final TestUserRepository       testUserRepository;
     private final TestInstructorRepository testInstructorRepository;
+    private final SyllabusUtil             syllabusUtil;
 
     @Transactional
-    public FullSyllabusDtoResponse create(FullSyllabusDTORequest request, boolean isTest)
-            throws NotFoundException {
+    @SneakyThrows
+    public FullSyllabusDtoResponse create(FullSyllabusDTORequest request, boolean isTest) {
         Discipline discipline = disciplineService.getById(request.getDisciplineId());
 
         Syllabus syllabus = this.save(
                 Syllabus.builder()
-                .discipline(discipline)
-                .name(String.format("%s, %s", discipline.getName(), request.getYear()))
-                .credits(discipline.getCredits())
-                .aim(request.getAim())
-                .tasks(request.getTasks())
-                .results(request.getResults())
-                .methodology(request.getMethodology())
-                .year(request.getYear())
-                .competences(request.getCompetencies())
-                .build());
+                        .discipline(discipline)
+                        .name(String.format("%s, %s", discipline.getName(), request.getYear()))
+                        .credits(discipline.getCredits())
+                        .aim(request.getAim())
+                        .tasks(request.getTasks())
+                        .results(request.getResults())
+                        .methodology(request.getMethodology())
+                        .year(request.getYear())
+                        .competences(request.getCompetencies())
+                        .build());
 
         if (isTest) {
             TestUser testuser = testUserRepository.getByIin(request.getIin());
@@ -77,7 +76,7 @@ public class SyllabusService {
 
         prerequisiteService.createAll(request.getPrerequisites(), discipline, syllabus.getId());
         postrequisiteService.createAll(request.getPostrequisites(), discipline, syllabus.getId());
-        
+
         syllabusProgramService.createAll(request.getSyllabusProgram(), request.getProgramDetails(), syllabus);
 
         if (isTest) {
@@ -100,31 +99,10 @@ public class SyllabusService {
         repository.delete(syllabus);
     }
 
-    public List<MainPageDtoResponse> getAll(Long userId) {
-        List<Instructor> instructors = instructorService.getByUserId(userId);
-
-        return instructors.stream().map(instructor -> this.toMainPageDtoResponse(instructor.getSyllabus().getId()))
-                .toList();
-    }
-
     @SneakyThrows
     public FullSyllabusDtoResponse getOne(Long userId, Long id) {
         Syllabus syllabus = getById(id);
         return toResponse(syllabus);
-    }
-
-    public PersonalInfo getUserData(Long userId) {
-        return personalInfoService.getByUserId(userId);
-    }
-
-    public List<Syllabus> getAllFull() {
-        List<Syllabus> list = checkForInstructors(repository.findAll());
-        List<Syllabus> syllabusList = checkForParam(list);
-
-        return syllabusList.stream()
-                .filter(item -> syllabusParamService.existsBySyllabusIdAndIsActive(item.getId(),
-                        true))
-                .toList();
     }
 
     public List<Syllabus> checkForInstructors(List<Syllabus> list) {
@@ -150,11 +128,11 @@ public class SyllabusService {
 
     public List<MainPageDtoResponse> getSyllabusesByDisciplineAndYear(
             Long userId, Long disciplineId, String year) {
-        List<Syllabus> syllabuses =
-                checkForInstructors(
-                        repository.getAllByDisciplineIdAndYear(disciplineId, year));
 
-        return syllabuses.stream().map(item -> this.toMainPageDtoResponse(item.getId())).toList();
+        return Optional.of(repository.getAllByDisciplineIdAndYear(disciplineId, year))
+                .map(this::checkForInstructors)
+                .map(syllabusUtil::toMainPageDtoResponse)
+                .orElseGet(List::of);
     }
 
     public FullSyllabusDtoResponse getSyllabus(Long userId, Long syllabusId) {
@@ -163,32 +141,6 @@ public class SyllabusService {
 
     public List<Syllabus> checkForParam(List<Syllabus> list) {
         return list;
-    }
-
-    public List<CoordinatorMainPageDtoResponse> getSyllabusIsSent(Long userId) {
-        List<Syllabus> list = checkForInstructors(repository.findAll());
-        List<Syllabus> syllabuses = checkForParam(list);
-        return syllabuses.stream().map(this::toCoordinatorMainpageDtoResponse).toList();
-    }
-
-    @SneakyThrows
-    public SyllabusParam approvedSyllabusById(Long id) {
-        Syllabus syllabus = this.getById(id);
-        syllabus.getSyllabusParam().setIsApprovedByCoordinator(true);
-        syllabus.getSyllabusParam().setIsSentToDean(true);
-        return this.save(syllabus).getSyllabusParam();
-    }
-
-    @SneakyThrows
-    public SyllabusParam approvedByDeanById(Long id) {
-        Syllabus syllabus = this.getById(id);
-        syllabus.getSyllabusParam().setIsApprovedByDean(true);
-        syllabus.getSyllabusParam().setIsActive(true);
-        return this.save(syllabus).getSyllabusParam();
-    }
-
-    public List<CoordinatorMainPageDtoResponse> getSyllabusIsSentToCoordinator(Long userId) {
-        return getSyllabusIsSent(userId);
     }
 
     public Discipline testCreateSyllabus(FullSyllabusDTORequest request) throws NotFoundException {
@@ -235,43 +187,20 @@ public class SyllabusService {
                 .orElseThrow(() -> new NotFoundException("Syllabus not found"));
     }
 
-    public List<CoordinatorMainPageDtoResponse> getSyllabusIsSentToDean(Long userId) {
-        var params = syllabusParamService.getAllSentToDean();
-
-        return params.stream().map(item -> this.toCoordinatorMainpageDtoResponse(item.getSyllabus()))
-                .toList();
-    }
-
-    public SyllabusParam sendToCoordinator(Long syllabusId) {
-        return syllabusParamService.setSentToCoordinator(syllabusId);
-    }
-
     public List<Syllabus> checkForTest(List<Syllabus> list) {
         list.removeIf(item -> !testInstructorRepository.existsBySyllabusId(item.getId()));
         return list;
     }
 
-    public List<CoordinatorMainPageDtoResponse> getAllTest(Long userId) {
-        List<CoordinatorMainPageDtoResponse> responses = new ArrayList<>();
-        List<Syllabus> syllabuses = checkForTest(repository.findAll());
-        for (Syllabus item : syllabuses) {
-            CoordinatorMainPageDtoResponse response = toCoordinatorMainpageDtoResponse(item);
-            responses.add(response);
-        }
-        return responses;
-    }
-
-    public List<CoordinatorMainPageDtoResponse> getAllTestSyllabusesByIIN(String iin) {
-        List<CoordinatorMainPageDtoResponse> responses = new ArrayList<>();
-        List<Syllabus> syllabuses = checkForTest(repository.findAll());
-        TestUser user = testUserRepository.getByIin(iin);
-        for (Syllabus item : syllabuses) {
-            if (testInstructorRepository.existsBySyllabusIdAndUserId(item.getId(), user.getId())) {
-                CoordinatorMainPageDtoResponse response = toCoordinatorMainpageDtoResponse(item);
-                responses.add(response);
-            }
-        }
-        return responses;
+    public List<MainPageDtoResponse> getAllTestSyllabusesByIIN(String iin) {
+        var user = testUserRepository.getByIin(iin);
+        return Optional.of(repository.findAll())
+                .map(this::checkForTest)
+                .stream()
+                .flatMap(List::stream)
+                .filter(item -> testInstructorRepository.existsBySyllabusIdAndUserId(item.getId(), user.getId()))
+                .map(syllabusUtil::toMainPageDtoResponse)
+                .toList();
     }
 
     public FullSyllabusDtoResponse toResponse(Syllabus syllabus) throws NotFoundException {
@@ -305,44 +234,7 @@ public class SyllabusService {
         return response;
     }
 
-    @SneakyThrows
-    private CoordinatorMainPageDtoResponse toCoordinatorMainpageDtoResponse(Syllabus item) {
-        CoordinatorMainPageDtoResponse response = new CoordinatorMainPageDtoResponse();
-        response.setId(item.getId());
-        response.setName(item.getName());
-        response.setYear(item.getYear());
-        Discipline discipline = disciplineService.getById(item.getDiscipline().getId());
-        response.setDisciplineName(discipline.getName());
-        List<Instructor> instructors = instructorService.getBySyllabusId(item.getId());
-        response.setInstructors(instructors.stream().map(i -> {
-            var info =  personalInfoService.getByUserId(i.getUserId());
-            return MainpageDtoComponent.builder()
-                    .id(info.getUser().getId())
-                    .name(info.getName())
-                    .lastname(info.getSname())
-                    .build();
-            }).toList());
-        return response;
-    }
-
-
-    @SneakyThrows
-    public MainPageDtoResponse toMainPageDtoResponse(Long syllabusId) {
-        Syllabus syllabus = this.getById(syllabusId);
-        return MainPageDtoResponse.builder()
-                .id(syllabus.getId())
-                .name(syllabus.getName())
-                .year(syllabus.getYear())
-                .discipline(syllabus.getDiscipline().getName())
-                .isActive(syllabus.getSyllabusParam().getIsActive())
-                .instructors(syllabus.getInstructors().stream().map(i -> {
-                    var info =  personalInfoService.getByUserId(i.getUserId());
-                    return MainpageDtoComponent.builder()
-                            .id(info.getUser().getId())
-                            .name(info.getName())
-                            .lastname(info.getSname())
-                            .build();
-                }).toList())
-                .build();
+    public List<Syllabus> findAll() {
+        return repository.findAll();
     }
 }
