@@ -5,18 +5,18 @@ import kz.syllabus.dto.request.syllabus.FullSyllabusDTORequest;
 import kz.syllabus.dto.request.syllabus.SyllabusProgramDtoRequest;
 import kz.syllabus.dto.response.syllabus.FullSyllabusDtoResponse;
 import kz.syllabus.dto.response.syllabus.MainPageDtoResponse;
-import kz.syllabus.entity.Discipline;
-import kz.syllabus.entity.Postrequisite;
-import kz.syllabus.entity.Prerequisite;
-import kz.syllabus.entity.ProgramDetail;
-import kz.syllabus.entity.syllabus.Syllabus;
-import kz.syllabus.entity.syllabus.SyllabusParam;
-import kz.syllabus.entity.syllabus.SyllabusProgram;
-import kz.syllabus.entity.user.TestUser;
 import kz.syllabus.exception.domain.NotFoundException;
-import kz.syllabus.repository.syllabus.SyllabusRepository;
-import kz.syllabus.repository.user.TestInstructorRepository;
-import kz.syllabus.repository.user.TestUserRepository;
+import kz.syllabus.persistence.SyllabusRepository;
+import kz.syllabus.persistence.TestInstructorRepository;
+import kz.syllabus.persistence.TestUserRepository;
+import kz.syllabus.persistence.model.Discipline;
+import kz.syllabus.persistence.model.Postrequisite;
+import kz.syllabus.persistence.model.Prerequisite;
+import kz.syllabus.persistence.model.ProgramDetail;
+import kz.syllabus.persistence.model.syllabus.Syllabus;
+import kz.syllabus.persistence.model.syllabus.SyllabusParam;
+import kz.syllabus.persistence.model.syllabus.SyllabusProgram;
+import kz.syllabus.persistence.model.user.TestUser;
 import kz.syllabus.service.user.InstructorService;
 import kz.syllabus.util.SyllabusUtil;
 import lombok.AllArgsConstructor;
@@ -31,24 +31,25 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class SyllabusService {
-    private final DisciplineService        disciplineService;
-    private final SyllabusRepository       repository;
-    private final SyllabusParamService     syllabusParamService;
-    private final SyllabusProgramService   syllabusProgramService;
-    private final ProgramDetailService     programDetailService;
-    private final InstructorService        instructorService;
-    private final PrerequisiteService      prerequisiteService;
-    private final PostrequisiteService     postrequisiteService;
-    private final TestUserRepository       testUserRepository;
+    private final DisciplineService disciplineService;
+    private final SyllabusRepository repository;
+    private final SyllabusParamService syllabusParamService;
+    private final SyllabusProgramService syllabusProgramService;
+    private final ProgramDetailService programDetailService;
+    private final InstructorService instructorService;
+    private final PrerequisiteService prerequisiteService;
+    private final PostrequisiteService postrequisiteService;
+    private final TestUserRepository testUserRepository;
     private final TestInstructorRepository testInstructorRepository;
-    private final SyllabusUtil             syllabusUtil;
+    private final SyllabusUtil syllabusUtil;
 
     @Transactional
     @SneakyThrows
     public FullSyllabusDtoResponse create(FullSyllabusDTORequest request, boolean isTest) {
-        Discipline discipline = disciplineService.getById(request.getDisciplineId());
 
-        Syllabus syllabus = this.save(
+        final var discipline = disciplineService.getById(request.getDisciplineId());
+
+        final var syllabus = this.save(
                 Syllabus.builder()
                         .discipline(discipline)
                         .name(String.format("%s, %s", discipline.getName(), request.getYear()))
@@ -82,7 +83,8 @@ public class SyllabusService {
         if (isTest) {
             return toResponse(syllabus);
         }
-        syllabusParamService.getOrCreateSyllabusParam(syllabus);
+
+        syllabusParamService.getOrCreate(syllabus);
 
         return toResponse(repository.save(syllabus));
     }
@@ -93,15 +95,15 @@ public class SyllabusService {
     }
 
     @Transactional
-    public void deleteById(Long id) throws NotFoundException {
-        Syllabus syllabus = this.getById(id);
+    public void deleteById(Long id) {
+        final var syllabus = this.getById(id);
         instructorService.deleteAllBySyllabusId(id);
         repository.delete(syllabus);
     }
 
     @SneakyThrows
     public FullSyllabusDtoResponse getOne(Long userId, Long id) {
-        Syllabus syllabus = getById(id);
+        final var syllabus = getById(id);
         return toResponse(syllabus);
     }
 
@@ -112,8 +114,8 @@ public class SyllabusService {
 
     @SneakyThrows
     public Boolean checkForFinal(Long syllabusId) {
-        Syllabus syllabus = this.getById(syllabusId);
-        List<Syllabus> syllabuses =
+        final var syllabus = this.getById(syllabusId);
+        final var syllabuses =
                 checkForInstructors(getAllByDisciplineAndYear(syllabus.getDiscipline(), syllabus.getYear()));
         return syllabuses.stream().distinct().limit(2).count() == 1;
     }
@@ -144,8 +146,8 @@ public class SyllabusService {
     }
 
     public Discipline testCreateSyllabus(FullSyllabusDTORequest request) throws NotFoundException {
-        Discipline discipline = disciplineService.getById(request.getDisciplineId());
-        Syllabus syllabus =
+        final var discipline = disciplineService.getById(request.getDisciplineId());
+        final var syllabus =
                 Syllabus.builder()
                         .name(discipline.getName() + "," + request.getYear())
                         .credits(discipline.getCredits())
@@ -160,9 +162,9 @@ public class SyllabusService {
         if (discipline.getSyllabuses().isEmpty())
             syllabus.setSyllabusParam(SyllabusParam.newEmptyParam());
 
-        List<SyllabusProgram> syllabusPrograms = syllabus.getSyllabusPrograms();
+        final var syllabusPrograms = syllabus.getSyllabusPrograms();
         for (SyllabusProgramDtoRequest item : request.getSyllabusProgram()) {
-            SyllabusProgram syllabusProgram = new SyllabusProgram();
+            final var syllabusProgram = new SyllabusProgram();
             syllabusProgram.setLectureTheme(item.getLectureTheme());
             syllabusProgram.setPracticeTheme(item.getPracticeTheme());
             syllabusProgram.setIswTheme(item.getIswTheme());
@@ -171,7 +173,7 @@ public class SyllabusService {
                     .filter(i -> i.getWeek().equals(item.getWeek()))
                     .forEach(
                             i -> {
-                                ProgramDetail programDetail = ProgramDetail.fromRequest(i);
+                                final var programDetail = ProgramDetail.fromRequest(i);
                                 syllabusProgram.setProgramDetail(programDetail);
                             });
             syllabusPrograms.add(syllabusProgram);
@@ -192,8 +194,8 @@ public class SyllabusService {
         return list;
     }
 
-    public List<MainPageDtoResponse> getAllTestSyllabusesByIIN(String iin) {
-        var user = testUserRepository.getByIin(iin);
+    public List<MainPageDtoResponse> getAllTestSyllabusesByIin(String iin) {
+        final var user = testUserRepository.getByIin(iin);
         return Optional.of(repository.findAll())
                 .map(this::checkForTest)
                 .stream()
@@ -203,28 +205,25 @@ public class SyllabusService {
                 .toList();
     }
 
-    public FullSyllabusDtoResponse toResponse(Syllabus syllabus) throws NotFoundException {
-        FullSyllabusDtoResponse response = (FullSyllabusDtoResponse) syllabus.toDto();
+    @SneakyThrows
+    public FullSyllabusDtoResponse toResponse(Syllabus syllabus) {
+        final var response = (FullSyllabusDtoResponse) syllabus.toDto();
 
-        Discipline discipline = disciplineService.getById(syllabus.getDiscipline().getId());
+        final var discipline = disciplineService.getById(syllabus.getDiscipline().getId());
 
         response.setLectureHoursPerWeek(discipline.getLectureHoursPerWeek());
         response.setPracticeHoursPerWeek(discipline.getPracticeHoursPerWeek());
         response.setIswHoursPerWeek(discipline.getIswHoursPerWeek());
 
-        List<Postrequisite> postrequisiteList =
-                postrequisiteService.getAllBySyllabusId(syllabus.getId());
-        List<Prerequisite> prerequisiteList =
-                prerequisiteService.getAllBySyllabusId(syllabus.getId());
+        final var postrequisiteList = postrequisiteService.getAllBySyllabusId(syllabus.getId());
+        final var prerequisiteList = prerequisiteService.getAllBySyllabusId(syllabus.getId());
 
         response.setPrerequisites(prerequisiteList.stream().map(Prerequisite::getId).toList());
         response.setPostrequisites(postrequisiteList.stream().map(Postrequisite::getId).toList());
 
-        List<SyllabusProgram> syllabusProgramList =
-                syllabusProgramService.getAllBySyllabusId(syllabus.getId());
+        final var syllabusProgramList = syllabusProgramService.getAllBySyllabusId(syllabus.getId());
 
-        response.setSyllabusProgram(
-                syllabusProgramList.stream().map(SyllabusProgram::toDto).toList());
+        response.setSyllabusProgram(syllabusProgramList.stream().map(SyllabusProgram::toDto).toList());
 
         response.setProgramDetails(
                 syllabusProgramList.stream()

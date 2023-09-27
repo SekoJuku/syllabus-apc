@@ -1,9 +1,9 @@
 package kz.syllabus.service;
 
 import jakarta.transaction.Transactional;
-import kz.syllabus.entity.syllabus.Syllabus;
-import kz.syllabus.entity.syllabus.SyllabusParam;
-import kz.syllabus.entity.user.User;
+import kz.syllabus.persistence.model.syllabus.Syllabus;
+import kz.syllabus.persistence.model.syllabus.SyllabusParam;
+import kz.syllabus.persistence.model.user.User;
 import kz.syllabus.service.syllabus.SyllabusService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

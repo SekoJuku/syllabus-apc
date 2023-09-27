@@ -1,7 +1,6 @@
 package kz.syllabus.dto.response.syllabus;
 
 import kz.syllabus.dto.response.ProgramDetailDtoResponse;
-
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

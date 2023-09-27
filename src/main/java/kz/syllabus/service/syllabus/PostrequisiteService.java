@@ -1,8 +1,8 @@
 package kz.syllabus.service.syllabus;
 
-import kz.syllabus.entity.Discipline;
-import kz.syllabus.entity.Postrequisite;
-import kz.syllabus.repository.syllabus.PostrequisiteRepository;
+import kz.syllabus.persistence.PostrequisiteRepository;
+import kz.syllabus.persistence.model.Discipline;
+import kz.syllabus.persistence.model.Postrequisite;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;
@@ -19,19 +19,16 @@ public class PostrequisiteService {
         return repository.getAllBySyllabusId(syllabusId);
     }
 
-    public List<Postrequisite> createAll(List<Long> ids, Discipline discipline, Long id) {
-        return ids.stream()
-                .filter(
-                        item ->
-                                !repository.existsByDisciplineIdAndSyllabusId(
-                                        discipline.getId(), id))
-                .map(
-                        item -> {
-                            Postrequisite postrequisite = new Postrequisite();
-                            postrequisite.setDisciplineId(discipline.getId());
-                            postrequisite.setSyllabusId(id);
-                            return repository.save(postrequisite);
-                        })
-                .toList();
+    public void createAll(List<Long> ids, Discipline discipline, Long id) {
+        ids.stream()
+                .filter(item ->
+                        !repository.existsByDisciplineIdAndSyllabusId(
+                                discipline.getId(), id))
+                .forEach(item -> {
+                    final var postrequisite = new Postrequisite();
+                    postrequisite.setDisciplineId(discipline.getId());
+                    postrequisite.setSyllabusId(id);
+                    repository.save(postrequisite);
+                });
     }
 }

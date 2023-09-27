@@ -1,9 +1,9 @@
 package kz.syllabus.service.syllabus;
 
-import kz.syllabus.entity.Discipline;
-import kz.syllabus.entity.syllabus.Syllabus;
 import kz.syllabus.exception.domain.NotFoundException;
-import kz.syllabus.repository.syllabus.DisciplineRepository;
+import kz.syllabus.persistence.DisciplineRepository;
+import kz.syllabus.persistence.model.Discipline;
+import kz.syllabus.persistence.model.syllabus.Syllabus;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

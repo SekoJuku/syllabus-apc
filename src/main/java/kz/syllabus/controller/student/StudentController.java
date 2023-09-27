@@ -1,6 +1,6 @@
 package kz.syllabus.controller.student;
 
-import kz.syllabus.entity.syllabus.Syllabus;
+import kz.syllabus.persistence.model.syllabus.Syllabus;
 import kz.syllabus.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
@@ -21,4 +21,5 @@ public class StudentController {
     public List<Syllabus> getAll() {
         return service.findAll();
     }
+
 }

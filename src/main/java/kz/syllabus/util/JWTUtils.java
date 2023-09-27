@@ -17,7 +17,6 @@ public class JWTUtils {
     private final JwtEncoder      jwtEncoder;
     private final TokenProperties tokenProperties;
 
-
     public String generateAccessToken(UserDetails user) {
 
         var now = Instant.now();

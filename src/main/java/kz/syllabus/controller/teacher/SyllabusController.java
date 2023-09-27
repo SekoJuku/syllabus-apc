@@ -3,9 +3,9 @@ package kz.syllabus.controller.teacher;
 import kz.syllabus.dto.request.syllabus.FullSyllabusDTORequest;
 import kz.syllabus.dto.response.syllabus.FullSyllabusDtoResponse;
 import kz.syllabus.dto.response.syllabus.MainPageDtoResponse;
-import kz.syllabus.entity.Discipline;
-import kz.syllabus.entity.syllabus.SyllabusParam;
 import kz.syllabus.exception.domain.NotFoundException;
+import kz.syllabus.persistence.model.Discipline;
+import kz.syllabus.persistence.model.syllabus.SyllabusParam;
 import kz.syllabus.service.syllabus.SyllabusParamService;
 import kz.syllabus.service.syllabus.SyllabusService;
 import kz.syllabus.util.UserUtils;
@@ -20,9 +20,10 @@ import java.util.List;
 @RequestMapping("/syllabus")
 @AllArgsConstructor
 public class SyllabusController {
-    private final SyllabusService      syllabusService;
+
+    private final SyllabusService syllabusService;
     private final SyllabusParamService syllabusParamService;
-    private final UserUtils            userUtils;
+    private final UserUtils userUtils;
 
     @GetMapping
     public List<MainPageDtoResponse> getAll(Principal principal, @RequestParam Long disciplineId, @RequestParam String year) {
@@ -46,23 +47,23 @@ public class SyllabusController {
         syllabusService.deleteById(id);
     }
 
-    @GetMapping("/checkFinal/{id}")
+    @GetMapping("/isFinal/{id}")
     public Boolean checkFinal(@PathVariable Long id) {
         return syllabusService.checkForFinal(id);
     }
 
-    @PostMapping("/disciplines")
+    @GetMapping("/disciplines")
     public List<Discipline> getDisciplines(Principal principal) {
         return syllabusService.getDisciplines(userUtils.loadUser(principal).getId());
     }
 
     @PostMapping("/approve/{id}")
     public SyllabusParam sendToCoordinator(@PathVariable Long id) {
-        return syllabusParamService.setSentToCoordinator(id);
+        return syllabusParamService.sendToCoordinator(id);
     }
 
     @SneakyThrows
-    @PostMapping("/test/syllabus/create")
+    @PostMapping("/test")
     public Discipline testCreateSyllabus(@RequestBody FullSyllabusDTORequest request) {
         return syllabusService.testCreateSyllabus(request);
     }

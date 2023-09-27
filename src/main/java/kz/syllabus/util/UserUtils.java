@@ -1,6 +1,6 @@
 package kz.syllabus.util;
 
-import kz.syllabus.entity.user.User;
+import kz.syllabus.persistence.model.user.User;
 import kz.syllabus.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

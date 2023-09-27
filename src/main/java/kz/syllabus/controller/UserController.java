@@ -1,6 +1,6 @@
 package kz.syllabus.controller;
 
-import kz.syllabus.entity.PersonalInfo;
+import kz.syllabus.persistence.model.PersonalInfo;
 import kz.syllabus.service.user.PersonalInfoService;
 import kz.syllabus.util.UserUtils;
 import lombok.RequiredArgsConstructor;
@@ -17,10 +17,10 @@ import java.security.Principal;
 @RequiredArgsConstructor
 public class UserController {
     private final PersonalInfoService personalInfoService;
-    private final UserUtils           userUtils;
+    private final UserUtils userUtils;
 
-    @GetMapping("/data")
-    public PersonalInfo getData(Principal principal) {
+    @GetMapping("/profile")
+    public PersonalInfo getProfile(Principal principal) {
         return personalInfoService.getByUserId(userUtils.loadUser(principal).getId());
     }
 

@@ -1,7 +1,7 @@
 package kz.syllabus.service;
 
-import kz.syllabus.entity.syllabus.Syllabus;
-import kz.syllabus.entity.syllabus.SyllabusParam;
+import kz.syllabus.persistence.model.syllabus.Syllabus;
+import kz.syllabus.persistence.model.syllabus.SyllabusParam;
 import kz.syllabus.service.syllabus.SyllabusParamService;
 import kz.syllabus.service.syllabus.SyllabusService;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class DeanService {
-    private final SyllabusService      syllabusService;
+    private final SyllabusService syllabusService;
     private final SyllabusParamService syllabusParamService;
 
     public List<Syllabus> getAll() {

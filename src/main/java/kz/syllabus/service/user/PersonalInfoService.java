@@ -1,10 +1,8 @@
 package kz.syllabus.service.user;
 
-import kz.syllabus.entity.PersonalInfo;
-import kz.syllabus.repository.user.PersonalInfoRepository;
-
+import kz.syllabus.persistence.PersonalInfoRepository;
+import kz.syllabus.persistence.model.PersonalInfo;
 import lombok.AllArgsConstructor;
-
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,7 +1,7 @@
 package kz.syllabus.controller.dean;
 
 import kz.syllabus.dto.response.syllabus.MainPageDtoResponse;
-import kz.syllabus.entity.syllabus.SyllabusParam;
+import kz.syllabus.persistence.model.syllabus.SyllabusParam;
 import kz.syllabus.service.DeanService;
 import kz.syllabus.util.SyllabusUtil;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/dean")
 @AllArgsConstructor
 public class DeanController {
-    private final DeanService  deanService;
+    private final DeanService deanService;
     private final SyllabusUtil syllabusUtil;
 
     @PostMapping

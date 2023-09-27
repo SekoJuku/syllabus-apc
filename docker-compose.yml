@@ -1,24 +1,6 @@
 version: '3.7'
 
 services:
-  app:
-    image: 'syllabus-apc:1.0.0-SNAPSHOT'
-    build:
-      context: ""
-    container_name: app
-    ports:
-      - 9090:9090
-    depends_on:
-      - syllabus-db
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://syllabus-db:5432/user-test
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=123
-      - SERVER_PORT=9090
-    volumes:
-      - .m2:/root/.m2
-    stdin_open: true
-    tty: true
 
   syllabus-db:
     image: postgres:15.1-alpine

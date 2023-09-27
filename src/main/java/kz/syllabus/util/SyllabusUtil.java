@@ -2,8 +2,8 @@ package kz.syllabus.util;
 
 import kz.syllabus.dto.response.syllabus.MainPageDtoResponse;
 import kz.syllabus.dto.response.syllabus.MainpageDtoComponent;
-import kz.syllabus.entity.PersonalInfo;
-import kz.syllabus.entity.syllabus.Syllabus;
+import kz.syllabus.persistence.model.PersonalInfo;
+import kz.syllabus.persistence.model.syllabus.Syllabus;
 import kz.syllabus.service.user.InstructorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

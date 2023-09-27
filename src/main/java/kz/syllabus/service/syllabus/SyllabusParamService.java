@@ -1,10 +1,9 @@
 package kz.syllabus.service.syllabus;
 
-import kz.syllabus.entity.syllabus.Syllabus;
-import kz.syllabus.entity.syllabus.SyllabusParam;
-import kz.syllabus.entity.user.Instructor;
 import kz.syllabus.exception.domain.NotFoundException;
-import kz.syllabus.repository.syllabus.SyllabusParamRepository;
+import kz.syllabus.persistence.SyllabusParamRepository;
+import kz.syllabus.persistence.model.syllabus.Syllabus;
+import kz.syllabus.persistence.model.syllabus.SyllabusParam;
 import kz.syllabus.service.user.InstructorService;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
@@ -16,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class SyllabusParamService {
     private SyllabusParamRepository repository;
-    private InstructorService       instructorService;
+    private InstructorService instructorService;
 
     @SneakyThrows
     public SyllabusParam getBySyllabusId(Long syllabusId) {
@@ -26,22 +25,13 @@ public class SyllabusParamService {
     }
 
     @SneakyThrows
-    public SyllabusParam getOrCreateSyllabusParam(Syllabus syllabus) {
-        if (!instructorService.existsBySyllabusId(syllabus.getId()))
-            return SyllabusParam.builder()
-                    .syllabus(syllabus)
-                    .isFinal(false)
-                    .isSendable(false)
-                    .isApprovedByCoordinator(false)
-                    .isSentToCoordinator(false)
-                    .isApprovedByDean(false)
-                    .isSentToDean(false)
-                    .isSendable(false)
-                    .isActive(false)
-                    .build();
-        List<Instructor> instructors = instructorService.getBySyllabusId(syllabus.getId());
-        Instructor instructor = instructors.stream().findFirst()
-                .orElseThrow(() -> new Exception("Instructor not found"));
+    public SyllabusParam getOrCreate(Syllabus syllabus) {
+        if (!instructorService.existsBySyllabusId(syllabus.getId())) {
+            return this.create(syllabus);
+        }
+        final var instructors = instructorService.getBySyllabusId(syllabus.getId());
+        final var instructor = instructors.stream().findFirst()
+                .orElseThrow(() -> new NotFoundException("Instructor not found"));
         return this.getBySyllabusId(instructor.getSyllabus().getId());
     }
 
@@ -49,17 +39,31 @@ public class SyllabusParamService {
         return repository.save(syllabusParam);
     }
 
-    public boolean existsBySyllabusIdAndIsActive(Long id, boolean b) {
-        return repository.existsBySyllabusIdAndIsActive(id, b);
+    public boolean activeBySyllabusId(Long id) {
+        return repository.existsBySyllabusIdAndIsActive(id, true);
     }
 
     public List<SyllabusParam> getAllSentToDean() {
         return repository.findAllByIsSentToDean(true);
     }
 
-    public SyllabusParam setSentToCoordinator(Long syllabusId) {
+    public SyllabusParam sendToCoordinator(Long syllabusId) {
         SyllabusParam param = this.getBySyllabusId(syllabusId);
         param.setIsSentToCoordinator(true);
         return this.save(param);
+    }
+
+    private SyllabusParam create(Syllabus syllabus) {
+        return SyllabusParam.builder()
+                .syllabus(syllabus)
+                .isFinal(false)
+                .isSendable(false)
+                .isApprovedByCoordinator(false)
+                .isSentToCoordinator(false)
+                .isApprovedByDean(false)
+                .isSentToDean(false)
+                .isSendable(false)
+                .isActive(false)
+                .build();
     }
 }

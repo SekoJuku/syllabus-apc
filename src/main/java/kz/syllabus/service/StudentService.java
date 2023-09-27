@@ -1,6 +1,6 @@
 package kz.syllabus.service;
 
-import kz.syllabus.entity.syllabus.Syllabus;
+import kz.syllabus.persistence.model.syllabus.Syllabus;
 import kz.syllabus.service.syllabus.SyllabusParamService;
 import kz.syllabus.service.syllabus.SyllabusService;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class StudentService {
-    private final SyllabusService      syllabusService;
+    private final SyllabusService syllabusService;
     private final SyllabusParamService syllabusParamService;
 
     public List<Syllabus> findAll() {
@@ -22,7 +22,7 @@ public class StudentService {
                 .map(syllabusService::checkForParam)
                 .stream()
                 .flatMap(List::stream)
-                .filter(item -> syllabusParamService.existsBySyllabusIdAndIsActive(item.getId(), true))
+                .filter(item -> syllabusParamService.activeBySyllabusId(item.getId()))
                 .toList();
     }
 }

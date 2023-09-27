@@ -1,8 +1,7 @@
 package kz.syllabus.dto.response;
 
 
-import kz.syllabus.entity.ProgramDetail;
-
+import kz.syllabus.persistence.model.ProgramDetail;
 import lombok.Data;
 
 @Data

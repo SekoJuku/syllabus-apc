@@ -15,14 +15,15 @@ import org.springframework.web.bind.annotation.*;
 public class TestUserController {
     private final SyllabusService syllabusService;
 
-    @PostMapping("/syllabus/create")
+    @PostMapping
     public ResponseEntity<?> createSyllabus(
             @RequestBody FullSyllabusDTORequest fullSyllabusDTORequest) {
         return ResponseEntity.ok(syllabusService.create(fullSyllabusDTORequest, true));
     }
 
-    @GetMapping("/syllabus")
-    public ResponseEntity<?> seeAll(@RequestBody TestUserDtoRequest request) {
-        return ResponseEntity.ok(syllabusService.getAllTestSyllabusesByIIN(request.getIin()));
+    @GetMapping
+    public ResponseEntity<?> getAll(@RequestBody TestUserDtoRequest request) {
+        return ResponseEntity.ok(syllabusService.getAllTestSyllabusesByIin(request.getIin()));
     }
+
 }

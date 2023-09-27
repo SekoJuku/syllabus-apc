@@ -1,7 +1,6 @@
 package kz.syllabus.dto.request.syllabus;
 
 import kz.syllabus.dto.request.ProgramDetailDtoRequest;
-
 import lombok.Data;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package kz.syllabus.service.syllabus;
 
-import kz.syllabus.entity.ProgramDetail;
-import kz.syllabus.repository.syllabus.ProgramDetailRepository;
+import kz.syllabus.persistence.ProgramDetailRepository;
+import kz.syllabus.persistence.model.ProgramDetail;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;

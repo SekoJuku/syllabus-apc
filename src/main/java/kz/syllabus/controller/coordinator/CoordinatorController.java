@@ -1,7 +1,7 @@
 package kz.syllabus.controller.coordinator;
 
 import kz.syllabus.dto.response.syllabus.MainPageDtoResponse;
-import kz.syllabus.entity.syllabus.SyllabusParam;
+import kz.syllabus.persistence.model.syllabus.SyllabusParam;
 import kz.syllabus.service.CoordinatorService;
 import kz.syllabus.util.SyllabusUtil;
 import kz.syllabus.util.UserUtils;
@@ -18,8 +18,8 @@ import java.util.List;
 @AllArgsConstructor
 public class CoordinatorController {
     private final CoordinatorService service;
-    private final UserUtils          userUtils;
-    private final SyllabusUtil       syllabusUtil;
+    private final UserUtils userUtils;
+    private final SyllabusUtil syllabusUtil;
 
     @PostMapping
     public List<MainPageDtoResponse> getAll(Principal principal) {

@@ -1,7 +1,7 @@
 package kz.syllabus.exception;
 
+import kz.syllabus.exception.domain.NotFoundException;
 import lombok.extern.java.Log;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -22,6 +22,11 @@ public class ExceptionHandling {
     @ExceptionHandler(SyllabusApcException.class)
     public ResponseEntity<HttpResponseException> syllabusApcException(
             SyllabusApcException exception) {
+        return createHttpExceptionResponse(exception.getStatus(), exception.getMessage());
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<HttpResponseException> notFoundException(NotFoundException exception) {
         return createHttpExceptionResponse(exception.getStatus(), exception.getMessage());
     }
 
