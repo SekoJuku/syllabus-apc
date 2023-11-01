@@ -12,9 +12,9 @@ import java.time.Instant;
 
 @Component
 @RequiredArgsConstructor
-public class JWTUtils {
+public class JwtUtil {
 
-    private final JwtEncoder      jwtEncoder;
+    private final JwtEncoder jwtEncoder;
     private final TokenProperties tokenProperties;
 
     public String generateAccessToken(UserDetails user) {
@@ -22,11 +22,11 @@ public class JWTUtils {
         var now = Instant.now();
 
         var claims = JwtClaimsSet.builder()
-                .subject(user.getUsername())
-                .issuer(tokenProperties.issuer())
-                .issuedAt(now)
-                .expiresAt(now.plusSeconds(tokenProperties.accessExpirationTime()))
-                .build();
+                                 .subject(user.getUsername())
+                                 .issuer(tokenProperties.issuer())
+                                 .issuedAt(now)
+                                 .expiresAt(now.plusSeconds(tokenProperties.accessExpirationTime()))
+                                 .build();
         return jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
     }
 
@@ -34,12 +34,12 @@ public class JWTUtils {
         var now = Instant.now();
 
         var claims = JwtClaimsSet.builder()
-                .subject(user.getUsername())
-                .issuer(tokenProperties.issuer())
-                .issuedAt(now)
-                .claim("Type", "Refresh")
-                .expiresAt(now.plusSeconds(tokenProperties.refreshExpirationTime()))
-                .build();
+                                 .subject(user.getUsername())
+                                 .issuer(tokenProperties.issuer())
+                                 .issuedAt(now)
+                                 .claim("Type", "Refresh")
+                                 .expiresAt(now.plusSeconds(tokenProperties.refreshExpirationTime()))
+                                 .build();
         return jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
     }
 }

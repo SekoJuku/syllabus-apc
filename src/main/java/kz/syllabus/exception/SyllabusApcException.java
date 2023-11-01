@@ -1,13 +1,12 @@
 package kz.syllabus.exception;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class SyllabusApcException extends Exception {
-    private HttpStatus status;
-    private String message;
+    private final HttpStatus status;
+    private final String message;
 }

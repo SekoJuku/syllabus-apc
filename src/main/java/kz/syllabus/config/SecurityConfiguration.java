@@ -1,9 +1,10 @@
-package kz.syllabus.config.security;
+package kz.syllabus.config;
 
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import kz.syllabus.constants.SecurityConstants.Roles;
+import kz.syllabus.converter.JwtConverter;
 import kz.syllabus.properties.EncoderProperties;
 import kz.syllabus.properties.RsaProperties;
 import kz.syllabus.service.user.UserService;
@@ -35,8 +36,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequiredArgsConstructor
 public class SecurityConfiguration {
 
-    private final UserService       userService;
-    private final RsaProperties     rsaProperties;
+    private final UserService userService;
+    private final JwtConverter jwtConverter;
+    private final RsaProperties rsaProperties;
     private final EncoderProperties encoderProperties;
 
     @Bean
@@ -49,30 +51,30 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.httpBasic(AbstractHttpConfigurer::disable)
-                .csrf(CsrfConfigurer::disable)
-                .sessionManagement(
-                        config -> config.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(
-                        auth ->
-                                auth.requestMatchers("/dean/**")
-                                        .hasRole(Roles.DEAN)
-                                        .requestMatchers("/coordinator/**")
-                                        .hasRole(Roles.COORDINATOR)
-                                        .requestMatchers("/teacher/**")
-                                        .hasRole(Roles.TEACHER)
-                                        .requestMatchers("/student/**")
-                                        .hasRole(Roles.STUDENT)
-                                        .requestMatchers("/instructor/**")
-                                        .permitAll()
-                                        .requestMatchers("/auth/**")
-                                        .permitAll()
-                                        .requestMatchers("/test/**")
-                                        .permitAll()
-                                        .anyRequest()
-                                        .authenticated())
-                .oauth2ResourceServer(oauth -> oauth.jwt(jwt ->
-                        jwt.jwtAuthenticationConverter(new JwtConverter(userService))))
-                .build();
+                   .csrf(CsrfConfigurer::disable)
+                   .sessionManagement(
+                           config -> config.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                   .authorizeHttpRequests(
+                           auth ->
+                                   auth.requestMatchers("/dean/**")
+                                       .hasRole(Roles.DEAN)
+                                       .requestMatchers("/coordinator/**")
+                                       .hasRole(Roles.COORDINATOR)
+                                       .requestMatchers("/teacher/**")
+                                       .hasRole(Roles.TEACHER)
+                                       .requestMatchers("/student/**")
+                                       .hasRole(Roles.STUDENT)
+                                       .requestMatchers("/instructor/**")
+                                       .permitAll()
+                                       .requestMatchers("/auth/**")
+                                       .permitAll()
+                                       .requestMatchers("/test/**")
+                                       .permitAll()
+                                       .anyRequest()
+                                       .authenticated())
+                   .oauth2ResourceServer(oauth -> oauth.jwt(jwt ->
+                           jwt.jwtAuthenticationConverter(jwtConverter)))
+                   .build();
     }
 
     @Bean

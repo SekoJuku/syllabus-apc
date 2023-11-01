@@ -9,7 +9,7 @@ import java.security.Principal;
 
 @Component
 @RequiredArgsConstructor
-public class UserUtils {
+public class UserUtil {
 
     private final UserService userService;
 

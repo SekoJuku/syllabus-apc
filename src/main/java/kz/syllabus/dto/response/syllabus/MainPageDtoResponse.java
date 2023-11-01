@@ -1,5 +1,6 @@
 package kz.syllabus.dto.response.syllabus;
 
+import kz.syllabus.dto.response.user.InstructorDtoResponse;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,5 +14,5 @@ public class MainPageDtoResponse {
     private String disciplineName;
     private String year;
     private boolean isActive;
-    private List<MainpageDtoComponent> instructors;
+    private List<InstructorDtoResponse> instructors;
 }

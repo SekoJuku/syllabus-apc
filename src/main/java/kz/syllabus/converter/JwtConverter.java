@@ -1,4 +1,4 @@
-package kz.syllabus.config.security;
+package kz.syllabus.converter;
 
 import kz.syllabus.service.user.UserService;
 import lombok.RequiredArgsConstructor;

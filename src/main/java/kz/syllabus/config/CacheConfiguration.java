@@ -1,4 +1,4 @@
-package kz.syllabus.config.cache;
+package kz.syllabus.config;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import org.springframework.cache.CacheManager;
@@ -16,7 +16,7 @@ public class CacheConfiguration {
     @Bean
     public Caffeine<Object, Object> caffeine() {
         return Caffeine.newBuilder()
-                .expireAfterWrite(5, TimeUnit.MINUTES);
+                       .expireAfterWrite(5, TimeUnit.MINUTES);
     }
 
     @Bean

@@ -1,16 +1,16 @@
 package kz.syllabus.controller.teacher;
 
 import kz.syllabus.dto.request.syllabus.FullSyllabusDTORequest;
-import kz.syllabus.dto.response.syllabus.FullSyllabusDtoResponse;
 import kz.syllabus.dto.response.syllabus.MainPageDtoResponse;
-import kz.syllabus.exception.domain.NotFoundException;
+import kz.syllabus.dto.response.syllabus.SyllabusDtoResponse;
 import kz.syllabus.persistence.model.Discipline;
 import kz.syllabus.persistence.model.syllabus.SyllabusParam;
 import kz.syllabus.service.syllabus.SyllabusParamService;
 import kz.syllabus.service.syllabus.SyllabusService;
-import kz.syllabus.util.UserUtils;
+import kz.syllabus.util.UserUtil;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -23,27 +23,30 @@ public class SyllabusController {
 
     private final SyllabusService syllabusService;
     private final SyllabusParamService syllabusParamService;
-    private final UserUtils userUtils;
+    private final UserUtil userUtil;
+    private final ConversionService conversionService;
 
     @GetMapping
     public List<MainPageDtoResponse> getAll(Principal principal, @RequestParam Long disciplineId, @RequestParam String year) {
         return syllabusService.getSyllabusesByDisciplineAndYear(
-                userUtils.loadUser(principal).getId(), disciplineId, year);
+                                      userUtil.loadUser(principal).getId(), disciplineId, year).stream()
+                              .map(x -> conversionService.convert(x, MainPageDtoResponse.class))
+                              .toList();
     }
 
     @PostMapping
-    public FullSyllabusDtoResponse createSyllabus(@RequestBody FullSyllabusDTORequest fullSyllabusDTORequest) {
-        return syllabusService.create(fullSyllabusDTORequest, false);
+    public SyllabusDtoResponse createSyllabus(@RequestBody FullSyllabusDTORequest fullSyllabusDTORequest) {
+        return conversionService.convert(syllabusService.create(fullSyllabusDTORequest, false), SyllabusDtoResponse.class);
     }
 
     @GetMapping("/{id}")
-    public FullSyllabusDtoResponse getSyllabus(@PathVariable Long id, Principal principal) {
+    public SyllabusDtoResponse getSyllabus(@PathVariable Long id, Principal principal) {
 
-        return syllabusService.getSyllabus(userUtils.loadUser(principal).getId(), id);
+        return conversionService.convert(syllabusService.getSyllabus(userUtil.loadUser(principal).getId(), id), SyllabusDtoResponse.class);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteSyllabusById(@PathVariable Long id) throws NotFoundException {
+    public void deleteSyllabusById(@PathVariable Long id) {
         syllabusService.deleteById(id);
     }
 
@@ -54,7 +57,7 @@ public class SyllabusController {
 
     @GetMapping("/disciplines")
     public List<Discipline> getDisciplines(Principal principal) {
-        return syllabusService.getDisciplines(userUtils.loadUser(principal).getId());
+        return syllabusService.getDisciplines(userUtil.loadUser(principal).getId());
     }
 
     @PostMapping("/approve/{id}")

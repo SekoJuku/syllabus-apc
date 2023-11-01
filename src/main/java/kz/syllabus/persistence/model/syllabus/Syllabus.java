@@ -1,7 +1,6 @@
 package kz.syllabus.persistence.model.syllabus;
 
 import jakarta.persistence.*;
-import kz.syllabus.dto.response.syllabus.SyllabusDtoResponse;
 import kz.syllabus.persistence.model.Base;
 import kz.syllabus.persistence.model.Discipline;
 import kz.syllabus.persistence.model.Rubric;
@@ -45,18 +44,6 @@ public class Syllabus extends Base {
     @OneToMany(targetEntity = Instructor.class, cascade = CascadeType.ALL)
     private List<Instructor> instructors;
 
-    public SyllabusDtoResponse toDto() {
-        SyllabusDtoResponse response = new SyllabusDtoResponse();
-        response.setId(this.id);
-        response.setDisciplineId(this.discipline.getId());
-        response.setCredits(this.credits);
-        response.setAim(this.aim);
-        response.setTasks(this.tasks);
-        response.setResults(this.results);
-        response.setMethodology(this.methodology);
-        return response;
-    }
-
     @Override
     public boolean equals(Object o) { // TODO: refactor equals to proper way. Create custom comparator for Syllabus
         if (this == o) return true;
@@ -75,4 +62,5 @@ public class Syllabus extends Base {
                 && Objects.equals(syllabusPrograms, syllabus.syllabusPrograms)
                 && Objects.equals(syllabusParam, syllabus.syllabusParam);
     }
+
 }

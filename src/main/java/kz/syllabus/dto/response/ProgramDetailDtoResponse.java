@@ -14,6 +14,6 @@ public class ProgramDetailDtoResponse {
     private String practiceLiterature;
     private String iswLiterature;
     private String lectureAssessment;
-    private String PracticeAssessment;
-    private String IswAssessment;
+    private String practiceAssessment;
+    private String iswAssessment;
 }
