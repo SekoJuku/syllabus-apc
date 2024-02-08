@@ -1,4 +1,4 @@
-package kz.syllabus.persistence;
+package kz.syllabus.persistence.repository;
 
 import kz.syllabus.persistence.model.Prerequisite;
 import org.springframework.data.jpa.repository.JpaRepository;

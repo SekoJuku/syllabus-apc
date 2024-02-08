@@ -1,7 +1,7 @@
 package kz.syllabus.service.user;
 
-import kz.syllabus.persistence.UserRepository;
 import kz.syllabus.persistence.model.user.User;
+import kz.syllabus.persistence.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

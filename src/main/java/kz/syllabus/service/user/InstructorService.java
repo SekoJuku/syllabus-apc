@@ -1,9 +1,9 @@
 package kz.syllabus.service.user;
 
 import kz.syllabus.exception.domain.NotFoundException;
-import kz.syllabus.persistence.InstructorRepository;
 import kz.syllabus.persistence.model.PersonalInfo;
 import kz.syllabus.persistence.model.user.Instructor;
+import kz.syllabus.persistence.repository.InstructorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

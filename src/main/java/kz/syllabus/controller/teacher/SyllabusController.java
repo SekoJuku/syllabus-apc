@@ -7,7 +7,7 @@ import kz.syllabus.persistence.model.Discipline;
 import kz.syllabus.persistence.model.syllabus.SyllabusParam;
 import kz.syllabus.service.syllabus.SyllabusParamService;
 import kz.syllabus.service.syllabus.SyllabusService;
-import kz.syllabus.util.UserUtil;
+import kz.syllabus.util.UserUtils;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.core.convert.ConversionService;
@@ -23,13 +23,13 @@ public class SyllabusController {
 
     private final SyllabusService syllabusService;
     private final SyllabusParamService syllabusParamService;
-    private final UserUtil userUtil;
+    private final UserUtils userUtils;
     private final ConversionService conversionService;
 
     @GetMapping
     public List<MainPageDtoResponse> getAll(Principal principal, @RequestParam Long disciplineId, @RequestParam String year) {
         return syllabusService.getSyllabusesByDisciplineAndYear(
-                                      userUtil.loadUser(principal).getId(), disciplineId, year).stream()
+                                      userUtils.loadUser(principal).getId(), disciplineId, year).stream()
                               .map(x -> conversionService.convert(x, MainPageDtoResponse.class))
                               .toList();
     }
@@ -42,7 +42,7 @@ public class SyllabusController {
     @GetMapping("/{id}")
     public SyllabusDtoResponse getSyllabus(@PathVariable Long id, Principal principal) {
 
-        return conversionService.convert(syllabusService.getSyllabus(userUtil.loadUser(principal).getId(), id), SyllabusDtoResponse.class);
+        return conversionService.convert(syllabusService.getSyllabus(userUtils.loadUser(principal).getId(), id), SyllabusDtoResponse.class);
     }
 
     @DeleteMapping("/{id}")
@@ -57,7 +57,7 @@ public class SyllabusController {
 
     @GetMapping("/disciplines")
     public List<Discipline> getDisciplines(Principal principal) {
-        return syllabusService.getDisciplines(userUtil.loadUser(principal).getId());
+        return syllabusService.getDisciplines(userUtils.loadUser(principal).getId());
     }
 
     @PostMapping("/approve/{id}")

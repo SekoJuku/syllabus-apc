@@ -2,7 +2,7 @@ package kz.syllabus.controller;
 
 import kz.syllabus.persistence.model.PersonalInfo;
 import kz.syllabus.service.user.PersonalInfoService;
-import kz.syllabus.util.UserUtil;
+import kz.syllabus.util.UserUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +18,11 @@ import java.security.Principal;
 public class UserController {
 
     private final PersonalInfoService personalInfoService;
-    private final UserUtil userUtil;
+    private final UserUtils userUtils;
 
     @GetMapping("/profile")
     public PersonalInfo getProfile(Principal principal) {
-        return personalInfoService.getByUserId(userUtil.loadUser(principal).getId());
+        return personalInfoService.getByUserId(userUtils.loadUser(principal).getId());
     }
 
 }

@@ -1,9 +1,9 @@
 package kz.syllabus.service.syllabus;
 
 import kz.syllabus.exception.domain.NotFoundException;
-import kz.syllabus.persistence.SyllabusParamRepository;
 import kz.syllabus.persistence.model.syllabus.Syllabus;
 import kz.syllabus.persistence.model.syllabus.SyllabusParam;
+import kz.syllabus.persistence.repository.SyllabusParamRepository;
 import kz.syllabus.service.user.InstructorService;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
@@ -31,7 +31,7 @@ public class SyllabusParamService {
         }
         final var instructors = instructorService.getBySyllabusId(syllabus.getId());
         final var instructor = instructors.stream().findFirst()
-                .orElseThrow(() -> new NotFoundException("Instructor not found"));
+                                          .orElseThrow(() -> new NotFoundException("Instructor not found"));
         return this.getBySyllabusId(instructor.getSyllabus().getId());
     }
 
@@ -55,15 +55,15 @@ public class SyllabusParamService {
 
     private SyllabusParam create(Syllabus syllabus) {
         return SyllabusParam.builder()
-                .syllabus(syllabus)
-                .isFinal(false)
-                .isSendable(false)
-                .isApprovedByCoordinator(false)
-                .isSentToCoordinator(false)
-                .isApprovedByDean(false)
-                .isSentToDean(false)
-                .isSendable(false)
-                .isActive(false)
-                .build();
+                            .syllabus(syllabus)
+                            .isFinal(false)
+                            .isSendable(false)
+                            .isApprovedByCoordinator(false)
+                            .isSentToCoordinator(false)
+                            .isApprovedByDean(false)
+                            .isSentToDean(false)
+                            .isSendable(false)
+                            .isActive(false)
+                            .build();
     }
 }

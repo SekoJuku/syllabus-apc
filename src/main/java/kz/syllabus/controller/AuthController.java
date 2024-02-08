@@ -7,7 +7,6 @@ import kz.syllabus.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,7 +31,9 @@ public class AuthController {
     }
 
     private ResponseEntity<?> toResponse(TokenDtoResponse response) {
-        return new ResponseEntity<>(response, getJwtHeader(response.accessToken()), HttpStatus.OK);
+        return ResponseEntity.ok()
+                             .headers(getJwtHeader(response.accessToken()))
+                             .body(response);
     }
 
     private HttpHeaders getJwtHeader(String token) {

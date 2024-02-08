@@ -3,7 +3,7 @@ package kz.syllabus.controller.coordinator;
 import kz.syllabus.dto.response.syllabus.MainPageDtoResponse;
 import kz.syllabus.persistence.model.syllabus.SyllabusParam;
 import kz.syllabus.service.CoordinatorService;
-import kz.syllabus.util.UserUtil;
+import kz.syllabus.util.UserUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.core.convert.ConversionService;
@@ -18,12 +18,12 @@ import java.util.List;
 @AllArgsConstructor
 public class CoordinatorController {
     private final CoordinatorService service;
-    private final UserUtil userUtil;
+    private final UserUtils userUtils;
     private final ConversionService conversionService;
 
     @PostMapping
     public List<MainPageDtoResponse> getAll(Principal principal) {
-        return service.getSyllabuses(userUtil.loadUser(principal)).stream()
+        return service.getSyllabuses(userUtils.loadUser(principal)).stream()
                       .map(x -> conversionService.convert(x, MainPageDtoResponse.class))
                       .toList();
     }
@@ -35,7 +35,7 @@ public class CoordinatorController {
 
     @PostMapping("/test")
     public List<MainPageDtoResponse> getAllTest(Principal principal) {
-        return service.getTestSyllabuses(userUtil.loadUser(principal)).stream()
+        return service.getTestSyllabuses(userUtils.loadUser(principal)).stream()
                       .map(x -> conversionService.convert(x, MainPageDtoResponse.class))
                       .toList();
     }

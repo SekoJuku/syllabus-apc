@@ -24,6 +24,8 @@ public class Base {
 
     @CreationTimestamp
     protected ZonedDateTime createdAt;
+
     @UpdateTimestamp
     protected ZonedDateTime updatedAt;
+
 }

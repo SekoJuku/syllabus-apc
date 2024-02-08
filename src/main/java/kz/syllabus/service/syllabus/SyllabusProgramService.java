@@ -3,10 +3,10 @@ package kz.syllabus.service.syllabus;
 
 import kz.syllabus.dto.request.ProgramDetailDtoRequest;
 import kz.syllabus.dto.request.syllabus.SyllabusProgramDtoRequest;
-import kz.syllabus.persistence.SyllabusProgramRepository;
 import kz.syllabus.persistence.model.ProgramDetail;
 import kz.syllabus.persistence.model.syllabus.Syllabus;
 import kz.syllabus.persistence.model.syllabus.SyllabusProgram;
+import kz.syllabus.persistence.repository.SyllabusProgramRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;
@@ -33,12 +33,12 @@ public class SyllabusProgramService {
             repository.save(syllabusProgram);
 
             programDetailDtoRequests.stream()
-                    .filter(i -> i.getWeek().equals(syllabusProgram.getWeek()))
-                    .findFirst().ifPresent(item -> {
-                        var programDetail = ProgramDetail.fromRequest(item);
-                        programDetail.setSyllabusProgramId(syllabusProgram.getId());
-                        programDetailService.save(programDetail);
-                    });
+                                    .filter(i -> i.getWeek().equals(syllabusProgram.getWeek()))
+                                    .findFirst().ifPresent(item -> {
+                                        var programDetail = ProgramDetail.fromRequest(item);
+                                        programDetail.setSyllabusProgramId(syllabusProgram.getId());
+                                        programDetailService.save(programDetail);
+                                    });
         });
     }
 }
