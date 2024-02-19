@@ -26,15 +26,16 @@ public class SyllabusParam extends Base {
     private Boolean isApprovedByDean;
     private Boolean isActive;
 
-    public static SyllabusParam newEmptyParam() {
+    public static SyllabusParam newEmptyParam(Syllabus syllabus) {
         return SyllabusParam.builder()
-                .isSendable(false)
-                .isSentToCoordinator(false)
-                .isApprovedByCoordinator(false)
-                .isSentToDean(false)
-                .isApprovedByDean(false)
-                .isActive(false)
-                .build();
+                            .syllabus(syllabus)
+                            .isSendable(false)
+                            .isSentToCoordinator(false)
+                            .isApprovedByCoordinator(false)
+                            .isSentToDean(false)
+                            .isApprovedByDean(false)
+                            .isActive(false)
+                            .build();
     }
 
     @Override

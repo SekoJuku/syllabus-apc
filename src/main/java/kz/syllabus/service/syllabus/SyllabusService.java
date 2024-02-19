@@ -3,13 +3,15 @@ package kz.syllabus.service.syllabus;
 import jakarta.transaction.Transactional;
 import kz.syllabus.dto.request.syllabus.FullSyllabusDTORequest;
 import kz.syllabus.dto.request.syllabus.SyllabusProgramDtoRequest;
+import kz.syllabus.exception.domain.BadRequestException;
 import kz.syllabus.exception.domain.NotFoundException;
+import kz.syllabus.mapper.ProgramDetailMapper;
 import kz.syllabus.persistence.model.Discipline;
-import kz.syllabus.persistence.model.ProgramDetail;
 import kz.syllabus.persistence.model.syllabus.Syllabus;
 import kz.syllabus.persistence.model.syllabus.SyllabusParam;
 import kz.syllabus.persistence.model.syllabus.SyllabusProgram;
 import kz.syllabus.persistence.model.user.TestUser;
+import kz.syllabus.persistence.repository.DisciplineRepository;
 import kz.syllabus.persistence.repository.SyllabusRepository;
 import kz.syllabus.persistence.repository.TestInstructorRepository;
 import kz.syllabus.persistence.repository.TestUserRepository;
@@ -26,7 +28,10 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class SyllabusService {
+
+    private final ProgramDetailMapper programDetailMapper;
     private final DisciplineService disciplineService;
+    private final DisciplineRepository disciplineRepository;
     private final SyllabusRepository repository;
     private final SyllabusParamService syllabusParamService;
     private final SyllabusProgramService syllabusProgramService;
@@ -40,23 +45,25 @@ public class SyllabusService {
     @SneakyThrows
     public Syllabus create(FullSyllabusDTORequest request, boolean isTest) {
 
-        final var discipline = disciplineService.getById(request.getDisciplineId());
+        final var discipline = disciplineRepository.findById(request.getDisciplineId())
+                                                   .orElseThrow(() -> new BadRequestException("Discipline is not found!"));
 
-        final var syllabus = this.save(
-                Syllabus.builder()
-                        .discipline(discipline)
-                        .name(String.format("%s, %s", discipline.getName(), request.getYear()))
-                        .credits(discipline.getCredits())
-                        .aim(request.getAim())
-                        .tasks(request.getTasks())
-                        .results(request.getResults())
-                        .methodology(request.getMethodology())
-                        .year(request.getYear())
-                        .competences(request.getCompetencies())
-                        .build());
+        final var syllabus = this.save(Syllabus.builder()
+                                               .discipline(discipline)
+                                               .name(String.format("%s, %s", discipline.getName(), request.getYear()))
+                                               .credits(discipline.getCredits())
+                                               .aim(request.getAim())
+                                               .tasks(request.getTasks())
+                                               .results(request.getResults())
+                                               .methodology(request.getMethodology())
+                                               .year(request.getYear())
+                                               .competences(request.getCompetencies())
+                                               .build());
 
         if (isTest) {
-            TestUser testuser = testUserRepository.getByIin(request.getIin());
+            final var testuser = testUserRepository.findByIin(request.getIin())
+                                                   .orElseGet(TestUser::new);
+
             testuser.setName(request.getName());
             testuser.setSname(request.getSname());
             testuser.setMname(request.getMname());
@@ -130,22 +137,25 @@ public class SyllabusService {
         return list;
     }
 
-    public Discipline testCreateSyllabus(FullSyllabusDTORequest request) throws NotFoundException {
-        final var discipline = disciplineService.getById(request.getDisciplineId());
-        final var syllabus =
-                Syllabus.builder()
-                        .name(discipline.getName() + "," + request.getYear())
-                        .credits(discipline.getCredits())
-                        .aim(request.getAim())
-                        .tasks(request.getTasks())
-                        .results(request.getResults())
-                        .methodology(request.getMethodology())
-                        .year(request.getYear())
-                        .competences(request.getCompetencies())
-                        .build();
+    @SneakyThrows
+    public Discipline testCreateSyllabus(FullSyllabusDTORequest request) {
+
+        final var discipline = disciplineRepository.findById(request.getDisciplineId())
+                                                   .orElseThrow(() -> new BadRequestException("Discipline not found!"));
+
+        final var syllabus = Syllabus.builder()
+                                     .name(discipline.getName() + "," + request.getYear())
+                                     .credits(discipline.getCredits())
+                                     .aim(request.getAim())
+                                     .tasks(request.getTasks())
+                                     .results(request.getResults())
+                                     .methodology(request.getMethodology())
+                                     .year(request.getYear())
+                                     .competences(request.getCompetencies())
+                                     .build();
 
         if (discipline.getSyllabuses().isEmpty())
-            syllabus.setSyllabusParam(SyllabusParam.newEmptyParam());
+            syllabus.setSyllabusParam(SyllabusParam.newEmptyParam(syllabus));
 
         final var syllabusPrograms = syllabus.getSyllabusPrograms();
         for (SyllabusProgramDtoRequest item : request.getSyllabusProgram()) {
@@ -154,13 +164,13 @@ public class SyllabusService {
             syllabusProgram.setPracticeTheme(item.getPracticeTheme());
             syllabusProgram.setIswTheme(item.getIswTheme());
             syllabusProgram.setWeek(item.getWeek());
+
             request.getProgramDetails().stream()
                    .filter(i -> i.getWeek().equals(item.getWeek()))
-                   .forEach(
-                           i -> {
-                               final var programDetail = ProgramDetail.fromRequest(i);
-                               syllabusProgram.setProgramDetail(programDetail);
-                           });
+                   .findFirst()
+                   .map(programDetailMapper::map)
+                   .ifPresent(syllabusProgram::setProgramDetail);
+
             syllabusPrograms.add(syllabusProgram);
         }
         syllabus.setSyllabusPrograms(syllabusPrograms);
@@ -179,8 +189,11 @@ public class SyllabusService {
         return list;
     }
 
+    @SneakyThrows
     public List<Syllabus> getAllTestSyllabusesByIin(String iin) {
-        final var user = testUserRepository.getByIin(iin);
+        final var user = testUserRepository.findByIin(iin)
+                                           .orElseThrow(() -> new BadRequestException("Iin is invalid"));
+
         return Optional.of(repository.findAll())
                        .map(this::checkForTest)
                        .stream()

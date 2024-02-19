@@ -6,11 +6,19 @@ plugins {
 
 }
 
+ext {
+    mapstructVersion = '1.5.5.Final'
+}
+
 repositories {
     mavenLocal()
     maven {
         url = uri('https://repo.maven.apache.org/maven2/')
     }
+}
+
+compileJava {
+    options.compilerArgs << '-Amapstruct.defaultComponentModel=spring'
 }
 
 dependencies {
@@ -29,7 +37,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-cache'
-    implementation 'com.github.ben-manes.caffeine:caffeine'
+
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    implementation "org.projectlombok:lombok-mapstruct-binding:0.2.0"
 
     runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

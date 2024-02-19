@@ -1,7 +1,7 @@
 package kz.syllabus.service;
 
 import kz.syllabus.persistence.model.syllabus.Syllabus;
-import kz.syllabus.service.syllabus.SyllabusParamService;
+import kz.syllabus.persistence.repository.SyllabusParamRepository;
 import kz.syllabus.service.syllabus.SyllabusService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,16 +13,16 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class StudentService {
     private final SyllabusService syllabusService;
-    private final SyllabusParamService syllabusParamService;
+    private final SyllabusParamRepository syllabusParamRepository;
 
     public List<Syllabus> findAll() {
 
         return Optional.of(syllabusService.findAll())
-                .map(syllabusService::checkForInstructors)
-                .map(syllabusService::checkForParam)
-                .stream()
-                .flatMap(List::stream)
-                .filter(item -> syllabusParamService.activeBySyllabusId(item.getId()))
-                .toList();
+                       .map(syllabusService::checkForInstructors)
+                       .map(syllabusService::checkForParam)
+                       .stream()
+                       .flatMap(List::stream)
+                       .filter(item -> syllabusParamRepository.existsBySyllabusIdAndIsActive(item.getId(), true))
+                       .toList();
     }
 }

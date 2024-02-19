@@ -24,4 +24,5 @@ public class UserService implements UserDetailsService {
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
         return this.findByUsername(username);
     }
+
 }

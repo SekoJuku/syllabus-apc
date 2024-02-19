@@ -4,7 +4,6 @@ import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import kz.syllabus.constants.SecurityConstants.Roles;
-import kz.syllabus.converter.JwtConverter;
 import kz.syllabus.properties.EncoderProperties;
 import kz.syllabus.properties.RsaProperties;
 import kz.syllabus.service.user.UserService;
@@ -15,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -37,7 +37,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class SecurityConfiguration {
 
     private final UserService userService;
-    private final JwtConverter jwtConverter;
     private final RsaProperties rsaProperties;
     private final EncoderProperties encoderProperties;
 
@@ -72,8 +71,7 @@ public class SecurityConfiguration {
                                        .permitAll()
                                        .anyRequest()
                                        .authenticated())
-                   .oauth2ResourceServer(oauth -> oauth.jwt(jwt ->
-                           jwt.jwtAuthenticationConverter(jwtConverter)))
+                   .oauth2ResourceServer(oauth -> oauth.jwt(Customizer.withDefaults()))
                    .build();
     }
 

@@ -2,8 +2,6 @@ package kz.syllabus.persistence.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import kz.syllabus.dto.request.ProgramDetailDtoRequest;
-import kz.syllabus.dto.response.ProgramDetailDtoResponse;
 import lombok.*;
 
 @Getter
@@ -26,33 +24,4 @@ public class ProgramDetail extends Base {
     private String practiceAssessment;
     private String iswAssessment;
 
-    public static ProgramDetail fromRequest(ProgramDetailDtoRequest request) {
-        return ProgramDetail.builder()
-                .lectureFof(request.getLectureFof())
-                .practiceFof(request.getPracticeFof())
-                .iswFof(request.getIswFof())
-                .lectureLiterature(request.getLectureLiterature())
-                .practiceLiterature(request.getPracticeLiterature())
-                .iswLiterature(request.getIswLiterature())
-                .lectureAssessment(request.getLectureAssessment())
-                .practiceAssessment(request.getPracticeAssessment())
-                .iswAssessment(request.getIswAssessment())
-                .build();
-    }
-
-    public ProgramDetailDtoResponse toDto() {
-        ProgramDetailDtoResponse response = new ProgramDetailDtoResponse();
-        response.setId(this.id);
-        response.setProgramInfoId(this.syllabusProgramId);
-        response.setLectureFof(this.lectureFof);
-        response.setPracticeFof(this.practiceFof);
-        response.setIswFof(this.iswFof);
-        response.setLectureLiterature(this.lectureLiterature);
-        response.setPracticeLiterature(this.practiceLiterature);
-        response.setIswLiterature(this.iswLiterature);
-        response.setLectureAssessment(this.lectureAssessment);
-        response.setPracticeAssessment(this.practiceAssessment);
-        response.setIswAssessment(this.iswAssessment);
-        return response;
-    }
 }

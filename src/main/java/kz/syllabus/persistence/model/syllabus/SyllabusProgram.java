@@ -1,8 +1,6 @@
 package kz.syllabus.persistence.model.syllabus;
 
 import jakarta.persistence.*;
-import kz.syllabus.dto.request.syllabus.SyllabusProgramDtoRequest;
-import kz.syllabus.dto.response.syllabus.SyllabusProgramDtoResponse;
 import kz.syllabus.persistence.model.Base;
 import kz.syllabus.persistence.model.ProgramDetail;
 import lombok.*;
@@ -30,26 +28,6 @@ public class SyllabusProgram extends Base {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "syllabus_program_id")
     private ProgramDetail programDetail;
-
-    public static SyllabusProgram from(SyllabusProgramDtoRequest request) {
-        return SyllabusProgram.builder()
-                .lectureTheme(request.getLectureTheme())
-                .practiceTheme(request.getPracticeTheme())
-                .iswTheme(request.getIswTheme())
-                .week(request.getWeek())
-                .build();
-    }
-
-    public SyllabusProgramDtoResponse toDto() {
-        SyllabusProgramDtoResponse response = new SyllabusProgramDtoResponse();
-        response.setId(this.id);
-        response.setSyllabusId(this.syllabus.getId());
-        response.setLectureTheme(this.lectureTheme);
-        response.setPracticeTheme(this.practiceTheme);
-        response.setIswTheme(this.iswTheme);
-        response.setWeek(this.week);
-        return response;
-    }
 
     @Override
     public boolean equals(Object o) {

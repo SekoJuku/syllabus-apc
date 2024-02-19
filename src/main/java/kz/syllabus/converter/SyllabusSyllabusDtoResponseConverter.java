@@ -1,11 +1,16 @@
 package kz.syllabus.converter;
 
 import kz.syllabus.dto.response.syllabus.SyllabusDtoResponse;
+import kz.syllabus.mapper.ProgramDetailMapper;
+import kz.syllabus.mapper.SyllabusProgramMapper;
 import kz.syllabus.persistence.model.Postrequisite;
 import kz.syllabus.persistence.model.Prerequisite;
 import kz.syllabus.persistence.model.syllabus.Syllabus;
 import kz.syllabus.persistence.model.syllabus.SyllabusProgram;
-import kz.syllabus.service.syllabus.*;
+import kz.syllabus.service.syllabus.PostrequisiteService;
+import kz.syllabus.service.syllabus.PrerequisiteService;
+import kz.syllabus.service.syllabus.ProgramDetailService;
+import kz.syllabus.service.syllabus.SyllabusProgramService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.core.convert.converter.Converter;
@@ -15,7 +20,8 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class SyllabusSyllabusDtoResponseConverter implements Converter<Syllabus, SyllabusDtoResponse> {
 
-    private final DisciplineService disciplineService;
+    private final SyllabusProgramMapper syllabusProgramMapper;
+    private final ProgramDetailMapper programDetailMapper;
     private final PostrequisiteService postrequisiteService;
     private final PrerequisiteService prerequisiteService;
     private final SyllabusProgramService syllabusProgramService;
@@ -33,11 +39,9 @@ public class SyllabusSyllabusDtoResponseConverter implements Converter<Syllabus,
         response.setResults(source.getResults());
         response.setMethodology(source.getMethodology());
 
-        final var discipline = disciplineService.getById(source.getDiscipline().getId());
-
-        response.setLectureHoursPerWeek(discipline.getLectureHoursPerWeek());
-        response.setPracticeHoursPerWeek(discipline.getPracticeHoursPerWeek());
-        response.setIswHoursPerWeek(discipline.getIswHoursPerWeek());
+        response.setLectureHoursPerWeek(source.getDiscipline().getLectureHoursPerWeek());
+        response.setPracticeHoursPerWeek(source.getDiscipline().getPracticeHoursPerWeek());
+        response.setIswHoursPerWeek(source.getDiscipline().getIswHoursPerWeek());
 
         final var postrequisiteList = postrequisiteService.getAllBySyllabusId(source.getId());
         final var prerequisiteList = prerequisiteService.getAllBySyllabusId(source.getId());
@@ -47,11 +51,13 @@ public class SyllabusSyllabusDtoResponseConverter implements Converter<Syllabus,
 
         final var syllabusProgramList = syllabusProgramService.getAllBySyllabusId(source.getId());
 
-        response.setSyllabusProgram(syllabusProgramList.stream().map(SyllabusProgram::toDto).toList());
+        response.setSyllabusProgram(syllabusProgramList.stream().map(syllabusProgramMapper::map).toList());
 
         response.setProgramDetails(
                 syllabusProgramList.stream()
-                                   .map(item -> programDetailService.getBySyllabusId(item.getId()).toDto())
+                                   .map(SyllabusProgram::getId)
+                                   .map(programDetailService::getBySyllabusId)
+                                   .map(programDetailMapper::map)
                                    .toList());
 
         return response;

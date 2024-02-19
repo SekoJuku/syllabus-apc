@@ -1,9 +1,6 @@
 package kz.syllabus.persistence.model.user;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import kz.syllabus.persistence.model.Base;
 import kz.syllabus.persistence.model.syllabus.Syllabus;
 import lombok.AllArgsConstructor;
@@ -19,7 +16,9 @@ import lombok.Setter;
 @Table(name = "instructors")
 public class Instructor extends Base {
 
-    private Long userId;
+    @OneToOne
+    private User user;
+
     @ManyToOne(targetEntity = Syllabus.class)
     @JoinColumn(name = "syllabus_id", referencedColumnName = "id")
     private Syllabus syllabus;

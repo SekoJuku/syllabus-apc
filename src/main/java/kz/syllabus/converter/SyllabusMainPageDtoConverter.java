@@ -4,7 +4,7 @@ import kz.syllabus.dto.response.syllabus.MainPageDtoResponse;
 import kz.syllabus.dto.response.user.InstructorDtoResponse;
 import kz.syllabus.persistence.model.PersonalInfo;
 import kz.syllabus.persistence.model.syllabus.Syllabus;
-import kz.syllabus.service.user.InstructorService;
+import kz.syllabus.service.user.PersonalInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class SyllabusMainPageDtoConverter implements Converter<Syllabus, MainPageDtoResponse> {
 
-    private final InstructorService instructorService;
+    private final PersonalInfoService personalInfoService;
 
     @Override
     public MainPageDtoResponse convert(Syllabus item) {
@@ -24,7 +24,7 @@ public class SyllabusMainPageDtoConverter implements Converter<Syllabus, MainPag
                                   .disciplineName(item.getDiscipline().getName())
                                   .instructors(
                                           item.getInstructors().stream()
-                                              .map(instructorService::getPersonalInfo)
+                                              .map(personalInfoService::get)
                                               .map(this::toMainPageDtoComponent)
                                               .toList()
                                   )

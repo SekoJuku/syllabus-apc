@@ -2,6 +2,7 @@ package kz.syllabus.persistence.model.user;
 
 import jakarta.persistence.*;
 import kz.syllabus.persistence.model.Base;
+import kz.syllabus.persistence.model.PersonalInfo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,9 @@ public class User extends Base implements UserDetails {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
+
+    @OneToOne(mappedBy = "user")
+    private PersonalInfo personalInfo;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
