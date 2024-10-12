@@ -5,31 +5,52 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c92fe44a-636c-43a2-8808-971c9ac4624f" name="Default Changelist" comment="Small Refactor">
-      <change afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/mapper/ProgramDetailMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/mapper/SyllabusProgramMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/service/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/converter/SyllabusDtoConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/coordinator/service/impl/CoordinatorServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/dean/service/DeanService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/dean/service/impl/DeanServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/exception/domain/NoDataException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/student/service/impl/StudentServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/config/CacheConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/config/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/converter/SyllabusMainPageDtoConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/converter/SyllabusMainPageDtoConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/converter/SyllabusSyllabusDtoResponseConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/converter/SyllabusSyllabusDtoResponseConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/persistence/model/ProgramDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/persistence/model/ProgramDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/persistence/model/syllabus/SyllabusParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/persistence/model/syllabus/SyllabusParam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/persistence/model/syllabus/SyllabusProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/persistence/model/syllabus/SyllabusProgram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/persistence/model/user/Instructor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/persistence/model/user/Instructor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/persistence/model/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/persistence/model/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/persistence/repository/InstructorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/persistence/repository/InstructorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/persistence/repository/TestUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/persistence/repository/TestUserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/StudentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/syllabus/SyllabusParamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/syllabus/SyllabusParamService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/syllabus/SyllabusProgramService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/syllabus/SyllabusProgramService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/syllabus/SyllabusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/syllabus/SyllabusService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/user/InstructorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/user/InstructorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/user/PersonalInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/user/PersonalInfoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/user/TestUserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/constants/SecurityConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/constants/SecurityConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/controller/coordinator/CoordinatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/coordinator/controller/CoordinatorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/controller/dean/DeanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/dean/controller/DeanController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/controller/student/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/student/controller/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/controller/teacher/SyllabusController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/teacher/controller/SyllabusController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/controller/testUser/TestUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/student/controller/TestUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/converter/JwtConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/converter/JwtConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/converter/SyllabusMainPageDtoConverter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/converter/SyllabusSyllabusDtoResponseConverter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/exception/ExceptionHandling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/exception/ExceptionHandling.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/exception/HttpResponseException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/exception/SyllabusApcException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/exception/AbstractApiException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/exception/domain/BadRequestException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/exception/domain/BadRequestException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/exception/domain/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/exception/domain/NotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/mapper/ProgramDetailMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/mapper/ProgramDetailMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/mapper/SyllabusProgramMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/mapper/SyllabusProgramMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/service/impl/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/CoordinatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/coordinator/service/CoordinatorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/DeanService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/student/service/StudentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/syllabus/DisciplineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/service/syllabus/DisciplineService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/syllabus/PostrequisiteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/service/syllabus/PostrequisiteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/syllabus/PrerequisiteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/service/syllabus/PrerequisiteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/syllabus/ProgramDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/service/syllabus/ProgramDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/syllabus/SyllabusParamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/service/syllabus/SyllabusParamService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/syllabus/SyllabusProgramService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/service/syllabus/SyllabusProgramService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/syllabus/SyllabusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/service/syllabus/SyllabusService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/user/InstructorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/service/user/InstructorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/user/PersonalInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/service/user/PersonalInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/service/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/util/UserUtils.java" beforeDir="false" />
     </list>
     <list id="e29c290e-cc91-464a-9ba9-c5463819e34c" name="Changes by kuany" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,6 +62,9 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+    <projectState path="$PROJECT_DIR$/facade">
+      <ProjectState />
+    </projectState>
   </component>
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
@@ -50,7 +74,12 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="syllabus" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -100,14 +129,12 @@
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
   </component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="8632d10a-ff8f-477c-bb72-a22fa3cbbdfe" />
-        <option name="url" value="git@github.com:SekoJuku/syllabus-apc.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/SekoJuku/syllabus-apc.git&quot;,
+    &quot;accountId&quot;: &quot;8632d10a-ff8f-477c-bb72-a22fa3cbbdfe&quot;
+  }
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/kz/syllabus/entity/EvaluationSystem.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/kz/syllabus/security/JWTFilter.java" root0="FORCE_HIGHLIGHTING" />
@@ -130,7 +157,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -167,8 +194,9 @@
     &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;temurin-17&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/seko/IdeaProjects/syllabus-apc/src/main/java/kz/syllabus/dto&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Serikzhan/IdeaProjects/syllabus-apc/src/main/java/kz/syllabus/student&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -176,10 +204,10 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;df06c599fcf736615fcfefbb36a38453&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -194,16 +222,25 @@
       <recent name="kz.syllabus.util" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Serikzhan\IdeaProjects\syllabus-apc\src\main\java\kz\syllabus\student" />
+      <recent name="C:\Users\Serikzhan\IdeaProjects\syllabus-apc\src\main\java\kz\syllabus\teacher" />
       <recent name="$PROJECT_DIR$/src/main/java/kz/syllabus/persistence/model" />
       <recent name="C:\Users\Сагинов Жандос\Desktop\sylabus\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\kuany\IdeaProjects\syllabus-apc\src\main\resources\flyway" />
     </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="kz.syllabus.student.service.impl" />
+      <recent name="kz.syllabus.service.impl" />
+      <recent name="kz.syllabus.coordinator.service.impl" />
+      <recent name="kz.syllabus.dean.service.impl" />
+    </key>
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn clean install" />
+      <command value="0" />
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.SyllabusApplication">
@@ -219,7 +256,7 @@
       <module name="syllabus" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="kz.syllabus.controller.student.*" />
+          <option name="PATTERN" value="kz.syllabus.student.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -261,6 +298,13 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="FacadeApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="facade.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.github.sekojuku.syllabus.facade.FacadeApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SyllabusApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="syllabus.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="kz.syllabus.SyllabusApplication" />
@@ -273,22 +317,23 @@
       <item itemvalue="Application.Main" />
       <item itemvalue="Database Script.V20210620_1__init.sql and 6 more" />
       <item itemvalue="Gradle.syllabus-apc [build]" />
+      <item itemvalue="Spring Boot.FacadeApplication" />
       <item itemvalue="Spring Boot.SyllabusApplication" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.syllabus-apc [build]" />
         <item itemvalue="Database Script.V20210620_1__init.sql and 6 more" />
+        <item itemvalue="Application.SyllabusApplication" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.SyllabusApplication" />
-        <item itemvalue="Application.SyllabusApplication" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-17.0.10-azul-17.0.10-f644763e9732-2dc6b431" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.22855.74" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.22855.74" />
       </set>
     </attachedChunks>
   </component>
@@ -381,6 +426,12 @@
       <workItem from="1707977018104" duration="98000" />
       <workItem from="1707992236556" duration="266000" />
       <workItem from="1708318612111" duration="4319000" />
+      <workItem from="1727886737159" duration="851000" />
+      <workItem from="1727887608237" duration="14000" />
+      <workItem from="1727887630622" duration="122000" />
+      <workItem from="1727887788569" duration="15000" />
+      <workItem from="1728742109765" duration="139000" />
+      <workItem from="1728742270312" duration="2971000" />
     </task>
     <task id="LOCAL-00001" summary="syllabus added">
       <created>1623128343368</created>
