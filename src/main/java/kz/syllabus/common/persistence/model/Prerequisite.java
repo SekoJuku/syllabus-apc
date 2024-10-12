@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "prerequisites")
-public class Prerequisite extends Base {
+public class Prerequisite extends AbstractModel {
 
     private Long disciplineId;
     private Long syllabusId;

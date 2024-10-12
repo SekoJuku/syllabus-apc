@@ -16,7 +16,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "personal_info")
-public class PersonalInfo extends Base {
+public class PersonalInfo extends AbstractModel {
 
     @OneToOne(cascade = CascadeType.ALL)
     private User user;

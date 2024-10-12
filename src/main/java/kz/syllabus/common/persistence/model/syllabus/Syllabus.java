@@ -1,7 +1,7 @@
 package kz.syllabus.common.persistence.model.syllabus;
 
 import jakarta.persistence.*;
-import kz.syllabus.common.persistence.model.Base;
+import kz.syllabus.common.persistence.model.AbstractModel;
 import kz.syllabus.common.persistence.model.Discipline;
 import kz.syllabus.common.persistence.model.Rubric;
 import kz.syllabus.common.persistence.model.user.Instructor;
@@ -17,7 +17,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "syllabus")
-public class Syllabus extends Base {
+public class Syllabus extends AbstractModel {
 
     @ManyToOne(targetEntity = Discipline.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "discipline_id", referencedColumnName = "id")

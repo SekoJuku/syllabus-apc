@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "rubrics")
-public class Rubric extends Base {
+public class Rubric extends AbstractModel {
 
     private String name;
     private String text;

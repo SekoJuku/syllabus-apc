@@ -1,7 +1,7 @@
 package kz.syllabus.common.persistence.model.user;
 
 import jakarta.persistence.*;
-import kz.syllabus.common.persistence.model.Base;
+import kz.syllabus.common.persistence.model.AbstractModel;
 import kz.syllabus.common.persistence.model.syllabus.Syllabus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "instructors")
-public class Instructor extends Base {
+public class Instructor extends AbstractModel {
 
     @OneToOne
     private User user;

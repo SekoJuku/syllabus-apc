@@ -1,7 +1,7 @@
 package kz.syllabus.common.persistence.model.syllabus;
 
 import jakarta.persistence.*;
-import kz.syllabus.common.persistence.model.Base;
+import kz.syllabus.common.persistence.model.AbstractModel;
 import kz.syllabus.common.persistence.model.ProgramDetail;
 import lombok.*;
 
@@ -14,7 +14,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "syllabus_program")
-public class SyllabusProgram extends Base {
+public class SyllabusProgram extends AbstractModel {
 
     private String lectureTheme;
     private String practiceTheme;

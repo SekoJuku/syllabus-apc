@@ -11,7 +11,5 @@ import java.util.Optional;
 public interface SyllabusParamRepository extends JpaRepository<SyllabusParam, Long> {
     Optional<SyllabusParam> findBySyllabusId(Long syllabusId);
 
-    boolean existsBySyllabusIdAndIsActive(Long id, boolean isActive);
-
     List<SyllabusParam> findAllByIsSentToDean(boolean isSentToDean);
 }

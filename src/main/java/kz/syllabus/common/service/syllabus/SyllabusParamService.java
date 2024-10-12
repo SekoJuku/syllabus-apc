@@ -8,8 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @AllArgsConstructor
 public class SyllabusParamService {
@@ -20,10 +18,6 @@ public class SyllabusParamService {
 
         return repository.findBySyllabusId(syllabus.getId())
                          .orElseGet(() -> repository.save(SyllabusParam.newEmptyParam(syllabus)));
-    }
-
-    public List<SyllabusParam> getAllSentToDean() {
-        return repository.findAllByIsSentToDean(true);
     }
 
     @SneakyThrows

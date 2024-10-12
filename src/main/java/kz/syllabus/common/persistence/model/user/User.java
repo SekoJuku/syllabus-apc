@@ -1,7 +1,7 @@
 package kz.syllabus.common.persistence.model.user;
 
 import jakarta.persistence.*;
-import kz.syllabus.common.persistence.model.Base;
+import kz.syllabus.common.persistence.model.AbstractModel;
 import kz.syllabus.common.persistence.model.PersonalInfo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +21,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
-public class User extends Base implements UserDetails {
+public class User extends AbstractModel implements UserDetails {
 
     private String username;
     private String password;

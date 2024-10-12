@@ -11,7 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "program_details")
-public class ProgramDetail extends Base {
+public class ProgramDetail extends AbstractModel {
 
     private Long syllabusProgramId;
     private String lectureFof;

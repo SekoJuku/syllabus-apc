@@ -17,7 +17,7 @@ import java.time.ZonedDateTime;
 @ToString
 @RequiredArgsConstructor
 @MappedSuperclass
-public class Base {
+public class AbstractModel {
 
     @Id
     protected Long id;

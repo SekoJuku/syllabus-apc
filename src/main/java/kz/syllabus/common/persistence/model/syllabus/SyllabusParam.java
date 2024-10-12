@@ -1,7 +1,7 @@
 package kz.syllabus.common.persistence.model.syllabus;
 
 import jakarta.persistence.*;
-import kz.syllabus.common.persistence.model.Base;
+import kz.syllabus.common.persistence.model.AbstractModel;
 import lombok.*;
 
 import java.util.Objects;
@@ -13,7 +13,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "syllabus_params")
-public class SyllabusParam extends Base {
+public class SyllabusParam extends AbstractModel {
 
     @OneToOne(targetEntity = Syllabus.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "syllabus_id", referencedColumnName = "id")

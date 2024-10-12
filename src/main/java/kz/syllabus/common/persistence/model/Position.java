@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "positions")
-public class Position extends Base {
+public class Position extends AbstractModel {
 
     private String name;
 }

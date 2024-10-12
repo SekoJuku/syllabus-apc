@@ -4,9 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c92fe44a-636c-43a2-8808-971c9ac4624f" name="Default Changelist" comment="Small Refactor">
+    <list default="true" id="c92fe44a-636c-43a2-8808-971c9ac4624f" name="Default Changelist" comment="Small fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/exception/domain/NoDataException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/dto/request/DisciplineDtoRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/dto/request/ListInstructorDisciplineDtoRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/dto/request/PostrequisiteDtoRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/dto/request/PrerequisiteDtoRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/dto/request/ProgramInfoDtoRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/dto/request/syllabus/GetSyllabusDtoRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/dto/request/syllabus/GetSyllabusesByDiscipleAndYearDtoRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/dto/request/syllabus/SyllabusDtoRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/dto/request/user/GetUserDataDtoRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/dto/request/user/InstructorDtoRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/dto/request/user/PersonalInfoDtoRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/dto/request/user/PositionDtoRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/dto/request/user/UserDtoRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/dto/response/syllabus/CoordinatorMainPageDtoResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/dto/response/user/RoleDtoResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/Base.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/AbstractModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/Discipline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/Discipline.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/PersonalInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/PersonalInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/Postrequisite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/Postrequisite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/Prerequisite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/Prerequisite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/ProgramDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/ProgramDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/Rubric.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/Rubric.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/syllabus/Syllabus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/syllabus/Syllabus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/syllabus/SyllabusParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/syllabus/SyllabusParam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/syllabus/SyllabusProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/syllabus/SyllabusProgram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/user/Instructor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/user/Instructor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/user/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/user/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/user/TestInstructor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/user/TestInstructor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/user/TestUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/user/TestUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/model/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/repository/PositionRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/repository/RoleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/repository/SyllabusParamRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/persistence/repository/SyllabusParamRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/service/syllabus/DisciplineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/service/syllabus/DisciplineService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/service/syllabus/SyllabusParamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/service/syllabus/SyllabusParamService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kz/syllabus/common/service/user/InstructorService.java" beforeDir="false" />
     </list>
     <list id="e29c290e-cc91-464a-9ba9-c5463819e34c" name="Changes by kuany" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -107,6 +143,10 @@
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
   </component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -121,7 +161,7 @@
     <option name="myRunOnSave" value="true" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -512,7 +552,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707381805400</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Small fix">
+      <option name="closed" value="true" />
+      <created>1728745565844</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1728745565844</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -547,7 +595,8 @@
     <MESSAGE value="refactor: services, configuration" />
     <MESSAGE value="refactor: service, configuration, model, converter" />
     <MESSAGE value="Small Refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Small Refactor" />
+    <MESSAGE value="Small fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Small fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

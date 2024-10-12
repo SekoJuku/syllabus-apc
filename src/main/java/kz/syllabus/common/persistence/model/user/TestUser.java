@@ -2,7 +2,7 @@ package kz.syllabus.common.persistence.model.user;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import kz.syllabus.common.persistence.model.Base;
+import kz.syllabus.common.persistence.model.AbstractModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "test_users")
-public class TestUser extends Base {
+public class TestUser extends AbstractModel {
 
     private String iin;
     private String name;

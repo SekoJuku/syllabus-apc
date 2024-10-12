@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "disciplines")
-public class Discipline extends Base {
+public class Discipline extends AbstractModel {
 
     private String name;
     private String language;
